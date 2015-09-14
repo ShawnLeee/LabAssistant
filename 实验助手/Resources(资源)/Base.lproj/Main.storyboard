@@ -181,7 +181,7 @@
         <!--学术圈-->
         <scene sceneID="cok-vH-aId">
             <objects>
-                <navigationController id="MaC-wl-CPG" sceneMemberID="viewController">
+                <navigationController id="MaC-wl-CPG" customClass="SXQNavgationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="学术圈" image="Find_Normal" id="STT-XC-vM9">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Find_Highlight"/>
@@ -193,32 +193,39 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="vk8-Gv-Fx7" kind="relationship" relationship="rootViewController" id="LEO-aw-KN1"/>
+                        <segue destination="vER-Ez-ZDa" kind="relationship" relationship="rootViewController" id="Xr5-2L-3RJ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JuM-K6-Gis" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1429" y="127"/>
         </scene>
-        <!--学术圈-->
-        <scene sceneID="fxD-hc-W9T">
+        <!--Academic Controller-->
+        <scene sceneID="76k-A0-GvN">
             <objects>
-                <viewController id="vk8-Gv-Fx7" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Tr7-eU-lQm"/>
-                        <viewControllerLayoutGuide type="bottom" id="GpT-gX-UrN"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="9Li-Pm-gJx">
+                <tableViewController id="vER-Ez-ZDa" customClass="SXQAcademicController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="NeO-vo-a1W">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="学术圈" id="pPV-zb-Ksu"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bea-pP-2oR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kGU-0z-2jU">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kGU-0z-2jU" id="rAL-VL-pwJ">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vER-Ez-ZDa" id="Vdy-xS-KCe"/>
+                            <outlet property="delegate" destination="vER-Ez-ZDa" id="Hvl-dN-65O"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="2uj-pm-0tM"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aqI-Ne-oIF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-952" y="127"/>
+            <point key="canvasLocation" x="-997" y="127"/>
         </scene>
     </scenes>
     <resources>

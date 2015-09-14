@@ -8,7 +8,7 @@
 #import "SXQDoneExperimentController.h"
 #import "SXQExpeirmentController.h"
 #import "SXQNowExperimentController.h"
-
+#import "SXQSegmentedControll.h"
 @interface SXQExpeirmentController ()
 
 @end
@@ -17,7 +17,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self setupSelf];
+}
+- (void)setupSelf
+{
+    self.navigationItem.titleView = [[SXQSegmentedControll alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
 }
 - (IBAction)nowButtonClicked:(UIButton *)sender {
     [self.navigationController pushViewController:[SXQNowExperimentController new] animated:YES];

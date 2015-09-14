@@ -24,4 +24,10 @@
 {
     return [[DWGroup alloc] initWithWithHeader:nil footer:nil items:items];
 }
++ (instancetype)groupWithItems:(NSArray *)items identifier:(NSString *)identifier header:(NSString *)headerTitle
+{
+    DWGroup *group = [[DWGroup alloc] initWithWithHeader:headerTitle footer:nil items:items];
+    group.identifier = identifier;
+    return group;
+}
 @end
