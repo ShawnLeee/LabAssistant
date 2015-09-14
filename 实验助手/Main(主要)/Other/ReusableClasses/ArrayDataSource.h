@@ -7,7 +7,6 @@
 //
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
 typedef void (^CellConfigureBlock)(id cell,id item);
 
 @interface ArrayDataSource : NSObject
@@ -15,10 +14,14 @@ typedef void (^CellConfigureBlock)(id cell,id item);
 @property (nonatomic,strong) NSArray *items;
 @property (nonatomic,copy) NSString *cellIdentifier;
 @property (nonatomic,copy) CellConfigureBlock configureBlock;
+@property (nonatomic,assign,getter=isGroupArray) BOOL groupArray;
+
 
 - (instancetype)initWithItems:(NSArray *)anItems
                cellIdentifier:(NSString *)aCellIdentifier
            cellConfigureBlock:(CellConfigureBlock )aConfigureBlock;
+
+- (instancetype)initWithGroups:(NSArray *)groups;
 
 - (instancetype)itemAtIndexPath:(NSIndexPath *)indexPath;
 @end

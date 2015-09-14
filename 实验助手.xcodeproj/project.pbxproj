@@ -37,6 +37,17 @@
 		B0C73CD51B93369A00F4B6D2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0C73CA51B92F39E00F4B6D2 /* LaunchScreen.xib */; };
 		B0C73CD61B93369A00F4B6D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0C73CA71B92F39E00F4B6D2 /* Main.storyboard */; };
 		B0C73CD91B933E1800F4B6D2 /* SXQAllInstructionController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C73CD81B933E1800F4B6D2 /* SXQAllInstructionController.m */; };
+		B0DDFEFE1BA6622C00E4AB3C /* SXQDoneExperimentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFEFD1BA6622C00E4AB3C /* SXQDoneExperimentController.m */; };
+		B0DDFF021BA6624A00E4AB3C /* SXQExpeirmentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF001BA6624A00E4AB3C /* SXQExpeirmentController.m */; };
+		B0DDFF061BA6638400E4AB3C /* SXQNowExperimentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF051BA6638400E4AB3C /* SXQNowExperimentController.m */; };
+		B0DDFF091BA6664F00E4AB3C /* SXQExperimentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF081BA6664F00E4AB3C /* SXQExperimentDetailController.m */; };
+		B0DDFF0C1BA6679500E4AB3C /* DWGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF0B1BA6679500E4AB3C /* DWGroup.m */; };
+		B0DDFF0F1BA67EF000E4AB3C /* SXQExperimentStepController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF0E1BA67EF000E4AB3C /* SXQExperimentStepController.m */; };
+		B0DDFF131BA67F6500E4AB3C /* SXQExperimentStepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF111BA67F6500E4AB3C /* SXQExperimentStepCell.m */; };
+		B0DDFF141BA67F6500E4AB3C /* SXQExperimentStepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0DDFF121BA67F6500E4AB3C /* SXQExperimentStepCell.xib */; };
+		B0DDFF181BA67FFE00E4AB3C /* SXQEquipMentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF161BA67FFE00E4AB3C /* SXQEquipMentCell.m */; };
+		B0DDFF191BA67FFE00E4AB3C /* SXQEquipMentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0DDFF171BA67FFE00E4AB3C /* SXQEquipMentCell.xib */; };
+		B0DDFF1C1BA686AF00E4AB3C /* SXQEquimentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF1B1BA686AF00E4AB3C /* SXQEquimentController.m */; };
 		B0E054B71B9470AD00C7F9D0 /* SXQNavgationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E054B61B9470AD00C7F9D0 /* SXQNavgationController.m */; };
 		B0E054BB1B94715A00C7F9D0 /* SXQNavgationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E054BA1B94715A00C7F9D0 /* SXQNavgationBar.m */; };
 		B0E752541B94AA38009781E1 /* SXQSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E752531B94AA38009781E1 /* SXQSegmentedControl.m */; };
@@ -152,6 +163,26 @@
 		B0C73CD31B932C6000F4B6D2 /* SXQGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQGroupCell.m; sourceTree = "<group>"; };
 		B0C73CD71B933E1800F4B6D2 /* SXQAllInstructionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQAllInstructionController.h; sourceTree = "<group>"; };
 		B0C73CD81B933E1800F4B6D2 /* SXQAllInstructionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQAllInstructionController.m; sourceTree = "<group>"; };
+		B0DDFEFC1BA6622C00E4AB3C /* SXQDoneExperimentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQDoneExperimentController.h; sourceTree = "<group>"; };
+		B0DDFEFD1BA6622C00E4AB3C /* SXQDoneExperimentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQDoneExperimentController.m; sourceTree = "<group>"; };
+		B0DDFEFF1BA6624A00E4AB3C /* SXQExpeirmentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQExpeirmentController.h; sourceTree = "<group>"; };
+		B0DDFF001BA6624A00E4AB3C /* SXQExpeirmentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExpeirmentController.m; sourceTree = "<group>"; };
+		B0DDFF041BA6638400E4AB3C /* SXQNowExperimentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQNowExperimentController.h; sourceTree = "<group>"; };
+		B0DDFF051BA6638400E4AB3C /* SXQNowExperimentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQNowExperimentController.m; sourceTree = "<group>"; };
+		B0DDFF071BA6664F00E4AB3C /* SXQExperimentDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQExperimentDetailController.h; sourceTree = "<group>"; };
+		B0DDFF081BA6664F00E4AB3C /* SXQExperimentDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExperimentDetailController.m; sourceTree = "<group>"; };
+		B0DDFF0A1BA6679500E4AB3C /* DWGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWGroup.h; sourceTree = "<group>"; };
+		B0DDFF0B1BA6679500E4AB3C /* DWGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWGroup.m; sourceTree = "<group>"; };
+		B0DDFF0D1BA67EF000E4AB3C /* SXQExperimentStepController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQExperimentStepController.h; sourceTree = "<group>"; };
+		B0DDFF0E1BA67EF000E4AB3C /* SXQExperimentStepController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExperimentStepController.m; sourceTree = "<group>"; };
+		B0DDFF101BA67F6500E4AB3C /* SXQExperimentStepCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQExperimentStepCell.h; sourceTree = "<group>"; };
+		B0DDFF111BA67F6500E4AB3C /* SXQExperimentStepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExperimentStepCell.m; sourceTree = "<group>"; };
+		B0DDFF121BA67F6500E4AB3C /* SXQExperimentStepCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SXQExperimentStepCell.xib; sourceTree = "<group>"; };
+		B0DDFF151BA67FFE00E4AB3C /* SXQEquipMentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQEquipMentCell.h; sourceTree = "<group>"; };
+		B0DDFF161BA67FFE00E4AB3C /* SXQEquipMentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQEquipMentCell.m; sourceTree = "<group>"; };
+		B0DDFF171BA67FFE00E4AB3C /* SXQEquipMentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SXQEquipMentCell.xib; sourceTree = "<group>"; };
+		B0DDFF1A1BA686AF00E4AB3C /* SXQEquimentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQEquimentController.h; sourceTree = "<group>"; };
+		B0DDFF1B1BA686AF00E4AB3C /* SXQEquimentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQEquimentController.m; sourceTree = "<group>"; };
 		B0E054B51B9470AD00C7F9D0 /* SXQNavgationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQNavgationController.h; sourceTree = "<group>"; };
 		B0E054B61B9470AD00C7F9D0 /* SXQNavgationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQNavgationController.m; sourceTree = "<group>"; };
 		B0E054B91B94715A00C7F9D0 /* SXQNavgationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQNavgationBar.h; sourceTree = "<group>"; };
@@ -480,6 +511,18 @@
 		B0C73C8A1B92F39E00F4B6D2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B0DDFEFC1BA6622C00E4AB3C /* SXQDoneExperimentController.h */,
+				B0DDFEFD1BA6622C00E4AB3C /* SXQDoneExperimentController.m */,
+				B0DDFEFF1BA6624A00E4AB3C /* SXQExpeirmentController.h */,
+				B0DDFF001BA6624A00E4AB3C /* SXQExpeirmentController.m */,
+				B0DDFF041BA6638400E4AB3C /* SXQNowExperimentController.h */,
+				B0DDFF051BA6638400E4AB3C /* SXQNowExperimentController.m */,
+				B0DDFF071BA6664F00E4AB3C /* SXQExperimentDetailController.h */,
+				B0DDFF081BA6664F00E4AB3C /* SXQExperimentDetailController.m */,
+				B0DDFF0D1BA67EF000E4AB3C /* SXQExperimentStepController.h */,
+				B0DDFF0E1BA67EF000E4AB3C /* SXQExperimentStepController.m */,
+				B0DDFF1A1BA686AF00E4AB3C /* SXQEquimentController.h */,
+				B0DDFF1B1BA686AF00E4AB3C /* SXQEquimentController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -501,6 +544,12 @@
 		B0C73C8D1B92F39E00F4B6D2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B0DDFF101BA67F6500E4AB3C /* SXQExperimentStepCell.h */,
+				B0DDFF111BA67F6500E4AB3C /* SXQExperimentStepCell.m */,
+				B0DDFF121BA67F6500E4AB3C /* SXQExperimentStepCell.xib */,
+				B0DDFF151BA67FFE00E4AB3C /* SXQEquipMentCell.h */,
+				B0DDFF161BA67FFE00E4AB3C /* SXQEquipMentCell.m */,
+				B0DDFF171BA67FFE00E4AB3C /* SXQEquipMentCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -718,6 +767,8 @@
 				B0C73CB91B92F52C00F4B6D2 /* ArrayDataSource+TableView.m */,
 				B0C73CBA1B92F52C00F4B6D2 /* ArrayDataSource.h */,
 				B0C73CBB1B92F52C00F4B6D2 /* ArrayDataSource.m */,
+				B0DDFF0A1BA6679500E4AB3C /* DWGroup.h */,
+				B0DDFF0B1BA6679500E4AB3C /* DWGroup.m */,
 			);
 			path = ReusableClasses;
 			sourceTree = "<group>";
@@ -947,10 +998,12 @@
 				B0B1EC521BA27A920087A318 /* SXQVenderView.xib in Resources */,
 				B0A1E51C1B95897200440141 /* SXQListCell.xib in Resources */,
 				B0F939CB1BA166F900D093F9 /* WeiboSDK.bundle in Resources */,
+				B0DDFF191BA67FFE00E4AB3C /* SXQEquipMentCell.xib in Resources */,
 				B0C73CB31B92F39E00F4B6D2 /* Images.xcassets in Resources */,
 				B0F939C61BA166F800D093F9 /* Resource.bundle in Resources */,
 				B0F939CE1BA166F900D093F9 /* ShareSDKFlatShareViewUI.bundle in Resources */,
 				B0C73CD11B9329DF00F4B6D2 /* SXQInstrutionCell.xib in Resources */,
+				B0DDFF141BA67F6500E4AB3C /* SXQExperimentStepCell.xib in Resources */,
 				B03F97BC1BA2A05E009FD1B4 /* SXQLoginField.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1004,6 +1057,7 @@
 			files = (
 				B0C73CBE1B92F52C00F4B6D2 /* ArrayDataSource.m in Sources */,
 				B06239491B9587C100F0CAFB /* SXQInstructionListController.m in Sources */,
+				B0DDFF0C1BA6679500E4AB3C /* DWGroup.m in Sources */,
 				B0C73CAF1B92F39E00F4B6D2 /* AppDelegate.m in Sources */,
 				B0C73CCC1B93271200F4B6D2 /* SXQGroup.m in Sources */,
 				B0C73CC41B93093B00F4B6D2 /* SXQHttpTool.m in Sources */,
@@ -1012,21 +1066,29 @@
 				B0B1EC501BA27A870087A318 /* SXQVenderView.m in Sources */,
 				B0C73CC71B930C6E00F4B6D2 /* SXQInstructionHeader.m in Sources */,
 				B0C73CD41B932C6000F4B6D2 /* SXQGroupCell.m in Sources */,
+				B0DDFF131BA67F6500E4AB3C /* SXQExperimentStepCell.m in Sources */,
 				B0EBC4971BA1731D000ECCA0 /* SXQVenderLogin.m in Sources */,
 				B0C73CB01B92F39E00F4B6D2 /* main.m in Sources */,
+				B0DDFEFE1BA6622C00E4AB3C /* SXQDoneExperimentController.m in Sources */,
+				B0DDFF021BA6624A00E4AB3C /* SXQExpeirmentController.m in Sources */,
 				B0C73CBC1B92F52C00F4B6D2 /* ArrayDataSource+CollectionView.m in Sources */,
 				B0E752541B94AA38009781E1 /* SXQSegmentedControl.m in Sources */,
+				B0DDFF061BA6638400E4AB3C /* SXQNowExperimentController.m in Sources */,
 				B03F97BF1BA2CAEE009FD1B4 /* SXQVenderLoginTool.m in Sources */,
 				B0E054BB1B94715A00C7F9D0 /* SXQNavgationBar.m in Sources */,
+				B0DDFF181BA67FFE00E4AB3C /* SXQEquipMentCell.m in Sources */,
 				B03F97C21BA2D51D009FD1B4 /* SXQTabBarController.m in Sources */,
 				B0EBC4911BA16DB3000ECCA0 /* SXQMeViewController.m in Sources */,
 				B0A1E51B1B95897200440141 /* SXQListCell.m in Sources */,
 				B0C73CAE1B92F39E00F4B6D2 /* ViewController.m in Sources */,
 				B0C73CC11B93076500F4B6D2 /* SXQInstructionController.m in Sources */,
+				B0DDFF0F1BA67EF000E4AB3C /* SXQExperimentStepController.m in Sources */,
 				B03F97BA1BA2A052009FD1B4 /* SXQLoginField.m in Sources */,
 				B0C73CD91B933E1800F4B6D2 /* SXQAllInstructionController.m in Sources */,
 				B0C73CD01B9329DF00F4B6D2 /* SXQInstrutionCell.m in Sources */,
 				B0E054B71B9470AD00C7F9D0 /* SXQNavgationController.m in Sources */,
+				B0DDFF1C1BA686AF00E4AB3C /* SXQEquimentController.m in Sources */,
+				B0DDFF091BA6664F00E4AB3C /* SXQExperimentDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1162,6 +1224,7 @@
 			baseConfigurationReference = 0FDB7AA2AE99ED779EEAD281 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/实验助手/Vender(第三方)",
@@ -1179,6 +1242,7 @@
 					"$(PROJECT_DIR)/实验助手/Vender(第三方)/ShareSDK/Extend/WeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1187,6 +1251,7 @@
 			baseConfigurationReference = C6F18907431E81E714D5DD65 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/实验助手/Vender(第三方)",
@@ -1204,6 +1269,7 @@
 					"$(PROJECT_DIR)/实验助手/Vender(第三方)/ShareSDK/Extend/WeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

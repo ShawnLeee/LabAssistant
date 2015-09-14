@@ -123,7 +123,7 @@
         <!--实验-->
         <scene sceneID="M4L-9K-bGK">
             <objects>
-                <navigationController id="Xif-q6-91x" sceneMemberID="viewController">
+                <navigationController id="Xif-q6-91x" customClass="SXQNavgationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="实验" image="Notice_Normal" id="bK7-Eg-Suc"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Igi-G4-wR2">
@@ -141,7 +141,7 @@
         <!--实验-->
         <scene sceneID="C5y-Ju-wer">
             <objects>
-                <viewController id="mVW-ha-sSL" sceneMemberID="viewController">
+                <viewController id="mVW-ha-sSL" customClass="SXQExpeirmentController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="naJ-sL-lbp"/>
                         <viewControllerLayoutGuide type="bottom" id="bCr-2r-yEm"/>
@@ -149,6 +149,26 @@
                     <view key="view" contentMode="scaleToFill" id="Vbk-Jj-wdE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psM-2y-vUL">
+                                <rect key="frame" x="204" y="220" width="45" height="30"/>
+                                <state key="normal" title="已完成">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButtonClicked:" destination="mVW-ha-sSL" eventType="touchUpInside" id="KoW-JD-BtE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6h-45-zku">
+                                <rect key="frame" x="89" y="220" width="45" height="30"/>
+                                <state key="normal" title="进行中">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="nowButtonClicked:" destination="mVW-ha-sSL" eventType="touchUpInside" id="faB-8S-zZe"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="实验" id="ikc-46-mT2"/>
@@ -156,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aFC-Ff-Hnl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-888" y="975"/>
+            <point key="canvasLocation" x="-952" y="950"/>
         </scene>
         <!--学术圈-->
         <scene sceneID="cok-vH-aId">

@@ -22,7 +22,7 @@
 {
     UINavigationBar *navbarAppearance = [UINavigationBar appearance];
     navbarAppearance.barTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"naviBG"]];
-    navbarAppearance.tintColor = [UIColor colorWithRed:92/255.0 green:145/255.0 blue:229/255.0 alpha:1.0];
+    navbarAppearance.tintColor = [UIColor colorWithRed:0.20 green:0.57 blue:0.91 alpha:1.0];
     navbarAppearance.translucent = NO;
 }
 
