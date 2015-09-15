@@ -6,15 +6,14 @@
 //  Copyright (c) 2015年 SXQ. All rights reserved.
 //
 #import "SXQAnnotation.h"
-
+#import "SXQAdjacentUser.h"
 @implementation SXQAnnotation
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
++ (instancetype)annotationWithAdjacentUser:(SXQAdjacentUser *)adjacentUser
+{
+    SXQAnnotation *annotation = [SXQAnnotation new];
+    annotation.coordinate = [adjacentUser coordinate];
+    annotation.title = adjacentUser.reagentName;
+    return annotation;
 }
-*/
 
 @end

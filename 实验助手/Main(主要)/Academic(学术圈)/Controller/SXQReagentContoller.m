@@ -9,45 +9,18 @@
 #import "SXQReagentContoller.h"
 #import "SXQAnnotation.h"
 #import "SXQAnnotationView.h"
+#import "AcademicTool.h"
+#import "SXQAdjacentUser.h"
 @interface SXQReagentContoller ()<MKMapViewDelegate,CLLocationManagerDelegate>
-@property (nonatomic,assign) CGFloat regionRadius;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (nonatomic,strong) CLLocationManager *locationManager;
 @end
-
 @implementation SXQReagentContoller
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _regionRadius = 1000;
-    CLLocation *initialLocation = [[CLLocation alloc] initWithLatitude:31.13 longitude:121.26];
-    [self centerMapOnLocation:initialLocation];
-    [self addMyAnnotation];
-    [self locateSelf];
-    _mapView.showsUserLocation = YES;
+    _mapView.userTrackingMode = MKUserTrackingModeFollow;
+    _mapView.mapType = MKMapTypeStandard;
     
-}
-- (void)locateSelf
-{
-    _locationManager = [[CLLocationManager alloc] init];
-    _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    _locationManager.distanceFilter = 10;
-    [_locationManager requestAlwaysAuthorization];
-    [_locationManager startUpdatingLocation];
-    
-}
-- (void)addMyAnnotation
-{
-    SXQAnnotation *annotation = [SXQAnnotation new];
-    annotation.coordinate = CLLocationCoordinate2DMake(31.13, 121.26);
-    annotation.title = @"first show";
-    [_mapView addAnnotation:annotation];
-}
-- (void)centerMapOnLocation:(CLLocation *)location
-{
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, _regionRadius * 2.0, _regionRadius * 2.0);
-    [_mapView setRegion:region];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -60,11 +33,26 @@
     return annotionView;
     
 }
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    CLLocation *currenLocation = [locations firstObject];
-    SXQAnnotation *annotation = [[SXQAnnotation alloc] init];
-    annotation.coordinate = currenLocation.coordinate;
-    [_mapView addAnnotation:annotation];
+    CLLocationCoordinate2D currentLocation = userLocation.location.coordinate;
+    [_mapView setCenterCoordinate:currentLocation animated:YES];
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.021321, 0.019366);
+    MKCoordinateRegion region = MKCoordinateRegionMake(currentLocation, span);
+    [_mapView setRegion:region];
+    [self addAdjacentUserWithCurrentLocation:userLocation.coordinate];
 }
+//获取附近用户添加大头针
+- (void)addAdjacentUserWithCurrentLocation:(CLLocationCoordinate2D)currentLocationCoordinate
+{
+    //获取附近用户的数据
+    [AcademicTool fetchAdjacentUserDataWithCurrentLocation:currentLocationCoordinate completion:^(NSArray *adjacentUsers) {
+        //添加数据到地图
+        [adjacentUsers enumerateObjectsUsingBlock:^(SXQAdjacentUser *user, NSUInteger idx, BOOL *stop) {
+            SXQAnnotation *annotation = [SXQAnnotation annotationWithAdjacentUser:user];
+            [_mapView addAnnotation:annotation];
+        }];
+    }];
+}
+
 @end

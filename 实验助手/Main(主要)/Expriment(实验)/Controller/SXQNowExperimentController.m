@@ -7,8 +7,8 @@
 //
 #define Identifier @"cell"
 #import "ArrayDataSource+TableView.h"
+#import "SXQCurrentExperimentController.h"
 #import "SXQNowExperimentController.h"
-#import "SXQExperimentDetailController.h"
 @interface SXQNowExperimentController ()
 @property (nonatomic,strong) ArrayDataSource *nowDataSource;
 @end
@@ -37,7 +37,7 @@
 #pragma mark - TableView Delegate Method
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.navigationController pushViewController:[SXQExperimentDetailController new] animated:YES];
+    [self.navigationController pushViewController:[SXQCurrentExperimentController new] animated:YES];
 }
 
 @end

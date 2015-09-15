@@ -31,10 +31,6 @@ typedef void (^CellConfigureBlock)(id cell,id item);
  */
 @property (nonatomic,copy) NSString *identifier;
 /**
- *  Cell Class
- */
-@property (nonatomic) Class cellClass;
-/**
  *  Designted Method
  *
  */

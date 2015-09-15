@@ -21,8 +21,8 @@
 + (void)initialize
 {
     UINavigationBar *navbarAppearance = [UINavigationBar appearance];
-    navbarAppearance.barTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"naviBG"]];
-    navbarAppearance.tintColor = [UIColor colorWithRed:0.20 green:0.57 blue:0.91 alpha:1.0];
+    navbarAppearance.barTintColor = [UIColor colorWithRed:0.29 green:0.47 blue:0.78 alpha:1.0];
+    navbarAppearance.tintColor = [UIColor colorWithRed:0.24 green:0.24 blue:0.26 alpha:1.0];
     navbarAppearance.translucent = NO;
 }
 

@@ -35,7 +35,10 @@
     if (self.isGroupArray) {
         DWGroup *group = self.items[indexPath.section];
         cell = [tableView dequeueReusableCellWithIdentifier:group.identifier forIndexPath:indexPath];
-        group.configureBlk(cell,item);
+        if(group.configureBlk)
+        {
+            group.configureBlk(cell,item);
+        }
     }else
     {
         cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier forIndexPath:indexPath];

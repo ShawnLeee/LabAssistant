@@ -7,6 +7,7 @@
 //
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+@class SXQAdjacentUser;
 @interface SXQAnnotation : UIView<MKAnnotation>
 // Center latitude and longitude of the annotation view.
 // The implementation of this property must be KVO compliant.
@@ -18,4 +19,7 @@
 
 // Called as a result of dragging an annotation view.
 - (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate NS_AVAILABLE(10_9, 4_0);
+//Convinient Method
++ (instancetype)annotationWithAdjacentUser:(SXQAdjacentUser *)adjacentUser;
+
 @end
