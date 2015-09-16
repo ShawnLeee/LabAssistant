@@ -9,6 +9,8 @@
 #import "ArrayDataSource+TableView.h"
 #import "SXQCurrentExperimentController.h"
 #import "SXQNowExperimentController.h"
+#import "SXQExperimentModel.h"
+#import "ExperimentTool.h"
 @interface SXQNowExperimentController ()
 @property (nonatomic,strong) ArrayDataSource *nowDataSource;
 @end
@@ -24,12 +26,20 @@
 {
     self.title = @"进行中";
     [self setupTableView];
+    [self p_loadData];
+}
+- (void)p_loadData
+{
+    [ExperimentTool fetchNowExperimentWithParam:nil completion:^(NSArray *resultArray) {
+        _nowDataSource.items = resultArray;
+        [self.tableView reloadData];
+    }];
 }
 - (void)setupTableView
 {
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:Identifier];
-    _nowDataSource = [[ArrayDataSource alloc] initWithItems:@[@"实验一",@"实验二",@"实验三"] cellIdentifier:Identifier cellConfigureBlock:^(UITableViewCell *cell, NSString *title) {
-        cell.textLabel.text = title;
+    _nowDataSource = [[ArrayDataSource alloc] initWithItems:@[] cellIdentifier:Identifier cellConfigureBlock:^(UITableViewCell *cell, SXQExperimentModel *model) {
+        cell.textLabel.text = model.instructionName;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }];
     self.tableView.dataSource = _nowDataSource;
