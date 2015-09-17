@@ -5,13 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>D0005DC3-80EC-4B43-B33B-EF27B47E27E4</string>
+	<string>8D9F0B13-D33D-4D8A-A8E2-EE652262018D</string>
 	<key>IDESourceControlProjectName</key>
 	<string>实验助手</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>11F57DF68B9D6EEB0E3A75481BD0C5A15736A998</key>
-		<string>github.com:/ShawnLeee/LabAssitant</string>
+		<string>github.com:ShawnLeee/LabAssistant.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>实验助手.xcworkspace</string>
@@ -21,7 +21,7 @@
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>github.com:/ShawnLeee/LabAssitant</string>
+	<string>github.com:ShawnLeee/LabAssistant.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

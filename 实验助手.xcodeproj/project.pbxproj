@@ -15,6 +15,10 @@
 		B03F97BF1BA2CAEE009FD1B4 /* SXQVenderLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B03F97BE1BA2CAEE009FD1B4 /* SXQVenderLoginTool.m */; };
 		B03F97C21BA2D51D009FD1B4 /* SXQTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03F97C11BA2D51D009FD1B4 /* SXQTabBarController.m */; };
 		B06239491B9587C100F0CAFB /* SXQInstructionListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B06239471B9587C100F0CAFB /* SXQInstructionListController.m */; };
+		B06CE1681BAAB803008BB98E /* DWContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B06CE1611BAAB803008BB98E /* DWContainerViewController.m */; };
+		B06CE1691BAAB803008BB98E /* DWConsultTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B06CE1631BAAB803008BB98E /* DWConsultTViewController.m */; };
+		B06CE16A1BAAB803008BB98E /* DWBBSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B06CE1651BAAB803008BB98E /* DWBBSViewController.m */; };
+		B06CE16B1BAAB803008BB98E /* DWExchangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B06CE1671BAAB803008BB98E /* DWExchangeController.m */; };
 		B0A05F3B1B92871300EAEBF2 /* ____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A05F3A1B92871300EAEBF2 /* ____Tests.m */; };
 		B0A1E51B1B95897200440141 /* SXQListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A1E5191B95897200440141 /* SXQListCell.m */; };
 		B0A1E51C1B95897200440141 /* SXQListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0A1E51A1B95897200440141 /* SXQListCell.xib */; };
@@ -47,7 +51,6 @@
 		B0DDFF181BA67FFE00E4AB3C /* SXQEquipMentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF161BA67FFE00E4AB3C /* SXQEquipMentCell.m */; };
 		B0DDFF191BA67FFE00E4AB3C /* SXQEquipMentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0DDFF171BA67FFE00E4AB3C /* SXQEquipMentCell.xib */; };
 		B0DDFF1C1BA686AF00E4AB3C /* SXQEquimentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF1B1BA686AF00E4AB3C /* SXQEquimentController.m */; };
-		B0DDFF1F1BA68CFE00E4AB3C /* SXQAcademicController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF1E1BA68CFE00E4AB3C /* SXQAcademicController.m */; };
 		B0DDFF281BA69E7C00E4AB3C /* SXQSegmentedControll.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF261BA69E7C00E4AB3C /* SXQSegmentedControll.m */; };
 		B0DDFF291BA69E7C00E4AB3C /* SXQSegmentedControll.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0DDFF271BA69E7C00E4AB3C /* SXQSegmentedControll.xib */; };
 		B0DDFF2D1BA6A07000E4AB3C /* SXQReagentContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF2B1BA6A07000E4AB3C /* SXQReagentContoller.m */; };
@@ -150,6 +153,14 @@
 		B03F97CA1BA2D675009FD1B4 /* SXQFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQFont.h; sourceTree = "<group>"; };
 		B06239461B9587C100F0CAFB /* SXQInstructionListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQInstructionListController.h; sourceTree = "<group>"; };
 		B06239471B9587C100F0CAFB /* SXQInstructionListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQInstructionListController.m; sourceTree = "<group>"; };
+		B06CE1601BAAB803008BB98E /* DWContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWContainerViewController.h; sourceTree = "<group>"; };
+		B06CE1611BAAB803008BB98E /* DWContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWContainerViewController.m; sourceTree = "<group>"; };
+		B06CE1621BAAB803008BB98E /* DWConsultTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWConsultTViewController.h; sourceTree = "<group>"; };
+		B06CE1631BAAB803008BB98E /* DWConsultTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWConsultTViewController.m; sourceTree = "<group>"; };
+		B06CE1641BAAB803008BB98E /* DWBBSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWBBSViewController.h; sourceTree = "<group>"; };
+		B06CE1651BAAB803008BB98E /* DWBBSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWBBSViewController.m; sourceTree = "<group>"; };
+		B06CE1661BAAB803008BB98E /* DWExchangeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWExchangeController.h; sourceTree = "<group>"; };
+		B06CE1671BAAB803008BB98E /* DWExchangeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWExchangeController.m; sourceTree = "<group>"; };
 		B0A05F1B1B92871300EAEBF2 /* 实验助手.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "实验助手.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A05F341B92871300EAEBF2 /* 实验助手Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "实验助手Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A05F391B92871300EAEBF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -208,8 +219,6 @@
 		B0DDFF171BA67FFE00E4AB3C /* SXQEquipMentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SXQEquipMentCell.xib; sourceTree = "<group>"; };
 		B0DDFF1A1BA686AF00E4AB3C /* SXQEquimentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQEquimentController.h; sourceTree = "<group>"; };
 		B0DDFF1B1BA686AF00E4AB3C /* SXQEquimentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQEquimentController.m; sourceTree = "<group>"; };
-		B0DDFF1D1BA68CFE00E4AB3C /* SXQAcademicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQAcademicController.h; sourceTree = "<group>"; };
-		B0DDFF1E1BA68CFE00E4AB3C /* SXQAcademicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQAcademicController.m; sourceTree = "<group>"; };
 		B0DDFF251BA69E7C00E4AB3C /* SXQSegmentedControll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQSegmentedControll.h; sourceTree = "<group>"; };
 		B0DDFF261BA69E7C00E4AB3C /* SXQSegmentedControll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQSegmentedControll.m; sourceTree = "<group>"; };
 		B0DDFF271BA69E7C00E4AB3C /* SXQSegmentedControll.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SXQSegmentedControll.xib; sourceTree = "<group>"; };
@@ -542,8 +551,14 @@
 		B0C73C851B92F39E00F4B6D2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B0DDFF1D1BA68CFE00E4AB3C /* SXQAcademicController.h */,
-				B0DDFF1E1BA68CFE00E4AB3C /* SXQAcademicController.m */,
+				B06CE1601BAAB803008BB98E /* DWContainerViewController.h */,
+				B06CE1611BAAB803008BB98E /* DWContainerViewController.m */,
+				B06CE1621BAAB803008BB98E /* DWConsultTViewController.h */,
+				B06CE1631BAAB803008BB98E /* DWConsultTViewController.m */,
+				B06CE1641BAAB803008BB98E /* DWBBSViewController.h */,
+				B06CE1651BAAB803008BB98E /* DWBBSViewController.m */,
+				B06CE1661BAAB803008BB98E /* DWExchangeController.h */,
+				B06CE1671BAAB803008BB98E /* DWExchangeController.m */,
 				B0DDFF2A1BA6A07000E4AB3C /* SXQReagentContoller.h */,
 				B0DDFF2B1BA6A07000E4AB3C /* SXQReagentContoller.m */,
 				B0DDFF2C1BA6A07000E4AB3C /* SXQReagentContoller.xib */,
@@ -1193,14 +1208,17 @@
 				B0C73CC41B93093B00F4B6D2 /* SXQHttpTool.m in Sources */,
 				B0F738C51BA92C6D00EA7E9E /* SXQInstructionCell.m in Sources */,
 				B03F97B61BA299F8009FD1B4 /* SXQLoginViewController.m in Sources */,
+				B06CE16B1BAAB803008BB98E /* DWExchangeController.m in Sources */,
 				B0F738B71BA9025200EA7E9E /* DWInstructionController.m in Sources */,
 				B0C73CBD1B92F52C00F4B6D2 /* ArrayDataSource+TableView.m in Sources */,
+				B06CE16A1BAAB803008BB98E /* DWBBSViewController.m in Sources */,
 				B0B1EC501BA27A870087A318 /* SXQVenderView.m in Sources */,
 				B0C73CC71B930C6E00F4B6D2 /* SXQInstructionHeader.m in Sources */,
 				B0C73CD41B932C6000F4B6D2 /* SXQGroupCell.m in Sources */,
 				B0F5663A1BA807D900BA1F7B /* SXQCurrentExperimentController.m in Sources */,
 				B0DDFF131BA67F6500E4AB3C /* SXQExperimentStepCell.m in Sources */,
 				B0F738B11BA9011600EA7E9E /* UIView+MJ.m in Sources */,
+				B06CE1681BAAB803008BB98E /* DWContainerViewController.m in Sources */,
 				B0F738C01BA9293200EA7E9E /* DWInstructionChildController.m in Sources */,
 				B0EBC4971BA1731D000ECCA0 /* SXQVenderLogin.m in Sources */,
 				B0C73CB01B92F39E00F4B6D2 /* main.m in Sources */,
@@ -1220,9 +1238,9 @@
 				B0C73CC11B93076500F4B6D2 /* SXQInstructionController.m in Sources */,
 				B0F738B41BA9018400EA7E9E /* SXQMenuViewController.m in Sources */,
 				B0F738CC1BA935C200EA7E9E /* SXQExperimentModel.m in Sources */,
-				B0DDFF1F1BA68CFE00E4AB3C /* SXQAcademicController.m in Sources */,
 				B0DDFF0F1BA67EF000E4AB3C /* SXQExperimentStepController.m in Sources */,
 				B03F97BA1BA2A052009FD1B4 /* SXQLoginField.m in Sources */,
+				B06CE1691BAAB803008BB98E /* DWConsultTViewController.m in Sources */,
 				B0DDFF281BA69E7C00E4AB3C /* SXQSegmentedControll.m in Sources */,
 				B0DDFF341BA6AEE000E4AB3C /* SXQAnnotationView.m in Sources */,
 				B0C73CD91B933E1800F4B6D2 /* SXQAllInstructionController.m in Sources */,

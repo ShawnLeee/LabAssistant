@@ -73,7 +73,7 @@
     [self addChildViewController:centerVC];
     
     // 2.监听手势
-    [centerVC.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragView:)]]; 
+    [_centerView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragView:)]];
 }
 - (void)dragView:(UIPanGestureRecognizer *)panGesture
 {
