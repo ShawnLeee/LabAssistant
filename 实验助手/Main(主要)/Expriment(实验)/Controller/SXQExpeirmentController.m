@@ -9,7 +9,6 @@
 #import "UIBarButtonItem+SXQ.h"
 #import "SXQDoneExperimentController.h"
 #import "SXQExpeirmentController.h"
-#import "SXQNowExperimentController.h"
 #import "SXQSegmentedControll.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "SXQNowExperimentController.h"

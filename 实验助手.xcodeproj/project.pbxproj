@@ -42,7 +42,6 @@
 		B0C73CD91B933E1800F4B6D2 /* SXQAllInstructionController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C73CD81B933E1800F4B6D2 /* SXQAllInstructionController.m */; };
 		B0DDFEFE1BA6622C00E4AB3C /* SXQDoneExperimentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFEFD1BA6622C00E4AB3C /* SXQDoneExperimentController.m */; };
 		B0DDFF021BA6624A00E4AB3C /* SXQExpeirmentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF001BA6624A00E4AB3C /* SXQExpeirmentController.m */; };
-		B0DDFF061BA6638400E4AB3C /* SXQNowExperimentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF051BA6638400E4AB3C /* SXQNowExperimentController.m */; };
 		B0DDFF091BA6664F00E4AB3C /* SXQExperimentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF081BA6664F00E4AB3C /* SXQExperimentDetailController.m */; };
 		B0DDFF0C1BA6679500E4AB3C /* DWGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF0B1BA6679500E4AB3C /* DWGroup.m */; };
 		B0DDFF0F1BA67EF000E4AB3C /* SXQExperimentStepController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DDFF0E1BA67EF000E4AB3C /* SXQExperimentStepController.m */; };
@@ -64,6 +63,10 @@
 		B0EBC4911BA16DB3000ECCA0 /* SXQMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EBC4901BA16DB3000ECCA0 /* SXQMeViewController.m */; };
 		B0EBC4971BA1731D000ECCA0 /* SXQVenderLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EBC4961BA1731D000ECCA0 /* SXQVenderLogin.m */; };
 		B0EBC4991BA1733D000ECCA0 /* SXQVenderLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0EBC4981BA1733D000ECCA0 /* SXQVenderLogin.xib */; };
+		B0F505401BABB0A900B88A3D /* SXQExperimentStep.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F5053F1BABB0A900B88A3D /* SXQExperimentStep.m */; };
+		B0F505471BABB76700B88A3D /* SXQStepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F505451BABB76700B88A3D /* SXQStepCell.m */; };
+		B0F505481BABB76700B88A3D /* SXQStepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0F505461BABB76700B88A3D /* SXQStepCell.xib */; };
+		B0F5054B1BABDEC700B88A3D /* SXQNowExperimentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F5054A1BABDEC700B88A3D /* SXQNowExperimentController.m */; };
 		B0F5661E1BA7BEDE00BA1F7B /* UIBarButtonItem+SXQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F5661D1BA7BEDE00BA1F7B /* UIBarButtonItem+SXQ.m */; };
 		B0F566211BA7D51100BA1F7B /* SXQMyInstructionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F566201BA7D51100BA1F7B /* SXQMyInstructionsController.m */; };
 		B0F5662A1BA7E2D400BA1F7B /* SXQMyInstructionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F566281BA7E2D400BA1F7B /* SXQMyInstructionCell.m */; };
@@ -203,8 +206,6 @@
 		B0DDFEFD1BA6622C00E4AB3C /* SXQDoneExperimentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQDoneExperimentController.m; sourceTree = "<group>"; };
 		B0DDFEFF1BA6624A00E4AB3C /* SXQExpeirmentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQExpeirmentController.h; sourceTree = "<group>"; };
 		B0DDFF001BA6624A00E4AB3C /* SXQExpeirmentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExpeirmentController.m; sourceTree = "<group>"; };
-		B0DDFF041BA6638400E4AB3C /* SXQNowExperimentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQNowExperimentController.h; sourceTree = "<group>"; };
-		B0DDFF051BA6638400E4AB3C /* SXQNowExperimentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQNowExperimentController.m; sourceTree = "<group>"; };
 		B0DDFF071BA6664F00E4AB3C /* SXQExperimentDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQExperimentDetailController.h; sourceTree = "<group>"; };
 		B0DDFF081BA6664F00E4AB3C /* SXQExperimentDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExperimentDetailController.m; sourceTree = "<group>"; };
 		B0DDFF0A1BA6679500E4AB3C /* DWGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWGroup.h; sourceTree = "<group>"; };
@@ -241,6 +242,13 @@
 		B0EBC4951BA1731D000ECCA0 /* SXQVenderLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQVenderLogin.h; sourceTree = "<group>"; };
 		B0EBC4961BA1731D000ECCA0 /* SXQVenderLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQVenderLogin.m; sourceTree = "<group>"; };
 		B0EBC4981BA1733D000ECCA0 /* SXQVenderLogin.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SXQVenderLogin.xib; sourceTree = "<group>"; };
+		B0F5053E1BABB0A900B88A3D /* SXQExperimentStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQExperimentStep.h; sourceTree = "<group>"; };
+		B0F5053F1BABB0A900B88A3D /* SXQExperimentStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExperimentStep.m; sourceTree = "<group>"; };
+		B0F505441BABB76700B88A3D /* SXQStepCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQStepCell.h; sourceTree = "<group>"; };
+		B0F505451BABB76700B88A3D /* SXQStepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQStepCell.m; sourceTree = "<group>"; };
+		B0F505461BABB76700B88A3D /* SXQStepCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SXQStepCell.xib; sourceTree = "<group>"; };
+		B0F505491BABDEC700B88A3D /* SXQNowExperimentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQNowExperimentController.h; sourceTree = "<group>"; };
+		B0F5054A1BABDEC700B88A3D /* SXQNowExperimentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQNowExperimentController.m; sourceTree = "<group>"; };
 		B0F5661C1BA7BEDE00BA1F7B /* UIBarButtonItem+SXQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+SXQ.h"; sourceTree = "<group>"; };
 		B0F5661D1BA7BEDE00BA1F7B /* UIBarButtonItem+SXQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+SXQ.m"; sourceTree = "<group>"; };
 		B0F5661F1BA7D51100BA1F7B /* SXQMyInstructionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQMyInstructionsController.h; sourceTree = "<group>"; };
@@ -610,10 +618,10 @@
 			children = (
 				B0DDFEFF1BA6624A00E4AB3C /* SXQExpeirmentController.h */,
 				B0DDFF001BA6624A00E4AB3C /* SXQExpeirmentController.m */,
+				B0F505491BABDEC700B88A3D /* SXQNowExperimentController.h */,
+				B0F5054A1BABDEC700B88A3D /* SXQNowExperimentController.m */,
 				B0DDFEFC1BA6622C00E4AB3C /* SXQDoneExperimentController.h */,
 				B0DDFEFD1BA6622C00E4AB3C /* SXQDoneExperimentController.m */,
-				B0DDFF041BA6638400E4AB3C /* SXQNowExperimentController.h */,
-				B0DDFF051BA6638400E4AB3C /* SXQNowExperimentController.m */,
 				B0DDFF071BA6664F00E4AB3C /* SXQExperimentDetailController.h */,
 				B0DDFF081BA6664F00E4AB3C /* SXQExperimentDetailController.m */,
 				B0DDFF0D1BA67EF000E4AB3C /* SXQExperimentStepController.h */,
@@ -634,6 +642,8 @@
 			children = (
 				B0F738CA1BA935C200EA7E9E /* SXQExperimentModel.h */,
 				B0F738CB1BA935C200EA7E9E /* SXQExperimentModel.m */,
+				B0F5053E1BABB0A900B88A3D /* SXQExperimentStep.h */,
+				B0F5053F1BABB0A900B88A3D /* SXQExperimentStep.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -663,6 +673,9 @@
 				B0F566321BA7FC0800BA1F7B /* SXQExperimentToolBar.h */,
 				B0F566331BA7FC0800BA1F7B /* SXQExperimentToolBar.m */,
 				B0F566351BA7FC4400BA1F7B /* SXQExperimentToolBar.xib */,
+				B0F505441BABB76700B88A3D /* SXQStepCell.h */,
+				B0F505451BABB76700B88A3D /* SXQStepCell.m */,
+				B0F505461BABB76700B88A3D /* SXQStepCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1139,6 +1152,7 @@
 				B0C73CB31B92F39E00F4B6D2 /* Images.xcassets in Resources */,
 				B0F566361BA7FC4400BA1F7B /* SXQExperimentToolBar.xib in Resources */,
 				B0F5663B1BA807D900BA1F7B /* SXQCurrentExperimentController.xib in Resources */,
+				B0F505481BABB76700B88A3D /* SXQStepCell.xib in Resources */,
 				B0DDFF291BA69E7C00E4AB3C /* SXQSegmentedControll.xib in Resources */,
 				B0F939C61BA166F800D093F9 /* Resource.bundle in Resources */,
 				B0F939CE1BA166F900D093F9 /* ShareSDKFlatShareViewUI.bundle in Resources */,
@@ -1217,6 +1231,7 @@
 				B0C73CD41B932C6000F4B6D2 /* SXQGroupCell.m in Sources */,
 				B0F5663A1BA807D900BA1F7B /* SXQCurrentExperimentController.m in Sources */,
 				B0DDFF131BA67F6500E4AB3C /* SXQExperimentStepCell.m in Sources */,
+				B0F505471BABB76700B88A3D /* SXQStepCell.m in Sources */,
 				B0F738B11BA9011600EA7E9E /* UIView+MJ.m in Sources */,
 				B06CE1681BAAB803008BB98E /* DWContainerViewController.m in Sources */,
 				B0F738C01BA9293200EA7E9E /* DWInstructionChildController.m in Sources */,
@@ -1227,7 +1242,6 @@
 				B0DDFF021BA6624A00E4AB3C /* SXQExpeirmentController.m in Sources */,
 				B0C73CBC1B92F52C00F4B6D2 /* ArrayDataSource+CollectionView.m in Sources */,
 				B0E752541B94AA38009781E1 /* SXQSegmentedControl.m in Sources */,
-				B0DDFF061BA6638400E4AB3C /* SXQNowExperimentController.m in Sources */,
 				B03F97BF1BA2CAEE009FD1B4 /* SXQVenderLoginTool.m in Sources */,
 				B0F5661E1BA7BEDE00BA1F7B /* UIBarButtonItem+SXQ.m in Sources */,
 				B0E054BB1B94715A00C7F9D0 /* SXQNavgationBar.m in Sources */,
@@ -1237,6 +1251,7 @@
 				B0A1E51B1B95897200440141 /* SXQListCell.m in Sources */,
 				B0C73CC11B93076500F4B6D2 /* SXQInstructionController.m in Sources */,
 				B0F738B41BA9018400EA7E9E /* SXQMenuViewController.m in Sources */,
+				B0F5054B1BABDEC700B88A3D /* SXQNowExperimentController.m in Sources */,
 				B0F738CC1BA935C200EA7E9E /* SXQExperimentModel.m in Sources */,
 				B0DDFF0F1BA67EF000E4AB3C /* SXQExperimentStepController.m in Sources */,
 				B03F97BA1BA2A052009FD1B4 /* SXQLoginField.m in Sources */,
@@ -1249,6 +1264,7 @@
 				B0E054B71B9470AD00C7F9D0 /* SXQNavgationController.m in Sources */,
 				B0F738BB1BA90F6500EA7E9E /* SXQMenuCell.m in Sources */,
 				B0DDFF1C1BA686AF00E4AB3C /* SXQEquimentController.m in Sources */,
+				B0F505401BABB0A900B88A3D /* SXQExperimentStep.m in Sources */,
 				B0F566311BA7EF4000BA1F7B /* SXQAdjacentUser.m in Sources */,
 				B0DDFF091BA6664F00E4AB3C /* SXQExperimentDetailController.m in Sources */,
 				B0F738C91BA9346F00EA7E9E /* ExperimentTool.m in Sources */,

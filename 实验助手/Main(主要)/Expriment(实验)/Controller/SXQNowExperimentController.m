@@ -11,12 +11,20 @@
 #import "SXQNowExperimentController.h"
 #import "SXQExperimentModel.h"
 #import "ExperimentTool.h"
+#import "SXQCurrentExperimentController.h"
 @interface SXQNowExperimentController ()
 @property (nonatomic,strong) ArrayDataSource *nowDataSource;
+@property (nonatomic,strong) NSArray *experiments;
 @end
 
 @implementation SXQNowExperimentController
-
+- (NSArray *)experiments
+{
+    if (!_experiments) {
+        _experiments = @[];
+    }
+    return _experiments;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupSelf];
@@ -32,14 +40,15 @@
 {
     [ExperimentTool fetchNowExperimentWithParam:nil completion:^(NSArray *resultArray) {
         _nowDataSource.items = resultArray;
+        _experiments = resultArray;
         [self.tableView reloadData];
     }];
 }
 - (void)setupTableView
 {
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:Identifier];
-    _nowDataSource = [[ArrayDataSource alloc] initWithItems:@[] cellIdentifier:Identifier cellConfigureBlock:^(UITableViewCell *cell, SXQExperimentModel *model) {
-        cell.textLabel.text = model.instructionName;
+    _nowDataSource = [[ArrayDataSource alloc] initWithItems:self.experiments cellIdentifier:Identifier cellConfigureBlock:^(UITableViewCell *cell, SXQExperimentModel *model) {
+        cell.textLabel.text = model.experimentName;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }];
     self.tableView.dataSource = _nowDataSource;
@@ -47,7 +56,9 @@
 #pragma mark - TableView Delegate Method
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.navigationController pushViewController:[SXQCurrentExperimentController new] animated:YES];
+    SXQCurrentExperimentController *stepVC = [SXQCurrentExperimentController new];
+    stepVC.experimentModel = self.experiments[indexPath.row];
+    [self.navigationController pushViewController:stepVC animated:YES];
 }
 
 @end

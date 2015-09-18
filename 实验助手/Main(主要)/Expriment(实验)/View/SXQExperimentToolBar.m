@@ -22,6 +22,16 @@
     }
     return self;
 }
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [[NSBundle mainBundle] loadNibNamed:@"SXQExperimentToolBar" owner:self options:nil];
+        _view.frame = frame;
+        [self addSubview:_view];
+        [self p_setupButtons];
+    }
+    return self;
+}
 - (void)updateConstraints
 {
     [super updateConstraints];
@@ -30,7 +40,10 @@
 }
 - (void)awakeFromNib
 {
-    
+    [self p_setupButtons];
+}
+- (void)p_setupButtons
+{
     [self.view.subviews enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
         button.tag = idx;
         [button setTitleColor:ToolBarSeletedColor forState:UIControlStateNormal];
@@ -38,7 +51,6 @@
         [button addTarget:self action:@selector(selectedButton:) forControlEvents:UIControlEventTouchUpInside];
     }];
     [self selectedButton:self.view.subviews.firstObject];
-    
 }
 - (void)selectedButton:(UIButton *)button
 {

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface SXQExperimentModel : NSObject
-@property (nonatomic,copy) NSString *labID;
-@property (nonatomic,copy) NSString *instructionName;
+@property (nonatomic,copy) NSString *myExpID;
+@property (nonatomic,copy) NSString *expState;
+@property (nonatomic,copy) NSString *expInstructionID;
+@property (nonatomic,copy) NSString *experimentName;
 @end

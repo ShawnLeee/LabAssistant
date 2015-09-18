@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SXQCurrentExperimentController">
             <connections>
+                <outlet property="experimentName" destination="sXW-8m-tJC" id="uQY-EW-xW1"/>
                 <outlet property="tableView" destination="kuR-sw-2eZ" id="Ovj-a8-wts"/>
                 <outlet property="toolBar" destination="ghX-aW-PY3" id="VEb-fA-zD3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -17,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="kuR-sw-2eZ">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                    <rect key="frame" x="0.0" y="30" width="600" height="526"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Hm2-6B-qp5"/>
@@ -31,12 +32,22 @@
                         <constraint firstAttribute="height" constant="44" id="7xt-WU-PBp"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXW-8m-tJC">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="ghX-aW-PY3" secondAttribute="trailing" id="2gL-Tg-UUb"/>
-                <constraint firstItem="kuR-sw-2eZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NxA-sb-LhZ"/>
+                <constraint firstAttribute="trailing" secondItem="sXW-8m-tJC" secondAttribute="trailing" id="9wk-xS-9f8"/>
+                <constraint firstItem="sXW-8m-tJC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ei3-aT-GTm"/>
+                <constraint firstItem="kuR-sw-2eZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="NxA-sb-LhZ"/>
                 <constraint firstItem="kuR-sw-2eZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TcJ-g4-kev"/>
+                <constraint firstItem="sXW-8m-tJC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Wvf-mg-hjh"/>
+                <constraint firstItem="kuR-sw-2eZ" firstAttribute="top" secondItem="sXW-8m-tJC" secondAttribute="bottom" id="eSR-ly-Xdn"/>
                 <constraint firstAttribute="trailing" secondItem="kuR-sw-2eZ" secondAttribute="trailing" id="h4T-QP-tJf"/>
                 <constraint firstItem="ghX-aW-PY3" firstAttribute="top" secondItem="kuR-sw-2eZ" secondAttribute="bottom" id="jSH-p5-cgd"/>
                 <constraint firstItem="ghX-aW-PY3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="k6t-9o-E6h"/>
