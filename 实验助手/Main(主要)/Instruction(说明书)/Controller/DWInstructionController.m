@@ -5,29 +5,21 @@
 //  Created by sxq on 15/9/16.
 //  Copyright (c) 2015年 SXQ. All rights reserved.
 //
-#define MJMenuWidth 100
+#import "SXQInstructionListController.h"
 #import "DWInstructionController.h"
 #import "DWInstructionChildController.h"
 #import "SXQMenuViewController.h"
 #import "SXQColor.h"
 #import "UIView+MJ.h"
-#import "ArrayDataSource+CollectionView.h"
-#import "SXQInstructionCell.h"
-@interface DWInstructionController ()<UITableViewDelegate>
+#import "SXQExpSubCategory.h"
+@interface DWInstructionController ()<DWInstructionChildControllerDelegate>
 @property (nonatomic,assign) BOOL menuFold;
 @property (nonatomic,weak) UICollectionView *centerView;
-@property (nonatomic,strong) ArrayDataSource *collectionViewDataSource;
-@property (nonatomic,strong) NSArray *instructions;
+
 @end
 
 @implementation DWInstructionController
-- (NSArray *)instructions
-{
-    if (_instructions == nil) {
-        _instructions = @[@"基因转染",@"基因转染",@"基因转染",@"基因转染",@"基因转染",@"基因转染",@"基因转染",@"基因转染",@"基因转染"];
-    }
-    return _instructions;
-}
+
 - (instancetype)init
 {
     if (self = [super init]) {
@@ -51,7 +43,6 @@
     menuVC.view.width = MJMenuWidth;
     menuVC.view.y = 0;
     menuVC.view.height = self.view.frame.size.height;
-    menuVC.tableView.delegate = self;
     [self.view addSubview:menuVC.view];
     [self addChildViewController:menuVC];
     
@@ -60,18 +51,13 @@
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     layout.itemSize = CGSizeMake(80, 80);
     DWInstructionChildController *centerVC = [[DWInstructionChildController alloc] initWithCollectionViewLayout:layout];
-    centerVC.collectionView.backgroundColor = MenuCellSelectedBgColor;
     centerVC.collectionView.frame = CGRectOffset(self.view.bounds, MJMenuWidth, 0);
-    centerVC.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
-    [centerVC.collectionView registerNib:[UINib nibWithNibName:@"SXQInstructionCell" bundle:nil] forCellWithReuseIdentifier:@"SXQInstructionCell"];
-    _collectionViewDataSource = [[ArrayDataSource alloc] initWithItems:self.instructions cellIdentifier:@"SXQInstructionCell" cellConfigureBlock:^(SXQInstructionCell *cell, NSString *instructionName) {
-        cell.instructionNameLabel.text = instructionName;
-    }];
-    centerVC.collectionView.dataSource = _collectionViewDataSource;
+    centerVC.delegate = self;
     [self.view addSubview:centerVC.collectionView];
     _centerView = centerVC.collectionView;
     [self addChildViewController:centerVC];
     
+    menuVC.delegate = centerVC;
     // 2.监听手势
     [_centerView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragView:)]];
 }
@@ -122,11 +108,12 @@
     }];
     _menuFold = !_menuFold;
 }
-#pragma mark TableView Delegate Method
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+
+#pragma mark instuctionController Delegate Method
+- (void)instructionController:(DWInstructionChildController *)vc SelectedItem:(SXQExpSubCategory *)item
 {
-    _collectionViewDataSource.items = @[@"DNA测序",@"DNA测序",@"DNA测序",@"DNA测序",@"DNA测序",@"DNA测序",@"DNA测序",@"DNA测序",@"DNA测序",@"DNA测序",@"DNA测序",@"DNA测序"];
-    [_centerView reloadData];
-    
+    SXQInstructionListController *listVC = [SXQInstructionListController new];
+    listVC.categoryItem = item;
+    [self.navigationController pushViewController:listVC  animated:YES];
 }
 @end

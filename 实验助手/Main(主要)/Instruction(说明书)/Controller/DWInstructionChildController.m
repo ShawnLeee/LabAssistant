@@ -5,94 +5,64 @@
 //  Created by sxq on 15/9/16.
 //  Copyright (c) 2015年 SXQ. All rights reserved.
 //
-
+#import "SXQExpCategory.h"
+#import "ArrayDataSource+CollectionView.h"
 #import "DWInstructionChildController.h"
-
+#import "SXQInstructionCell.h"
+#import "SXQExpSubCategory.h"
+#import "SXQColor.h"
+#import "InstructionTool.h"
 @interface DWInstructionChildController ()
-
+@property (nonatomic,strong) ArrayDataSource *collectionViewDataSource;
+@property (nonatomic,strong) NSArray *instructions;
 @end
 
 @implementation DWInstructionChildController
-
+- (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout
+{
+    if (self = [super initWithCollectionViewLayout:layout]) {
+        self.collectionView.backgroundColor = MenuCellSelectedBgColor;
+        self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    }
+    return self;
+}
+- (NSArray *)instructions
+{
+    if (_instructions == nil) {
+        _instructions = @[];
+    }
+    return _instructions;
+}
 static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
-    // Do any additional setup after loading the view.
+    [self.collectionView registerNib:[UINib nibWithNibName:@"SXQInstructionCell" bundle:nil] forCellWithReuseIdentifier:@"SXQInstructionCell"];
+    _collectionViewDataSource = [[ArrayDataSource alloc] initWithItems:self.instructions cellIdentifier:@"SXQInstructionCell" cellConfigureBlock:^(SXQInstructionCell *cell, SXQExpSubCategory *item) {
+        [cell configureCellWithItem:item];
+    }];
+    self.collectionView.dataSource = _collectionViewDataSource;
+
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - MenuController Delegate Method
+- (void)menuViewController:(SXQMenuViewController *)vc selectedItem:(SXQExpCategory *)item
+{
+    [InstructionTool fetchSubCategoryWithCategoryId:item.expCategoryID success:^(ExpSubCategoryResult *result) {
+                _instructions = result.data;
+                _collectionViewDataSource.items = result.data;
+        [self.collectionView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - CollectionView Delegate Method
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    SXQExpSubCategory *item = _instructions[indexPath.row];
+    if ([self.delegate respondsToSelector:@selector(instructionController:SelectedItem:)]) {
+        [self.delegate instructionController:self SelectedItem:item];
+    }
 }
-*/
-
-#pragma mark <UICollectionViewDataSource>
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete method implementation -- Return the number of sections
-    return 0;
-}
-
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete method implementation -- Return the number of items in the section
-    return 0;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell
-    
-    return cell;
-}
-
-#pragma mark <UICollectionViewDelegate>
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 @end

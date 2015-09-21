@@ -13,6 +13,7 @@
 @property (nonatomic,strong) UIButton *selectedBtn;
 @end
 @implementation SXQExperimentToolBar
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
@@ -55,6 +56,10 @@
 - (void)selectedButton:(UIButton *)button
 {
     self.selectedBtn = button;
+    //通知代理
+    if ([self.delegate respondsToSelector:@selector(experimentToolBar:clickButtonAtIndex:)]) {
+        [self.delegate experimentToolBar:self clickButtonAtIndex:button.tag];
+    }
 }
 - (void)setSelectedBtn:(UIButton *)selectedBtn
 {
@@ -74,5 +79,6 @@
             [button setBackgroundColor:ToolBarSeletedColor];
         }
     }];
+   
 }
 @end

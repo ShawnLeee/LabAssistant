@@ -10,5 +10,5 @@
 
 @interface SXQMenuCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *itemTitle;
-
+- (void)configureCellWithItem:(id)item;
 @end

@@ -10,5 +10,5 @@
 
 @interface SXQInstructionCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *instructionNameLabel;
-
+- (void)configureCellWithItem:(id)item;
 @end

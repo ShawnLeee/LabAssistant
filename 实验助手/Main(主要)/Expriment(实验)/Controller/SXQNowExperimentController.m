@@ -12,6 +12,7 @@
 #import "SXQExperimentModel.h"
 #import "ExperimentTool.h"
 #import "SXQCurrentExperimentController.h"
+#import "SXQExperimentResult.h"
 @interface SXQNowExperimentController ()
 @property (nonatomic,strong) ArrayDataSource *nowDataSource;
 @property (nonatomic,strong) NSArray *experiments;
@@ -38,10 +39,12 @@
 }
 - (void)p_loadData
 {
-    [ExperimentTool fetchNowExperimentWithParam:nil completion:^(NSArray *resultArray) {
-        _nowDataSource.items = resultArray;
-        _experiments = resultArray;
+    [ExperimentTool fetchDoingExperimentWithParam:nil success:^(SXQExperimentResult *result) {
+        _nowDataSource.items = result.data;
+        _experiments = result.data;
         [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        
     }];
 }
 - (void)setupTableView

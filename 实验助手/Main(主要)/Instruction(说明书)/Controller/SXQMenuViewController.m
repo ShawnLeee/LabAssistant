@@ -10,9 +10,12 @@
 #import "ArrayDataSource+TableView.h"
 #import "SXQMenuCell.h"
 #import "SXQColor.h"
+#import "InstructionTool.h"
+#import "SXQExpCategory.h"
 #define Identifier @"SXQMenuCell"
 @interface SXQMenuViewController ()
 @property (nonatomic,strong) ArrayDataSource *menuDataSource;
+@property (nonatomic,strong) NSArray *expcategories;
 @end
 
 @implementation SXQMenuViewController
@@ -20,25 +23,40 @@
     if (self = [super init] ) {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tableView.backgroundColor = MenuCellBgColor;
+        _expcategories = @[];
     }
     return self;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self p_setupTableView];
+    [self p_loadData];
 }
-
+- (void)p_loadData
+{
+    [InstructionTool fetchAllExpSuccess:^(ExpCategoryResult *result) {
+        _expcategories = result.data;
+        _menuDataSource.items = result.data;
+        [self.tableView reloadData];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+    } failure:^(NSError *error) {
+        
+    }];
+}
 - (void)p_setupTableView
 {
     [self.tableView registerNib:[UINib nibWithNibName:@"SXQMenuCell" bundle:nil] forCellReuseIdentifier:Identifier];
-    _menuDataSource = [[ArrayDataSource alloc] initWithItems:@[@"DNA实验",@"DNA实验",@"DNA实验",@"DNA实验",@"DNA实验",@"DNA实验",@"DNA实验"] cellIdentifier:Identifier  cellConfigureBlock:^(SXQMenuCell *cell, NSString *title) {
-        cell.itemTitle.text = title;
+    _menuDataSource = [[ArrayDataSource alloc] initWithItems:_expcategories cellIdentifier:Identifier  cellConfigureBlock:^(SXQMenuCell *cell, SXQExpCategory *item) {
+        [cell configureCellWithItem:item];
     }];
     self.tableView.dataSource = _menuDataSource;
 }
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    SXQMenuCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    //发送请求
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SXQExpCategory *item = _expcategories[indexPath.row];
+    if ([self.delegate respondsToSelector:@selector(menuViewController:selectedItem:)]) {
+        [self.delegate menuViewController:self selectedItem:item];
+    }
+}
 @end

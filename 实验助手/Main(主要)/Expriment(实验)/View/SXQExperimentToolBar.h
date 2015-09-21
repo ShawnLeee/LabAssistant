@@ -5,9 +5,13 @@
 //  Created by sxq on 15/9/15.
 //  Copyright (c) 2015年 SXQ. All rights reserved.
 //
-
 #import <UIKit/UIKit.h>
+@class SXQExperimentToolBar;
+@protocol SXQExperimentToolBarDelegate <NSObject>
+@optional
+- (void)experimentToolBar:(SXQExperimentToolBar *)toolBar clickButtonAtIndex:(NSUInteger)index;
+@end
 
 @interface SXQExperimentToolBar : UIView
-
+@property (nonatomic,weak) id<SXQExperimentToolBarDelegate> delegate;
 @end

@@ -7,7 +7,7 @@
 //
 #import "SXQColor.h"
 #import "SXQMenuCell.h"
-
+#import "SXQExpCategory.h"
 @implementation SXQMenuCell
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -30,5 +30,8 @@
 
     // Configure the view for the selected state
 }
-
+- (void)configureCellWithItem:(SXQExpCategory *)item
+{
+    self.itemTitle.text = item.expCategoryName;
+}
 @end

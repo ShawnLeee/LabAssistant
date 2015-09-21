@@ -12,35 +12,42 @@
 #import "SXQExperimentModel.h"
 #import "SXQExperimentStep.h"
 #import <MJExtension/MJExtension.h>
+#import "SXQExperimentResult.h"
+#import "SXQExperimentStepResult.h"
 @implementation ExperimentTool
+
++ (void)fetchDoingExperimentWithParam:(id)param success:(void (^)(SXQExperimentResult *result))success failure:(void (^)(NSError *error))failure
+{
+    [SXQHttpTool getWithURL:@"http://172.18.0.55:8080/LabAssistant/lab/getDoing?userID=4028c681494b994701494b99aba50000" params:param success:^(id json) {
+        if (success) {
+            SXQExperimentResult *result = [SXQExperimentResult objectWithKeyValues:json];
+            success(result);
+        }
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
 + (void)fetchDoneExperimentWithParam:(id)param completion:(CompletionBlock)completion
 {
     [SXQHttpTool getWithURL:@"http://172.18.0.55:8080/LabAssistant/lab/getComplete?userID=4028c681494b994701494b99aba50000" params:param success:^(id json) {
         if (completion) {
-            NSArray *resultArr = [SXQExperimentModel objectArrayWithKeyValuesArray:json[@"completes"]];
+            NSArray *resultArr = [SXQExperimentModel objectArrayWithKeyValuesArray:json[@"data"]];
             completion(resultArr);
         }
     } failure:^(NSError *error) {
         
     }];
 }
-+ (void)fetchNowExperimentWithParam:(id)param completion:(CompletionBlock)completion
-{
-    [SXQHttpTool getWithURL:@"http://172.18.0.55:8080/LabAssistant/lab/getDoing?userID=4028c681494b994701494b99aba50000" params:param success:^(id json) {
-        if (completion) {
-            NSArray *resultArr = [SXQExperimentModel objectArrayWithKeyValuesArray:json[@"Doings"]];
-            completion(resultArr);
-        }
-    } failure:^(NSError *error) {
-        
-    }];
-}
-+ (void)fetchExperimentStepWithParam:(ExperimentParam *)param success:(void (^)(FetchStepResult *))success failure:(void (^)(NSError *))failure
++ (void)fetchExperimentStepWithParam:(ExperimentParam *)param success:(void (^)(SXQExperimentStepResult *))success failure:(void (^)(NSError *))failure
 {
     [SXQHttpTool getWithURL:ExperimentStepURL params:param.keyValues success:^(id json) {
-        FetchStepResult *resutlt = [FetchStepResult objectWithKeyValues:json[@"myExp"]];
+        
         if (success) {
-            success(resutlt);
+            SXQExperimentStepResult *result = [SXQExperimentStepResult objectWithKeyValues:json];
+            success(result);
         }
     } failure:^(NSError *error) {
         if (failure) {
@@ -57,11 +64,5 @@
     param.expState = experimentModel.expState;
     param.expInstructionID = experimentModel.expInstructionID;
     return param;
-}
-@end
-@implementation FetchStepResult
-+ (NSDictionary *)objectClassInArray
-{
-    return @{@"steps" : [SXQExperimentStep class]};
 }
 @end

@@ -13,17 +13,32 @@
 #import "SXQExperimentStep.h"
 #import "SXQStepCell.h"
 #import "ExperimentTool.h"
-@interface SXQCurrentExperimentController ()<UITableViewDelegate>
+#import "SXQExperimentStepResult.h"
+#import "SXQExperiment.h"
+#import "TimeRecorder.h"
+
+@interface SXQCurrentExperimentController ()<UITableViewDelegate,SXQExperimentToolBarDelegate,TimeRecorderDelegate>
+@property (nonatomic,assign) BOOL showingTimer;
 @property (weak, nonatomic) IBOutlet SXQExperimentToolBar *toolBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) ArrayDataSource *experimentDatasource;
 @property (weak, nonatomic) IBOutlet UILabel *experimentName;
+@property (weak, nonatomic) IBOutlet TimeRecorder *timeRecorder;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *timerHeightConst;
 
 @property (nonatomic,strong) NSArray *steps;
 @property (nonatomic,strong) ArrayDataSource *stepsDataSource;
 @end
 
 @implementation SXQCurrentExperimentController
+- (instancetype)init
+{
+    if (self = [super init]) {
+        _showingTimer = NO;
+    }
+    return self;
+}
+
 - (NSArray *)steps
 {
     if (!_steps) {
@@ -34,9 +49,11 @@
 - (void)viewDidLayoutSubviews
 {
     [_toolBar setNeedsUpdateConstraints];
+    [_timeRecorder setNeedsUpdateConstraints];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+     _timeRecorder.alpha = 0;
     [self p_setupSelf];
     [self p_setupTableView];
     
@@ -56,7 +73,9 @@
 
 - (void)p_setupTableFooter
 {
+    _timeRecorder.delegate = self;
     SXQExperimentToolBar *toolBar = [[SXQExperimentToolBar alloc] init];
+    toolBar.delegate = self;
     [self.view addSubview:toolBar];
     _toolBar = toolBar;
     toolBar.translatesAutoresizingMaskIntoConstraints = NO;
@@ -79,14 +98,57 @@
     _experimentModel = experimentModel;
     ExperimentParam *param = [ExperimentParam paramWithExperimentModel:experimentModel];
     param.userID = @"";
-    [ExperimentTool fetchExperimentStepWithParam:param success:^(FetchStepResult *result) {
-        self.steps = result.steps;
-        _stepsDataSource.items = result.steps;
-        _experimentName.text = result.experimentName;
-        [self.tableView reloadData];  
+    [ExperimentTool fetchExperimentStepWithParam:param success:^(SXQExperimentStepResult *result) {
+        _stepsDataSource.items = result.data.steps;
+        _experimentName.text = result.data.experimentName;
+        [self.tableView reloadData];
     } failure:^(NSError *error) {
         
     }];
+    
+    
+}
+- (void)experimentToolBar:(SXQExperimentToolBar *)toolBar clickButtonAtIndex:(NSUInteger)index
+{
+    switch (index) {
+        case 0:
+        {
+            //启动/暂停定时器
+            [self showTimerRecorder];
+            break;
+        }
+    }
 }
 
+- (void)timeRecorderdidPaused:(TimeRecorder *)timeRecorder
+{
+    
+}
+- (void)timeRecorder:(TimeRecorder *)timeRecorder finishedTimerWithTime:(NSTimeInterval)countTime
+{
+    
+}
+- (void)showTimerRecorder
+{
+    if (_showingTimer) {
+        _tableView.userInteractionEnabled = YES;
+     [UIView animateWithDuration:0.5 animations:^{
+         _timeRecorder.alpha = 0;
+     }];
+    }else
+    {
+        _tableView.userInteractionEnabled = NO;
+     [UIView animateWithDuration:0.5 animations:^{
+         _timeRecorder.alpha = 1;
+     }];
+    }
+    _showingTimer = !_showingTimer;
+}
+- (void)doTimerAnimation
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        _timeRecorder.hidden = !_timeRecorder.hidden;
+        [_timeRecorder layoutIfNeeded];
+    }];
+}
 @end

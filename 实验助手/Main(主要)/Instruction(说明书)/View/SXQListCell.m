@@ -7,9 +7,20 @@
 //
 
 #import "SXQListCell.h"
+#import "SXQExpInstruction.h"
+@interface SXQListCell ()
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *supplierLabel;
+@property (weak, nonatomic) IBOutlet UILabel *supplierIDLabel;
 
+@end
 @implementation SXQListCell
-
+- (void)configureCellWithItem:(SXQExpInstruction *)item
+{
+    _nameLabel.text = item.experimentName;
+    _supplierLabel.text = [NSString stringWithFormat:@"厂商:%@",item.supplierName];
+    _supplierIDLabel.text  = [NSString stringWithFormat:@"货号:%@",item.supplierID];
+}
 - (void)awakeFromNib {
     // Initialization code
 }

@@ -19,6 +19,10 @@
 		B06CE1691BAAB803008BB98E /* DWConsultTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B06CE1631BAAB803008BB98E /* DWConsultTViewController.m */; };
 		B06CE16A1BAAB803008BB98E /* DWBBSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B06CE1651BAAB803008BB98E /* DWBBSViewController.m */; };
 		B06CE16B1BAAB803008BB98E /* DWExchangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B06CE1671BAAB803008BB98E /* DWExchangeController.m */; };
+		B0711B691BAFD23F00EA7E14 /* InstructionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B0711B681BAFD23F00EA7E14 /* InstructionTool.m */; };
+		B0711B6C1BAFD76B00EA7E14 /* SXQExpCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B0711B6B1BAFD76B00EA7E14 /* SXQExpCategory.m */; };
+		B0711B6F1BAFDF4100EA7E14 /* SXQExpSubCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B0711B6E1BAFDF4100EA7E14 /* SXQExpSubCategory.m */; };
+		B0711B721BAFEF9700EA7E14 /* SXQExpInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = B0711B711BAFEF9700EA7E14 /* SXQExpInstruction.m */; };
 		B0A05F3B1B92871300EAEBF2 /* ____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A05F3A1B92871300EAEBF2 /* ____Tests.m */; };
 		B0A1E51B1B95897200440141 /* SXQListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A1E5191B95897200440141 /* SXQListCell.m */; };
 		B0A1E51C1B95897200440141 /* SXQListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0A1E51A1B95897200440141 /* SXQListCell.xib */; };
@@ -77,6 +81,13 @@
 		B0F566361BA7FC4400BA1F7B /* SXQExperimentToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0F566351BA7FC4400BA1F7B /* SXQExperimentToolBar.xib */; };
 		B0F5663A1BA807D900BA1F7B /* SXQCurrentExperimentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F566381BA807D900BA1F7B /* SXQCurrentExperimentController.m */; };
 		B0F5663B1BA807D900BA1F7B /* SXQCurrentExperimentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0F566391BA807D900BA1F7B /* SXQCurrentExperimentController.xib */; };
+		B0F64BD61BAF94B7001CF997 /* SXQBaseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F64BD51BAF94B7001CF997 /* SXQBaseResult.m */; };
+		B0F64BDF1BAF99EB001CF997 /* SXQExperiment.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F64BDE1BAF99EB001CF997 /* SXQExperiment.m */; };
+		B0F64C251BAFB407001CF997 /* SXQExperimentResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F64C221BAFB407001CF997 /* SXQExperimentResult.m */; };
+		B0F64C261BAFB407001CF997 /* SXQExperimentStepResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F64C241BAFB407001CF997 /* SXQExperimentStepResult.m */; };
+		B0F64C321BAFBD77001CF997 /* MZTimerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F64C2E1BAFBD77001CF997 /* MZTimerLabel.m */; };
+		B0F64C331BAFBD77001CF997 /* TimeRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F64C301BAFBD77001CF997 /* TimeRecorder.m */; };
+		B0F64C341BAFBD77001CF997 /* TimeRecorder.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0F64C311BAFBD77001CF997 /* TimeRecorder.xib */; };
 		B0F738B11BA9011600EA7E9E /* UIView+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F738B01BA9011600EA7E9E /* UIView+MJ.m */; };
 		B0F738B41BA9018400EA7E9E /* SXQMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F738B31BA9018400EA7E9E /* SXQMenuViewController.m */; };
 		B0F738B71BA9025200EA7E9E /* DWInstructionController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F738B61BA9025200EA7E9E /* DWInstructionController.m */; };
@@ -164,6 +175,14 @@
 		B06CE1651BAAB803008BB98E /* DWBBSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWBBSViewController.m; sourceTree = "<group>"; };
 		B06CE1661BAAB803008BB98E /* DWExchangeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWExchangeController.h; sourceTree = "<group>"; };
 		B06CE1671BAAB803008BB98E /* DWExchangeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWExchangeController.m; sourceTree = "<group>"; };
+		B0711B671BAFD23F00EA7E14 /* InstructionTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionTool.h; sourceTree = "<group>"; };
+		B0711B681BAFD23F00EA7E14 /* InstructionTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionTool.m; sourceTree = "<group>"; };
+		B0711B6A1BAFD76B00EA7E14 /* SXQExpCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQExpCategory.h; sourceTree = "<group>"; };
+		B0711B6B1BAFD76B00EA7E14 /* SXQExpCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExpCategory.m; sourceTree = "<group>"; };
+		B0711B6D1BAFDF4100EA7E14 /* SXQExpSubCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQExpSubCategory.h; sourceTree = "<group>"; };
+		B0711B6E1BAFDF4100EA7E14 /* SXQExpSubCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExpSubCategory.m; sourceTree = "<group>"; };
+		B0711B701BAFEF9700EA7E14 /* SXQExpInstruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQExpInstruction.h; sourceTree = "<group>"; };
+		B0711B711BAFEF9700EA7E14 /* SXQExpInstruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExpInstruction.m; sourceTree = "<group>"; };
 		B0A05F1B1B92871300EAEBF2 /* 实验助手.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "实验助手.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A05F341B92871300EAEBF2 /* 实验助手Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "实验助手Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A05F391B92871300EAEBF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -266,6 +285,19 @@
 		B0F566371BA807D900BA1F7B /* SXQCurrentExperimentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQCurrentExperimentController.h; sourceTree = "<group>"; };
 		B0F566381BA807D900BA1F7B /* SXQCurrentExperimentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQCurrentExperimentController.m; sourceTree = "<group>"; };
 		B0F566391BA807D900BA1F7B /* SXQCurrentExperimentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SXQCurrentExperimentController.xib; sourceTree = "<group>"; };
+		B0F64BD41BAF94B7001CF997 /* SXQBaseResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQBaseResult.h; sourceTree = "<group>"; };
+		B0F64BD51BAF94B7001CF997 /* SXQBaseResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQBaseResult.m; sourceTree = "<group>"; };
+		B0F64BDD1BAF99EB001CF997 /* SXQExperiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQExperiment.h; sourceTree = "<group>"; };
+		B0F64BDE1BAF99EB001CF997 /* SXQExperiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExperiment.m; sourceTree = "<group>"; };
+		B0F64C211BAFB407001CF997 /* SXQExperimentResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQExperimentResult.h; sourceTree = "<group>"; };
+		B0F64C221BAFB407001CF997 /* SXQExperimentResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExperimentResult.m; sourceTree = "<group>"; };
+		B0F64C231BAFB407001CF997 /* SXQExperimentStepResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQExperimentStepResult.h; sourceTree = "<group>"; };
+		B0F64C241BAFB407001CF997 /* SXQExperimentStepResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExperimentStepResult.m; sourceTree = "<group>"; };
+		B0F64C2D1BAFBD77001CF997 /* MZTimerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTimerLabel.h; sourceTree = "<group>"; };
+		B0F64C2E1BAFBD77001CF997 /* MZTimerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTimerLabel.m; sourceTree = "<group>"; };
+		B0F64C2F1BAFBD77001CF997 /* TimeRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeRecorder.h; sourceTree = "<group>"; };
+		B0F64C301BAFBD77001CF997 /* TimeRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeRecorder.m; sourceTree = "<group>"; };
+		B0F64C311BAFBD77001CF997 /* TimeRecorder.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeRecorder.xib; sourceTree = "<group>"; };
 		B0F738AF1BA9011600EA7E9E /* UIView+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJ.h"; sourceTree = "<group>"; };
 		B0F738B01BA9011600EA7E9E /* UIView+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJ.m"; sourceTree = "<group>"; };
 		B0F738B21BA9018400EA7E9E /* SXQMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQMenuViewController.h; sourceTree = "<group>"; };
@@ -529,6 +561,8 @@
 				B0F5662D1BA7EDA400BA1F7B /* AcademicTool.m */,
 				B0F738C71BA9346F00EA7E9E /* ExperimentTool.h */,
 				B0F738C81BA9346F00EA7E9E /* ExperimentTool.m */,
+				B0711B671BAFD23F00EA7E14 /* InstructionTool.h */,
+				B0711B681BAFD23F00EA7E14 /* InstructionTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -605,9 +639,9 @@
 		B0C73C891B92F39E00F4B6D2 /* Expriment(实验) */ = {
 			isa = PBXGroup;
 			children = (
+				B0F64C201BAFB407001CF997 /* Other */,
 				B0C73C8A1B92F39E00F4B6D2 /* Controller */,
 				B0C73C8B1B92F39E00F4B6D2 /* Model */,
-				B0C73C8C1B92F39E00F4B6D2 /* Other */,
 				B0C73C8D1B92F39E00F4B6D2 /* View */,
 			);
 			path = "Expriment(实验)";
@@ -644,15 +678,10 @@
 				B0F738CB1BA935C200EA7E9E /* SXQExperimentModel.m */,
 				B0F5053E1BABB0A900B88A3D /* SXQExperimentStep.h */,
 				B0F5053F1BABB0A900B88A3D /* SXQExperimentStep.m */,
+				B0F64BDD1BAF99EB001CF997 /* SXQExperiment.h */,
+				B0F64BDE1BAF99EB001CF997 /* SXQExperiment.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		B0C73C8C1B92F39E00F4B6D2 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Other;
 			sourceTree = "<group>";
 		};
 		B0C73C8D1B92F39E00F4B6D2 /* View */ = {
@@ -698,14 +727,14 @@
 				B0C73CC01B93076500F4B6D2 /* SXQInstructionController.m */,
 				B0C73CD71B933E1800F4B6D2 /* SXQAllInstructionController.h */,
 				B0C73CD81B933E1800F4B6D2 /* SXQAllInstructionController.m */,
-				B06239461B9587C100F0CAFB /* SXQInstructionListController.h */,
-				B06239471B9587C100F0CAFB /* SXQInstructionListController.m */,
 				B0F738B21BA9018400EA7E9E /* SXQMenuViewController.h */,
 				B0F738B31BA9018400EA7E9E /* SXQMenuViewController.m */,
 				B0F738B51BA9025200EA7E9E /* DWInstructionController.h */,
 				B0F738B61BA9025200EA7E9E /* DWInstructionController.m */,
 				B0F738BD1BA9293200EA7E9E /* DWInstructionChildController.h */,
 				B0F738BE1BA9293200EA7E9E /* DWInstructionChildController.m */,
+				B06239461B9587C100F0CAFB /* SXQInstructionListController.h */,
+				B06239471B9587C100F0CAFB /* SXQInstructionListController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -713,6 +742,12 @@
 		B0C73C921B92F39E00F4B6D2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B0711B6A1BAFD76B00EA7E14 /* SXQExpCategory.h */,
+				B0711B6B1BAFD76B00EA7E14 /* SXQExpCategory.m */,
+				B0711B6D1BAFDF4100EA7E14 /* SXQExpSubCategory.h */,
+				B0711B6E1BAFDF4100EA7E14 /* SXQExpSubCategory.m */,
+				B0711B701BAFEF9700EA7E14 /* SXQExpInstruction.h */,
+				B0711B711BAFEF9700EA7E14 /* SXQExpInstruction.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -886,6 +921,7 @@
 		B0C73CAD1B92F39E00F4B6D2 /* Vender(第三方) */ = {
 			isa = PBXGroup;
 			children = (
+				B0F64C2C1BAFBD77001CF997 /* Time */,
 				B0F939971BA166F800D093F9 /* ShareSDK */,
 				B0F939911BA166D700D093F9 /* Bolts.framework */,
 				B0F939921BA166D700D093F9 /* Parse.framework */,
@@ -924,6 +960,8 @@
 			children = (
 				B0C73CCA1B93271200F4B6D2 /* SXQGroup.h */,
 				B0C73CCB1B93271200F4B6D2 /* SXQGroup.m */,
+				B0F64BD41BAF94B7001CF997 /* SXQBaseResult.h */,
+				B0F64BD51BAF94B7001CF997 /* SXQBaseResult.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -957,6 +995,29 @@
 				B0F5661D1BA7BEDE00BA1F7B /* UIBarButtonItem+SXQ.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		B0F64C201BAFB407001CF997 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				B0F64C211BAFB407001CF997 /* SXQExperimentResult.h */,
+				B0F64C221BAFB407001CF997 /* SXQExperimentResult.m */,
+				B0F64C231BAFB407001CF997 /* SXQExperimentStepResult.h */,
+				B0F64C241BAFB407001CF997 /* SXQExperimentStepResult.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		B0F64C2C1BAFBD77001CF997 /* Time */ = {
+			isa = PBXGroup;
+			children = (
+				B0F64C2D1BAFBD77001CF997 /* MZTimerLabel.h */,
+				B0F64C2E1BAFBD77001CF997 /* MZTimerLabel.m */,
+				B0F64C2F1BAFBD77001CF997 /* TimeRecorder.h */,
+				B0F64C301BAFBD77001CF997 /* TimeRecorder.m */,
+				B0F64C311BAFBD77001CF997 /* TimeRecorder.xib */,
+			);
+			path = Time;
 			sourceTree = "<group>";
 		};
 		B0F939971BA166F800D093F9 /* ShareSDK */ = {
@@ -1144,6 +1205,7 @@
 				B0F738C61BA92C6D00EA7E9E /* SXQInstructionCell.xib in Resources */,
 				B0C73CD61B93369A00F4B6D2 /* Main.storyboard in Resources */,
 				B0B1EC521BA27A920087A318 /* SXQVenderView.xib in Resources */,
+				B0F64C341BAFBD77001CF997 /* TimeRecorder.xib in Resources */,
 				B0A1E51C1B95897200440141 /* SXQListCell.xib in Resources */,
 				B0DDFF2E1BA6A07000E4AB3C /* SXQReagentContoller.xib in Resources */,
 				B0F939CB1BA166F900D093F9 /* WeiboSDK.bundle in Resources */,
@@ -1211,6 +1273,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0711B6F1BAFDF4100EA7E14 /* SXQExpSubCategory.m in Sources */,
+				B0F64C261BAFB407001CF997 /* SXQExperimentStepResult.m in Sources */,
 				B0F566341BA7FC0800BA1F7B /* SXQExperimentToolBar.m in Sources */,
 				B0DDFF2D1BA6A07000E4AB3C /* SXQReagentContoller.m in Sources */,
 				B0F566211BA7D51100BA1F7B /* SXQMyInstructionsController.m in Sources */,
@@ -1219,6 +1283,7 @@
 				B0DDFF0C1BA6679500E4AB3C /* DWGroup.m in Sources */,
 				B0C73CAF1B92F39E00F4B6D2 /* AppDelegate.m in Sources */,
 				B0C73CCC1B93271200F4B6D2 /* SXQGroup.m in Sources */,
+				B0F64BD61BAF94B7001CF997 /* SXQBaseResult.m in Sources */,
 				B0C73CC41B93093B00F4B6D2 /* SXQHttpTool.m in Sources */,
 				B0F738C51BA92C6D00EA7E9E /* SXQInstructionCell.m in Sources */,
 				B03F97B61BA299F8009FD1B4 /* SXQLoginViewController.m in Sources */,
@@ -1229,12 +1294,15 @@
 				B0B1EC501BA27A870087A318 /* SXQVenderView.m in Sources */,
 				B0C73CC71B930C6E00F4B6D2 /* SXQInstructionHeader.m in Sources */,
 				B0C73CD41B932C6000F4B6D2 /* SXQGroupCell.m in Sources */,
+				B0F64C321BAFBD77001CF997 /* MZTimerLabel.m in Sources */,
 				B0F5663A1BA807D900BA1F7B /* SXQCurrentExperimentController.m in Sources */,
 				B0DDFF131BA67F6500E4AB3C /* SXQExperimentStepCell.m in Sources */,
 				B0F505471BABB76700B88A3D /* SXQStepCell.m in Sources */,
 				B0F738B11BA9011600EA7E9E /* UIView+MJ.m in Sources */,
+				B0F64BDF1BAF99EB001CF997 /* SXQExperiment.m in Sources */,
 				B06CE1681BAAB803008BB98E /* DWContainerViewController.m in Sources */,
 				B0F738C01BA9293200EA7E9E /* DWInstructionChildController.m in Sources */,
+				B0F64C251BAFB407001CF997 /* SXQExperimentResult.m in Sources */,
 				B0EBC4971BA1731D000ECCA0 /* SXQVenderLogin.m in Sources */,
 				B0C73CB01B92F39E00F4B6D2 /* main.m in Sources */,
 				B0DDFEFE1BA6622C00E4AB3C /* SXQDoneExperimentController.m in Sources */,
@@ -1246,18 +1314,22 @@
 				B0F5661E1BA7BEDE00BA1F7B /* UIBarButtonItem+SXQ.m in Sources */,
 				B0E054BB1B94715A00C7F9D0 /* SXQNavgationBar.m in Sources */,
 				B0DDFF181BA67FFE00E4AB3C /* SXQEquipMentCell.m in Sources */,
+				B0711B721BAFEF9700EA7E14 /* SXQExpInstruction.m in Sources */,
 				B03F97C21BA2D51D009FD1B4 /* SXQTabBarController.m in Sources */,
 				B0EBC4911BA16DB3000ECCA0 /* SXQMeViewController.m in Sources */,
 				B0A1E51B1B95897200440141 /* SXQListCell.m in Sources */,
+				B0F64C331BAFBD77001CF997 /* TimeRecorder.m in Sources */,
 				B0C73CC11B93076500F4B6D2 /* SXQInstructionController.m in Sources */,
 				B0F738B41BA9018400EA7E9E /* SXQMenuViewController.m in Sources */,
 				B0F5054B1BABDEC700B88A3D /* SXQNowExperimentController.m in Sources */,
 				B0F738CC1BA935C200EA7E9E /* SXQExperimentModel.m in Sources */,
 				B0DDFF0F1BA67EF000E4AB3C /* SXQExperimentStepController.m in Sources */,
 				B03F97BA1BA2A052009FD1B4 /* SXQLoginField.m in Sources */,
+				B0711B6C1BAFD76B00EA7E14 /* SXQExpCategory.m in Sources */,
 				B06CE1691BAAB803008BB98E /* DWConsultTViewController.m in Sources */,
 				B0DDFF281BA69E7C00E4AB3C /* SXQSegmentedControll.m in Sources */,
 				B0DDFF341BA6AEE000E4AB3C /* SXQAnnotationView.m in Sources */,
+				B0711B691BAFD23F00EA7E14 /* InstructionTool.m in Sources */,
 				B0C73CD91B933E1800F4B6D2 /* SXQAllInstructionController.m in Sources */,
 				B0C73CD01B9329DF00F4B6D2 /* SXQInstrutionCell.m in Sources */,
 				B0F5662A1BA7E2D400BA1F7B /* SXQMyInstructionCell.m in Sources */,

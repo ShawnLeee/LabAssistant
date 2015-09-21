@@ -5,7 +5,7 @@
 //  Created by sxq on 15/9/16.
 //  Copyright (c) 2015年 SXQ. All rights reserved.
 //
-@class SXQExperimentModel,SXQExperimentStep;
+@class SXQExperimentModel,SXQExperimentStep,SXQExperimentResult,SXQExperimentStepResult;
 #import <Foundation/Foundation.h>
 
 typedef void (^CompletionBlock)(NSArray *resultArray);
@@ -18,10 +18,6 @@ typedef void (^CompletionBlock)(NSArray *resultArray);
 + (instancetype)paramWithExperimentModel:(SXQExperimentModel *)model;
 @end
 
-@interface FetchStepResult : NSObject
-@property (nonatomic,copy) NSString *experimentName;
-@property (nonatomic,strong) NSArray *steps;
-@end
 
 @interface ExperimentTool : NSObject
 /**
@@ -35,9 +31,9 @@ typedef void (^CompletionBlock)(NSArray *resultArray);
  *
  *  @param completion 获取成功后的回调
  */
-+ (void)fetchNowExperimentWithParam:(id)param completion:(CompletionBlock)completion;
++ (void)fetchDoingExperimentWithParam:(id)param success:(void (^)(SXQExperimentResult *result))success failure:(void (^)(NSError *error))failure;
 /**
  *  获取实验或说明书下所有的实验步骤
  */
-+ (void)fetchExperimentStepWithParam:(ExperimentParam *)param success:(void (^)(FetchStepResult *result ))success failure:(void (^)(NSError *error))failure;
++ (void)fetchExperimentStepWithParam:(ExperimentParam *)param success:(void (^)(SXQExperimentStepResult *result ))success failure:(void (^)(NSError *error))failure;
 @end
