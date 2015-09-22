@@ -10,12 +10,14 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "SXQVenderLoginTool.h"
 #import "SXQVenderLogin.h"
+#import "LoginTool.h"
 @interface SXQLoginViewController () <SXQVenderLoginDelegate>
 @property(weak, nonatomic) IBOutlet SXQVenderLogin *loginView;
 @property(weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property(weak, nonatomic) IBOutlet SXQLoginField *loginField;
 @property (weak, nonatomic) IBOutlet UIButton *forgetPassBtn;
 @property (weak, nonatomic) IBOutlet UIButton *smsLoginBtn;
+@property (weak, nonatomic) IBOutlet UIButton *signUpBtn;
 
 @end
 
@@ -37,6 +39,7 @@
                                                 alpha:1.0]];
   _loginBtn.layer.cornerRadius = 4;
   [self setupLogin];
+    [self bindingSignUpBtn];
 }
 - (void)setupLogin {
   RACSignal *userNametextSignal = _loginField.userField.rac_textSignal;
@@ -79,7 +82,17 @@
     }
   }];
 }
-
+- (void)bindingSignUpBtn
+{
+    [[[[_signUpBtn rac_signalForControlEvents:UIControlEventTouchUpInside]
+        doNext:^(id x) {
+            
+        }] flattenMap:^RACStream *(id value) {
+            return [self signupSignal];
+        }] subscribeNext:^(id x) {
+            NSLog(@"%@",x);
+        }];
+}
 - (void)loginWithUserName:(NSString *)userName
                  password:(NSString *)password
                  complete:(void (^)(BOOL success))completionBlk {
@@ -98,6 +111,21 @@
                        }];
         return nil;
       }];
+}
+- (RACSignal *)signupSignal
+{
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        SignUpParam *param = [SignUpParam paramWithNickName:@"123" passwd:@"123"];
+        [LoginTool signUpWithParam:nil completion:^(BOOL success) {
+            [subscriber sendNext:@(success)];
+            [subscriber sendCompleted];
+        }];
+        return nil;
+    }];
+}
+- (void)doSomeThing
+{
+    
 }
 - (void)viewDidLayoutSubviews {
   [_loginView updateMyConstraints];

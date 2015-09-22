@@ -23,5 +23,13 @@
 #define SubExpURL @"http://172.18.0.55:8080/LabAssistant/expCategory/getSubCategoryByPID"
 //说明书列表
 #define InstructionListURL @"http://172.18.0.55:8080/LabAssistant/lab/getInstructionsBySubCategoryID"
+//说明书下载
+#define DownloadInstructionURL @"http://172.18.0.55:8080/LabAssistant/lab/downloadInstruction"
 //////////////////////////////说明书//////////////////////////////////////////////////////
+
+
+//////////////////////////////登录/注册//////////////////////////////////////////////////////
+#define LoginURL @"http://172.18.0.55:8080/LabAssistant/login"
+#define SignUpURL @"http://172.18.0.55:8080/LabAssistant/register"
+//////////////////////////////登录/注册//////////////////////////////////////////////////////
 #endif

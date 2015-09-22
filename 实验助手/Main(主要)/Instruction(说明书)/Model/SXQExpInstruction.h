@@ -17,6 +17,7 @@
 @property (nonatomic,copy) NSString * experimentDesc;
 @property (nonatomic,copy) NSString * experimentName;
 @property (nonatomic,copy) NSString * experimentTheory;
+@property (nonatomic,copy) NSString * expInstructionID;
 @property (nonatomic,copy) NSString * filterStr;
 @property (nonatomic,copy) NSString * productNum;
 @property (nonatomic,copy) NSString * provideUser;

@@ -10,6 +10,7 @@
                 <outlet property="loginBtn" destination="1lR-IH-5le" id="Lfn-ef-Ckh"/>
                 <outlet property="loginField" destination="XA9-dq-e9l" id="wzr-1L-bg3"/>
                 <outlet property="loginView" destination="zMl-Pv-PmH" id="wgG-oI-JU3"/>
+                <outlet property="signUpBtn" destination="Tb9-YN-Xfq" id="nNn-IO-BZw"/>
                 <outlet property="smsLoginBtn" destination="Tb9-YN-Xfq" id="88X-Y6-8cB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -51,8 +52,8 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tb9-YN-Xfq">
-                    <rect key="frame" x="470" y="162" width="110" height="30"/>
-                    <state key="normal" title=" 短信验证码登录">
+                    <rect key="frame" x="550" y="162" width="30" height="30"/>
+                    <state key="normal" title="注册">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>

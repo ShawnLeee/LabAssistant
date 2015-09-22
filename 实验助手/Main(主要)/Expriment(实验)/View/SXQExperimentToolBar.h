@@ -6,10 +6,18 @@
 //  Copyright (c) 2015年 SXQ. All rights reserved.
 //
 #import <UIKit/UIKit.h>
+typedef NS_ENUM(NSUInteger, ExperimentTooBarButtonType)
+{
+    ExperimentTooBarButtonTypeStart = 0,
+    ExperimentTooBarButtonTypePhoto = 4,
+    ExperimentTooBarButtonTypeBack = 1,
+    ExperimentTooBarButtonTypeReport = 3,
+    ExperimentTooBarButtonTypeRemark = 2,
+};
 @class SXQExperimentToolBar;
 @protocol SXQExperimentToolBarDelegate <NSObject>
 @optional
-- (void)experimentToolBar:(SXQExperimentToolBar *)toolBar clickButtonAtIndex:(NSUInteger)index;
+- (void)experimentToolBar:(SXQExperimentToolBar *)toolBar clickButtonWithType:(ExperimentTooBarButtonType)buttonType;
 @end
 
 @interface SXQExperimentToolBar : UIView

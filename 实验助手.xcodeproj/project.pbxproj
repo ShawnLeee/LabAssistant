@@ -98,6 +98,7 @@
 		B0F738C61BA92C6D00EA7E9E /* SXQInstructionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0F738C41BA92C6D00EA7E9E /* SXQInstructionCell.xib */; };
 		B0F738C91BA9346F00EA7E9E /* ExperimentTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F738C81BA9346F00EA7E9E /* ExperimentTool.m */; };
 		B0F738CC1BA935C200EA7E9E /* SXQExperimentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F738CB1BA935C200EA7E9E /* SXQExperimentModel.m */; };
+		B0F8BF0C1BB0F7DE00F434FE /* LoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F8BF0B1BB0F7DE00F434FE /* LoginTool.m */; };
 		B0F939941BA166D700D093F9 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F939911BA166D700D093F9 /* Bolts.framework */; };
 		B0F939951BA166D700D093F9 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F939921BA166D700D093F9 /* Parse.framework */; };
 		B0F939961BA166D700D093F9 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F939931BA166D700D093F9 /* ParseUI.framework */; };
@@ -316,6 +317,8 @@
 		B0F738C81BA9346F00EA7E9E /* ExperimentTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExperimentTool.m; sourceTree = "<group>"; };
 		B0F738CA1BA935C200EA7E9E /* SXQExperimentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQExperimentModel.h; sourceTree = "<group>"; };
 		B0F738CB1BA935C200EA7E9E /* SXQExperimentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExperimentModel.m; sourceTree = "<group>"; };
+		B0F8BF0A1BB0F7DE00F434FE /* LoginTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTool.h; sourceTree = "<group>"; };
+		B0F8BF0B1BB0F7DE00F434FE /* LoginTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTool.m; sourceTree = "<group>"; };
 		B0F939911BA166D700D093F9 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		B0F939921BA166D700D093F9 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		B0F939931BA166D700D093F9 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
@@ -563,6 +566,8 @@
 				B0F738C81BA9346F00EA7E9E /* ExperimentTool.m */,
 				B0711B671BAFD23F00EA7E14 /* InstructionTool.h */,
 				B0711B681BAFD23F00EA7E14 /* InstructionTool.m */,
+				B0F8BF0A1BB0F7DE00F434FE /* LoginTool.h */,
+				B0F8BF0B1BB0F7DE00F434FE /* LoginTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1294,6 +1299,7 @@
 				B0B1EC501BA27A870087A318 /* SXQVenderView.m in Sources */,
 				B0C73CC71B930C6E00F4B6D2 /* SXQInstructionHeader.m in Sources */,
 				B0C73CD41B932C6000F4B6D2 /* SXQGroupCell.m in Sources */,
+				B0F8BF0C1BB0F7DE00F434FE /* LoginTool.m in Sources */,
 				B0F64C321BAFBD77001CF997 /* MZTimerLabel.m in Sources */,
 				B0F5663A1BA807D900BA1F7B /* SXQCurrentExperimentController.m in Sources */,
 				B0DDFF131BA67F6500E4AB3C /* SXQExperimentStepCell.m in Sources */,

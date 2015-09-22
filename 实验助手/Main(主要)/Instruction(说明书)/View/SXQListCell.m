@@ -24,6 +24,11 @@
 - (void)awakeFromNib {
     // Initialization code
 }
+- (IBAction)download:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(listCell:clickedDownloadBtn:)]) {
+        [self.delegate listCell:self clickedDownloadBtn:sender];
+    }
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

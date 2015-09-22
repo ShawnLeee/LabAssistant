@@ -5,7 +5,7 @@
 //  Created by sxq on 15/9/15.
 //  Copyright (c) 2015年 SXQ. All rights reserved.
 //
-
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "SXQCurrentExperimentController.h"
 #import "SXQExperimentToolBar.h"
 #import "ArrayDataSource+TableView.h"
@@ -17,7 +17,7 @@
 #import "SXQExperiment.h"
 #import "TimeRecorder.h"
 
-@interface SXQCurrentExperimentController ()<UITableViewDelegate,SXQExperimentToolBarDelegate,TimeRecorderDelegate>
+@interface SXQCurrentExperimentController ()<UITableViewDelegate,SXQExperimentToolBarDelegate,TimeRecorderDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (nonatomic,assign) BOOL showingTimer;
 @property (weak, nonatomic) IBOutlet SXQExperimentToolBar *toolBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -108,18 +108,71 @@
     
     
 }
-- (void)experimentToolBar:(SXQExperimentToolBar *)toolBar clickButtonAtIndex:(NSUInteger)index
+- (void)experimentToolBar:(SXQExperimentToolBar *)toolBar clickButtonWithType:(ExperimentTooBarButtonType)buttonType
 {
-    switch (index) {
-        case 0:
-        {
-            //启动/暂停定时器
-            [self showTimerRecorder];
+    switch (buttonType) {
+            case ExperimentTooBarButtonTypeBack:
             break;
-        }
+            
+            case ExperimentTooBarButtonTypePhoto:
+            [self choosePhotoOrigin];
+            break;
+            
+            case ExperimentTooBarButtonTypeStart:
+            {//启动/暂停定时器
+                [self showTimerRecorder];
+                break;
+            }
+            case ExperimentTooBarButtonTypeRemark:
+            break;
+            
+            case ExperimentTooBarButtonTypeReport:
+            [self choosePhotoOrigin];
+            break;
     }
 }
-
+- (void)choosePhotoOrigin
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:nil
+                                  delegate:nil
+                                  cancelButtonTitle:@"取消"
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:@"从相册选择",@"拍一张", nil];
+    [actionSheet.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+        switch ([index integerValue]) {
+            case 0:
+                //从相册选择
+                [self openPhotoLibrary];
+                break;
+            case 1:
+                //拍一张
+                [self openCamera];
+                break;
+        }
+    }];
+    [actionSheet showInView:self.view];
+}
+/**
+ *  打开相机
+ */
+- (void)openCamera
+{
+    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+    ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
+    ipc.delegate = self;
+    [self presentViewController:ipc animated:YES completion:nil];
+}
+/**
+ *  打开相册
+ */
+- (void)openPhotoLibrary
+{
+    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+    ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    ipc.delegate = self;
+    [self presentViewController:ipc animated:YES completion:nil];
+}
 - (void)timeRecorderdidPaused:(TimeRecorder *)timeRecorder
 {
     

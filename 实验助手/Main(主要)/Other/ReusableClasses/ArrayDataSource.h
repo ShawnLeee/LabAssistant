@@ -16,7 +16,6 @@ typedef void (^CellConfigureBlock)(id cell,id item);
 @property (nonatomic,copy) CellConfigureBlock configureBlock;
 @property (nonatomic,assign,getter=isGroupArray) BOOL groupArray;
 
-
 - (instancetype)initWithItems:(NSArray *)anItems
                cellIdentifier:(NSString *)aCellIdentifier
            cellConfigureBlock:(CellConfigureBlock )aConfigureBlock;

@@ -55,6 +55,7 @@
 }
 - (void)changeViewController:(UISegmentedControl *)segmentedControl
 {
+    self.view.window.backgroundColor = [UIColor whiteColor];
     NSUInteger newIndex = segmentedControl.selectedSegmentIndex;
     //1.新控制器
     UIViewController *newVC = self.childViewControllers[newIndex];
@@ -68,7 +69,14 @@
         [self.view addSubview:newVC.view];
         //transition
         CATransition *transition = [CATransition animation];
-        transition.type = kCATransitionFade;
+        transition.type = kCATransitionPush;
+        if (_currentIndex < newIndex) {
+            transition.subtype = kCATransitionFromLeft;
+        }else
+        {
+            transition.subtype = kCATransitionFromRight;
+        }
+        
         transition.duration = 0.5;
         [self.view.layer addAnimation:transition forKey:nil];
     }else

@@ -18,4 +18,5 @@
 + (void)fetchAllExpSuccess:(void (^)(ExpCategoryResult *result))success failure:(void (^)(NSError *error))failure;
 + (void)fetchSubCategoryWithCategoryId:(NSString *)categoryID success:(void (^)(ExpSubCategoryResult *result))success failure:(void (^)(NSError *error))failure;
 + (void)fetchInstructionLishWithExpSubCategoryID:(NSString *)subID success:(void (^)(ExpInstructionsResult *result))success failure:(void (^)(NSError *error))failure;
++ (void)downloadInstructionWithID:(NSString *)instructionID success:(void (^)(id result))success failure:(void (^)(NSError *error))failure;
 @end

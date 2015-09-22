@@ -19,6 +19,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    self.window.tintColor = [UIColor orangeColor];
     [self initializeSDK:launchOptions];
     return YES;
 }

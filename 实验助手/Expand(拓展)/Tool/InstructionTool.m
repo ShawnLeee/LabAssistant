@@ -52,6 +52,15 @@
         }
     }];
 }
++ (void)downloadInstructionWithID:(NSString *)instructionID success:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+    NSDictionary *params = @{@"expInstructionID" : instructionID};
+    [SXQHttpTool getWithURL:DownloadInstructionURL params:params success:^(id json) {
+        if(success) success(json);
+    } failure:^(NSError *error) {
+        
+    }];
+}
 @end
 
 @implementation ExpCategoryResult

@@ -57,8 +57,8 @@
 {
     self.selectedBtn = button;
     //通知代理
-    if ([self.delegate respondsToSelector:@selector(experimentToolBar:clickButtonAtIndex:)]) {
-        [self.delegate experimentToolBar:self clickButtonAtIndex:button.tag];
+    if ([self.delegate respondsToSelector:@selector(experimentToolBar:clickButtonWithType:)]) {
+        [self.delegate experimentToolBar:self clickButtonWithType:button.tag];
     }
 }
 - (void)setSelectedBtn:(UIButton *)selectedBtn
