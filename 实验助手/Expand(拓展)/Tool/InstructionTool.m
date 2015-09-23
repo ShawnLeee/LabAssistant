@@ -61,6 +61,19 @@
         
     }];
 }
++ (void)fetchInstructionDetailWithParam:(InstructionDetailParam *)param success:(void (^)(InstructionDetailResult *))success failure:(void (^)(NSError *))failure
+{
+    [SXQHttpTool getWithURL:InstructionDetailURL params:param.keyValues success:^(id json) {
+        if (success) {
+            InstructionDetailResult *result = [InstructionDetailResult objectWithKeyValues:json];
+            success(result);
+        }
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
 @end
 
 @implementation ExpCategoryResult
@@ -83,3 +96,12 @@
     return @{@"data" : [SXQExpInstruction class]};
 }
 @end
+
+@implementation InstructionDetailParam
+@end
+
+@implementation InstructionDetailResult
+@end
+
+
+

@@ -9,5 +9,8 @@
 #import "SXQExpInstruction.h"
 
 @implementation SXQExpInstruction
-
+- (NSString *)description
+{
+    return [super description];
+}
 @end

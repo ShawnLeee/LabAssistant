@@ -133,25 +133,18 @@
 }
 - (void)choosePhotoOrigin
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:nil
-                                  delegate:nil
-                                  cancelButtonTitle:@"取消"
-                                  destructiveButtonTitle:nil
-                                  otherButtonTitles:@"从相册选择",@"拍一张", nil];
-    [actionSheet.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
-        switch ([index integerValue]) {
-            case 0:
-                //从相册选择
-                [self openPhotoLibrary];
-                break;
-            case 1:
-                //拍一张
-                [self openCamera];
-                break;
-        }
+    UIAlertController *alertCon = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *photoAction = [UIAlertAction actionWithTitle:@"从相册选一张" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+           [self openPhotoLibrary];
     }];
-    [actionSheet showInView:self.view];
+    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍一张" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+           [self openCamera];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alertCon addAction:photoAction];
+    [alertCon addAction:cameraAction];
+    [alertCon addAction:cancelAction];
+    [self.navigationController presentViewController:alertCon animated:YES completion:nil];
 }
 /**
  *  打开相机

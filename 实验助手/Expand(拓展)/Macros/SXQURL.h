@@ -25,6 +25,8 @@
 #define InstructionListURL @"http://172.18.0.55:8080/LabAssistant/lab/getInstructionsBySubCategoryID"
 //说明书下载
 #define DownloadInstructionURL @"http://172.18.0.55:8080/LabAssistant/lab/downloadInstruction"
+//说明书详情
+#define InstructionDetailURL @"http://172.18.0.55:8080/LabAssistant/lab/getInstructionDetail"
 //////////////////////////////说明书//////////////////////////////////////////////////////
 
 

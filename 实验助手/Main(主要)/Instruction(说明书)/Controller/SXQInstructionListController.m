@@ -11,6 +11,7 @@
 #import "SXQExpSubCategory.h"
 #import "SXQExpInstruction.h"
 #import "ArrayDataSource+TableView.h"
+#import "SXQInstructionDetailController.h"
 #define CellIdentifier @"List Cell"
 @interface SXQInstructionListController ()<SXQListCellDelegate>
 @property (nonatomic,strong) ArrayDataSource *instructionDataSource;
@@ -68,4 +69,21 @@
         
     }];
 }
+#pragma mark - TableView Delegate Method
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SXQExpInstruction *instruction = self.instructions[indexPath.row];
+    SXQInstructionDetailController *detailVC = [[SXQInstructionDetailController alloc] initWithInstruction:instruction];
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
 @end
+
+
+
+
+
+
+
+
+
+
