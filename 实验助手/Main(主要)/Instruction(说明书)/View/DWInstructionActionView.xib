@@ -6,6 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DWInstructionActionView">
             <connections>
+                <outlet property="cacheButton" destination="Jpn-Mr-w7N" id="dHl-mn-2FC"/>
+                <outlet property="cancelButton" destination="qlc-Gh-KEN" id="hsy-4f-3EJ"/>
+                <outlet property="editButton" destination="CYd-MN-gqG" id="UnV-mt-uTH"/>
+                <outlet property="retweatButton" destination="WYj-q5-Cki" id="h6b-Ka-as0"/>
+                <outlet property="uploadButton" destination="Hvw-pU-akW" id="7FR-Hf-468"/>
                 <outlet property="view" destination="iN0-l3-epB" id="IDw-TI-yH6"/>
             </connections>
         </placeholder>
@@ -38,7 +43,9 @@
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qlc-Gh-KEN">
                     <rect key="frame" x="256" y="94" width="30" height="30"/>
-                    <state key="normal" title="取消"/>
+                    <state key="normal" title="取消">
+                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

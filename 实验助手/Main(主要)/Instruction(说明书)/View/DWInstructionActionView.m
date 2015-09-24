@@ -31,7 +31,7 @@
 {
     [[NSBundle mainBundle] loadNibNamed:@"DWInstructionActionView" owner:self options:nil];
     _view.frame = self.bounds;
-    _view.backgroundColor = [UIColor purpleColor];
+    _view.backgroundColor = [UIColor colorWithRed:0.23 green:0.38 blue:0.64 alpha:1.0];
     [self addSubview:_view];
 }
 

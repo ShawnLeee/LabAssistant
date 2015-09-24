@@ -5,6 +5,7 @@
 //  Created by sxq on 15/9/23.
 //  Copyright © 2015年 SXQ. All rights reserved.
 //
+#import "DWActionSheet.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "SXQInstructionDetail.h"
 #import "InstructionTool.h"
@@ -39,12 +40,8 @@
     [super viewDidLoad];
     [self p_setupTableView];
     [self p_loadData];
-    [self p_setuActionView];
 }
-- (void)p_setuActionView
-{
 
-}
 - (void)p_setupTableView
 {
     
@@ -63,8 +60,11 @@
     [instructionHeader configureHeaderWithInstruction:_instruction];
     self.tableView.tableHeaderView = instructionHeader;
     [[instructionHeader.editBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        NSLog(@"%@lli",x);
-        
+        DWActionSheet *actionSheet = [[DWActionSheet alloc] initWithHandler:^(DWActionButtonType buttonType) {
+#warning hanler the events;
+        }];
+    
+        [actionSheet show];
     }];
 }
 - (void)p_loadData
