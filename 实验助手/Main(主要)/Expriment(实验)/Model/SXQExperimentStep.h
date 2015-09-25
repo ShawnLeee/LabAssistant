@@ -11,4 +11,15 @@
 @interface SXQExperimentStep : NSObject
 @property (nonatomic,copy) NSString *stepDesc;
 @property (nonatomic,copy) NSString *stepNum;
+/**
+ *  实验备注
+ */
+@property (nonatomic,strong) NSString *remark;
+/**
+ *  实验图片
+ */
+@property (nonatomic,strong) NSMutableArray *images;
+
+- (void)addExpImage:(NSString *)imageName;
+
 @end

@@ -5,17 +5,22 @@
 //  Created by sxq on 15/9/15.
 //  Copyright (c) 2015年 SXQ. All rights reserved.
 //
+#import "SXQMyExperimentManager.h"
+#import "SXQNavgationController.h"
+#import "SXQRemarkController.h"
+#import "MBProgressHUD+MJ.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "SXQCurrentExperimentController.h"
 #import "SXQExperimentToolBar.h"
 #import "ArrayDataSource+TableView.h"
 #import "SXQExperimentModel.h"
 #import "SXQExperimentStep.h"
-#import "SXQStepCell.h"
+#import "DWStepCell.h"
 #import "ExperimentTool.h"
 #import "SXQExperimentStepResult.h"
 #import "SXQExperiment.h"
 #import "TimeRecorder.h"
+
 
 @interface SXQCurrentExperimentController ()<UITableViewDelegate,SXQExperimentToolBarDelegate,TimeRecorderDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (nonatomic,assign) BOOL showingTimer;
@@ -63,9 +68,9 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 100;
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"SXQStepCell" bundle:nil] forCellReuseIdentifier:@"SXQStepCell"];
-    _stepsDataSource = [[ArrayDataSource alloc] initWithItems:self.steps cellIdentifier:@"SXQStepCell" cellConfigureBlock:^(SXQStepCell *cell, SXQExperimentStep *stepModel) {
-        [cell configureCellWithModel:stepModel];
+    [self.tableView registerNib:[UINib nibWithNibName:@"DWStepCell" bundle:nil] forCellReuseIdentifier:@"DWStepCell"];
+    _stepsDataSource = [[ArrayDataSource alloc] initWithItems:self.steps cellIdentifier:@"DWStepCell" cellConfigureBlock:^(DWStepCell *cell, SXQExperimentStep *stepModel) {
+        cell.expStep = stepModel;
     }];
     self.tableView.dataSource = _stepsDataSource;
     [self p_setupTableFooter];
@@ -100,6 +105,7 @@
     param.userID = @"";
     [ExperimentTool fetchExperimentStepWithParam:param success:^(SXQExperimentStepResult *result) {
         _stepsDataSource.items = result.data.steps;
+        _steps = result.data.steps;
         _experimentName.text = result.data.experimentName;
         [self.tableView reloadData];
     } failure:^(NSError *error) {
@@ -120,16 +126,47 @@
             
             case ExperimentTooBarButtonTypeStart:
             {//启动/暂停定时器
-                [self showTimerRecorder];
+//                [self showTimerRecorder];
                 break;
             }
             case ExperimentTooBarButtonTypeRemark:
-            break;
+            {
+                [self addRemark];
+                break;
+            }
             
             case ExperimentTooBarButtonTypeReport:
-            [self choosePhotoOrigin];
             break;
     }
+}
+- (void)addRemark
+{
+    SXQExperimentStep *step = nil;
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    DWStepCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    if (indexPath) {
+        step = self.steps[indexPath.row];
+    }else
+    {
+        [MBProgressHUD showError:@"请选择实验步骤"];
+        return;
+    }
+    void (^addRemarkBlk)(NSString *remark) = ^(NSString *remark){
+        [self.tableView beginUpdates];
+        [cell addRemark:remark];
+        [self p_saveRemark:remark atStep:step];
+        [self.tableView endUpdates];
+    };
+    SXQRemarkController *remarkVC = [[SXQRemarkController alloc] initWithExperimentStep:step];
+    remarkVC.addRemarkBlk = addRemarkBlk;
+    SXQNavgationController *nav = [[SXQNavgationController alloc] initWithRootViewController:remarkVC];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
+    
+}
+- (void)p_saveRemark:(NSString *)remark atStep:(SXQExperimentStep *)step
+{
+    SXQMyExperimentManager *manager = [SXQMyExperimentManager new];
+    [manager writeRemak:remark toExperiment:_experimentModel.myExpID expStepID:step.stepNum];
 }
 - (void)choosePhotoOrigin
 {

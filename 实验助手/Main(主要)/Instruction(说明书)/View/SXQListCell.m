@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *supplierLabel;
 @property (weak, nonatomic) IBOutlet UILabel *supplierIDLabel;
+@property (weak, nonatomic) IBOutlet UIButton *downloadBtn;
 
 @end
 @implementation SXQListCell
@@ -20,6 +21,9 @@
     _nameLabel.text = item.experimentName;
     _supplierLabel.text = [NSString stringWithFormat:@"厂商:%@",item.supplierName];
     _supplierIDLabel.text  = [NSString stringWithFormat:@"货号:%@",item.supplierID];
+    
+    NSString *buttonTitle = item.isDownloaded ? @"已下载" : @"下载";
+    [_downloadBtn setTitle:buttonTitle forState:UIControlStateNormal];
 }
 - (void)awakeFromNib {
     // Initialization code
@@ -33,7 +37,6 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
 }
 
 @end

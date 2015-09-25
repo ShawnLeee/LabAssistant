@@ -9,7 +9,12 @@
 #import "SXQExperimentToolBar.h"
 @interface SXQExperimentToolBar ()
 @property (strong, nonatomic) IBOutlet UIView *view;
+@property (weak, nonatomic) IBOutlet UIButton *starBtn;
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *widthConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *reportBtn;
+@property (weak, nonatomic) IBOutlet UIButton *photoBtn;
+@property (weak, nonatomic) IBOutlet UIButton *remarkBtn;
 @property (nonatomic,strong) UIButton *selectedBtn;
 @end
 @implementation SXQExperimentToolBar
@@ -45,8 +50,12 @@
 }
 - (void)p_setupButtons
 {
+    _starBtn.tag = ExperimentTooBarButtonTypeStart;
+    _backBtn.tag = ExperimentTooBarButtonTypeBack;
+    _reportBtn.tag = ExperimentTooBarButtonTypeReport;
+    _photoBtn.tag = ExperimentTooBarButtonTypePhoto;
+    _remarkBtn.tag = ExperimentTooBarButtonTypeRemark;
     [self.view.subviews enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
-        button.tag = idx;
         [button setTitleColor:ToolBarSeletedColor forState:UIControlStateNormal];
         [button setTitleColor:ToolBarNormalColor forState:UIControlStateSelected];
         [button addTarget:self action:@selector(selectedButton:) forControlEvents:UIControlEventTouchUpInside];

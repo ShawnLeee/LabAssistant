@@ -9,10 +9,10 @@
 typedef NS_ENUM(NSUInteger, ExperimentTooBarButtonType)
 {
     ExperimentTooBarButtonTypeStart = 0,
-    ExperimentTooBarButtonTypePhoto = 4,
     ExperimentTooBarButtonTypeBack = 1,
-    ExperimentTooBarButtonTypeReport = 3,
     ExperimentTooBarButtonTypeRemark = 2,
+    ExperimentTooBarButtonTypeReport = 3,
+    ExperimentTooBarButtonTypePhoto = 4,
 };
 @class SXQExperimentToolBar;
 @protocol SXQExperimentToolBarDelegate <NSObject>
