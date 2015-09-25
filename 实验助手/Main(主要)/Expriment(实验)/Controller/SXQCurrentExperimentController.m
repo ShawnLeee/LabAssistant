@@ -139,35 +139,7 @@
             break;
     }
 }
-- (void)addRemark
-{
-    SXQExperimentStep *step = nil;
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    DWStepCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    if (indexPath) {
-        step = self.steps[indexPath.row];
-    }else
-    {
-        [MBProgressHUD showError:@"请选择实验步骤"];
-        return;
-    }
-    void (^addRemarkBlk)(NSString *remark) = ^(NSString *remark){
-        [self.tableView beginUpdates];
-        [cell addRemark:remark];
-        [self p_saveRemark:remark atStep:step];
-        [self.tableView endUpdates];
-    };
-    SXQRemarkController *remarkVC = [[SXQRemarkController alloc] initWithExperimentStep:step];
-    remarkVC.addRemarkBlk = addRemarkBlk;
-    SXQNavgationController *nav = [[SXQNavgationController alloc] initWithRootViewController:remarkVC];
-    [self.navigationController presentViewController:nav animated:YES completion:nil];
-    
-}
-- (void)p_saveRemark:(NSString *)remark atStep:(SXQExperimentStep *)step
-{
-    SXQMyExperimentManager *manager = [SXQMyExperimentManager new];
-    [manager writeRemak:remark toExperiment:_experimentModel.myExpID expStepID:step.stepNum];
-}
+
 - (void)choosePhotoOrigin
 {
     UIAlertController *alertCon = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
@@ -233,5 +205,35 @@
         _timeRecorder.hidden = !_timeRecorder.hidden;
         [_timeRecorder layoutIfNeeded];
     }];
+}
+#pragma mark 添加评论
+- (void)addRemark
+{
+    SXQExperimentStep *step = nil;
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    DWStepCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    if (indexPath) {
+        step = self.steps[indexPath.row];
+    }else
+    {
+        [MBProgressHUD showError:@"请选择实验步骤"];
+        return;
+    }
+    void (^addRemarkBlk)(NSString *remark) = ^(NSString *remark){
+        [self.tableView beginUpdates];
+        [cell addRemark:remark];
+        [self p_saveRemark:remark atStep:step];
+        [self.tableView endUpdates];
+    };
+    SXQRemarkController *remarkVC = [[SXQRemarkController alloc] initWithExperimentStep:step];
+    remarkVC.addRemarkBlk = addRemarkBlk;
+    SXQNavgationController *nav = [[SXQNavgationController alloc] initWithRootViewController:remarkVC];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
+    
+}
+- (void)p_saveRemark:(NSString *)remark atStep:(SXQExperimentStep *)step
+{
+    SXQMyExperimentManager *manager = [SXQMyExperimentManager new];
+    [manager writeRemak:remark toExperiment:_experimentModel.myExpID expStepID:step.stepNum];
 }
 @end

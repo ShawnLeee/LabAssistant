@@ -72,7 +72,7 @@
     [[_confirmBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         _experimentStep.remark = _remarkView.text;
         NSString *remark = [NSString stringWithFormat:@"备注:%@",_remarkView.text];
-        _addRemarkBlk(remark);
+        _addRemarkBlk(_remarkView.text);
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }];
 }
