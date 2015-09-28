@@ -7,23 +7,20 @@
 //
 
 #import "SXQExperimentStep.h"
+#import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
 @interface SXQExperimentStep ()
 @property (nonatomic,strong) NSMutableArray *theMutableArray;
 @end
 @implementation SXQExperimentStep
-- (instancetype)init
+- (CGFloat)imageHeight
 {
-    if (self =  [super init]) {
-        _images = [@[] mutableCopy];
+    if (_image) {
+        CGRect boundingRect = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width - 16, MAXFLOAT);
+        CGRect frame = AVMakeRectWithAspectRatioInsideRect(_image.size, boundingRect);
+        return frame.size.height;
     }
-    return self;
-}
-
-
-- (void)addExpImage:(NSString *)imageName
-{
-    UIImage *image = [UIImage imageNamed:imageName];
-    [self.images addObject:image];
+    return 0;
+    
 }
 @end

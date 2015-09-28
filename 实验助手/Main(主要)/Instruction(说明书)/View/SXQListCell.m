@@ -8,12 +8,12 @@
 
 #import "SXQListCell.h"
 #import "SXQExpInstruction.h"
+#import "SXQInstructionManager.h"
 @interface SXQListCell ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *supplierLabel;
 @property (weak, nonatomic) IBOutlet UILabel *supplierIDLabel;
 @property (weak, nonatomic) IBOutlet UIButton *downloadBtn;
-
 @end
 @implementation SXQListCell
 - (void)configureCellWithItem:(SXQExpInstruction *)item
@@ -22,8 +22,9 @@
     _supplierLabel.text = [NSString stringWithFormat:@"厂商:%@",item.supplierName];
     _supplierIDLabel.text  = [NSString stringWithFormat:@"货号:%@",item.supplierID];
     
-    NSString *buttonTitle = item.isDownloaded ? @"已下载" : @"下载";
-    [_downloadBtn setTitle:buttonTitle forState:UIControlStateNormal];
+    [_downloadBtn setTitle:@"下载" forState:UIControlStateNormal];
+    [_downloadBtn setTitle:@"已下载" forState:UIControlStateDisabled];
+    _downloadBtn.enabled = ![SXQInstructionManager instructionIsdownload:item.expInstructionID];
 }
 - (void)awakeFromNib {
     // Initialization code

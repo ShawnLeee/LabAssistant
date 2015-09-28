@@ -14,7 +14,7 @@ typedef void (^CompletionHandler)(BOOL success,NSDictionary *info);
  */
 - (void)downloadInstruction:(id)instruction completion:(CompletionHandler)completion;
 /**
- *  写一条备注到对应步骤
+ *  查询说明书是否下载
  */
-- (void)writeRemakToExperiment:(NSString *)myExpID expStepID:(NSString *)expStepID;
++ (BOOL)instructionIsdownload:(NSString *)instrucitonID;
 @end

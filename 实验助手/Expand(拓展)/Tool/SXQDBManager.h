@@ -11,4 +11,5 @@ typedef void  (^CompletionHandler)(BOOL success,NSDictionary *info);
 @interface SXQDBManager : NSObject
 + (instancetype)sharedManager;
 - (void)insertInstruciton:(id)instruction completion:(CompletionHandler)completion;
+- (BOOL)expInstrucitonExist:(NSString *)expInstructionID;
 @end

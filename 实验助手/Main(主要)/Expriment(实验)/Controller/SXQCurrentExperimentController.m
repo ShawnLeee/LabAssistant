@@ -139,7 +139,16 @@
             break;
     }
 }
-
+#pragma mark - 图片选择控制器的代理
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    // 1.销毁picker控制器
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    // 2.去的图片
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    [self addExpImage:image];
+}
 - (void)choosePhotoOrigin
 {
     UIAlertController *alertCon = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
@@ -205,6 +214,24 @@
         _timeRecorder.hidden = !_timeRecorder.hidden;
         [_timeRecorder layoutIfNeeded];
     }];
+}
+#pragma mark 添加照片
+- (void)addExpImage:(UIImage *)image
+{
+    SXQExperimentStep *step = nil;
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    DWStepCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    if (indexPath) {
+        step = self.steps[indexPath.row];
+    }else
+    {
+        [MBProgressHUD showError:@"请选择实验步骤"];
+        return;
+    }
+    step.image = image;
+    [self.tableView beginUpdates];
+    [cell addImage:image];
+    [self.tableView endUpdates];
 }
 #pragma mark 添加评论
 - (void)addRemark

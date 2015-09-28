@@ -11,6 +11,12 @@
 @implementation SXQInstructionManager
 - (void)downloadInstruction:(id)instruction completion:(CompletionHandler)completion
 {
-    
+    [[SXQDBManager sharedManager] insertInstruciton:instruction completion:^(BOOL success, NSDictionary *info) {
+        completion(success,info);
+    }];
+}
++ (BOOL)instructionIsdownload:(NSString *)instrucitonID
+{
+    return  [[SXQDBManager sharedManager] expInstrucitonExist:instrucitonID];
 }
 @end

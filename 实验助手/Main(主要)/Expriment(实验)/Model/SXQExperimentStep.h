@@ -5,7 +5,7 @@
 //  Created by sxq on 15/9/18.
 //  Copyright (c) 2015年 SXQ. All rights reserved.
 //
-
+@import UIKit;
 #import <Foundation/Foundation.h>
 
 @interface SXQExperimentStep : NSObject
@@ -18,8 +18,7 @@
 /**
  *  实验图片
  */
-@property (nonatomic,strong) NSMutableArray *images;
-
-- (void)addExpImage:(NSString *)imageName;
+@property (nonatomic,strong) UIImage *image;
+@property (nonatomic,assign) CGFloat imageHeight;
 
 @end

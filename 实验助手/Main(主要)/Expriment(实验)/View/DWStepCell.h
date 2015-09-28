@@ -14,4 +14,5 @@
  *  添加评论
  */
 - (void)addRemark:(NSString *)remark;
+- (void)addImage:(UIImage *)image;
 @end
