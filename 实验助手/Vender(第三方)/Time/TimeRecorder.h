@@ -11,8 +11,12 @@
 @optional
 - (void)timeRecorder:(TimeRecorder *)timeRecorder finishedTimerWithTime:(NSTimeInterval)countTime;
 - (void)timeRecorderdidPaused:(TimeRecorder *)timeRecorder;
+- (void)timeRecorderdidCancel:(TimeRecorder *)timeRecorder;
 @end
 @interface TimeRecorder : UIView
+
+@property (nonatomic,strong) MZTimerLabel *recordLabel;
+
 @property (strong, nonatomic) IBOutlet UIView *timeRecorderView;
 @property (nonatomic,weak) id<TimeRecorderDelegate> delegate;
 @end

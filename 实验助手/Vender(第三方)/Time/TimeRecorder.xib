@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TimeRecorder">
             <connections>
-                <outlet property="datePicker" destination="HuT-t5-MMF" id="zHa-ax-L5R"/>
+                <outlet property="datePicker" destination="8ir-tb-ONd" id="E1A-nh-2L1"/>
                 <outlet property="pauseButton" destination="BaM-zu-6dR" id="CAo-zV-JMB"/>
                 <outlet property="startButton" destination="2x8-5x-M1B" id="fwl-gr-gmz"/>
                 <outlet property="timeLabel" destination="Xpx-GN-a9i" id="pNE-1J-zjP"/>
@@ -40,22 +40,22 @@
                         <action selector="pauseBtnClicked:" destination="-1" eventType="touchUpInside" id="nhZ-FG-8ID"/>
                     </connections>
                 </button>
-                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="HuT-t5-MMF">
-                    <rect key="frame" x="85" y="31" width="320" height="162"/>
-                    <date key="date" timeIntervalSinceReferenceDate="464496543.99183601">
-                        <!--2015-09-21 02:49:03 +0000-->
-                    </date>
-                </datePicker>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xpx-GN-a9i">
-                    <rect key="frame" x="215" y="84" width="59" height="29"/>
+                    <rect key="frame" x="211" y="84" width="67" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="8ir-tb-ONd">
+                    <rect key="frame" x="0.0" y="0.0" width="489" height="163"/>
+                    <date key="date" timeIntervalSinceReferenceDate="465122605.67542398">
+                        <!--2015-09-28 08:43:25 +0000-->
+                    </date>
+                </datePicker>
             </subviews>
-            <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="HuT-t5-MMF" secondAttribute="centerY" id="7QM-Qw-0hv"/>
+                <constraint firstAttribute="trailing" secondItem="8ir-tb-ONd" secondAttribute="trailing" id="3S3-rP-Xd5"/>
                 <constraint firstAttribute="centerX" secondItem="Xpx-GN-a9i" secondAttribute="centerX" id="7pt-Y5-ZDh"/>
                 <constraint firstItem="2x8-5x-M1B" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="A87-Zc-fkw"/>
                 <constraint firstItem="BaM-zu-6dR" firstAttribute="leading" secondItem="2x8-5x-M1B" secondAttribute="trailing" id="CnV-AF-z9C"/>
@@ -64,9 +64,10 @@
                 <constraint firstAttribute="bottom" secondItem="2x8-5x-M1B" secondAttribute="bottom" id="KQX-ng-FW9"/>
                 <constraint firstItem="2x8-5x-M1B" firstAttribute="centerY" secondItem="BaM-zu-6dR" secondAttribute="centerY" id="Qr5-Qd-21W"/>
                 <constraint firstItem="2x8-5x-M1B" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bOv-aB-c60"/>
-                <constraint firstItem="2x8-5x-M1B" firstAttribute="top" secondItem="HuT-t5-MMF" secondAttribute="bottom" id="k3r-xP-BBO"/>
-                <constraint firstAttribute="centerX" secondItem="HuT-t5-MMF" secondAttribute="centerX" id="uLx-Zn-bTu"/>
+                <constraint firstItem="2x8-5x-M1B" firstAttribute="top" secondItem="8ir-tb-ONd" secondAttribute="bottom" constant="30" id="iBa-Cj-DFg"/>
+                <constraint firstItem="8ir-tb-ONd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ivy-su-Q30"/>
                 <constraint firstItem="2x8-5x-M1B" firstAttribute="top" secondItem="Xpx-GN-a9i" secondAttribute="bottom" constant="80" id="wpJ-n6-qWR"/>
+                <constraint firstItem="8ir-tb-ONd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zS0-YT-0PY"/>
                 <constraint firstItem="2x8-5x-M1B" firstAttribute="height" secondItem="BaM-zu-6dR" secondAttribute="height" id="zYR-HC-uOY"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -75,11 +76,10 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="7QM-Qw-0hv"/>
                     <exclude reference="FJ1-21-wfq"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="412.5" y="289.5"/>
+            <point key="canvasLocation" x="348.5" y="192.5"/>
         </view>
     </objects>
 </document>

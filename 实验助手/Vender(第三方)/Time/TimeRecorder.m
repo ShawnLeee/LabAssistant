@@ -9,11 +9,10 @@
 #import "TimeRecorder.h"
 @interface TimeRecorder ()<MZTimerLabelDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *pauseButton;
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (nonatomic,assign) BOOL isCounting;
-@property (nonatomic,strong) MZTimerLabel *recordLabel;
 @end
 @implementation TimeRecorder
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
@@ -51,10 +50,14 @@
     if (_isCounting) {//正在计时,即需要点击取消计时
         
         //隐藏计时器,显示时间选择
-        _timeLabel.hidden = YES;
-        _datePicker.hidden = NO;
+//        _timeLabel.hidden = YES;
+//        _datePicker.hidden = NO;
         //重置计时器
-        [self resetTimer];
+//        [self resetTimer];
+        [_recordLabel pause];
+        if ([self.delegate respondsToSelector:@selector(timeRecorderdidCancel:)]) {
+            [self.delegate timeRecorderdidCancel:self];
+        }
     }else//没有计时
     {
         //显示计时器,隐藏时间选择
