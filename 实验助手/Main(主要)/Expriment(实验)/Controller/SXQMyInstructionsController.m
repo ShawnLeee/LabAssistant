@@ -9,8 +9,10 @@
 #import "SXQMyInstructionsController.h"
 #import "DWGroup.h"
 #import "SXQMyInstructionCell.h"
-
+#import "SXQInstructionManager.h"
+#import "SXQMyGenericInstruction.h"
 #define MyInstructionIdentifier @"SXQMyInstructionCell"
+
 @interface SXQMyInstructionsController ()
 @property (nonatomic,strong) NSArray *groups;
 @property (nonatomic,strong) ArrayDataSource *instructionsDataSource;
@@ -20,8 +22,11 @@
 - (NSArray *)groups
 {
     if (_groups == nil) {
-        DWGroup *group0 = [DWGroup groupWithItems:@[@"CRISPR技术",@"CRISPR技术",@"CRISPR技术"] identifier:MyInstructionIdentifier header:@"我的常用说明书"];
-        group0.configureBlk = nil;
+        NSArray *arr = [SXQInstructionManager fetchAllInstruction];
+        DWGroup *group0 = [DWGroup groupWithItems:arr identifier:MyInstructionIdentifier header:@"我的常用说明书"];
+        group0.configureBlk = ^(SXQMyInstructionCell *cell,SXQMyGenericInstruction *item){
+            [cell configureCellForItem:item];
+        };
         _groups = @[group0];
     }
     return _groups;

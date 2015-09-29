@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SXQMyInstructionCell : UITableViewCell
-
+- (void)configureCellForItem:(id)item;
 @end

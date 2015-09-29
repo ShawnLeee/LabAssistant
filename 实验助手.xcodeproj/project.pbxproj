@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		06DD1FAD0B6EA5DB92F35C0A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4853626AABF57EFB86948D6D /* libPods.a */; };
 		B0205C491BB9291800DE6E33 /* UIImage+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = B0205C481BB9291800DE6E33 /* UIImage+Size.m */; settings = {ASSET_TAGS = (); }; };
-		B0205C4C1BB92D9400DE6E33 /* DWTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = B0205C4B1BB92D9400DE6E33 /* DWTimer.m */; settings = {ASSET_TAGS = (); }; };
-		B0205C4E1BB92DA900DE6E33 /* DWTimer.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0205C4D1BB92DA900DE6E33 /* DWTimer.xib */; settings = {ASSET_TAGS = (); }; };
 		B03F97B61BA299F8009FD1B4 /* SXQLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03F97B41BA299F8009FD1B4 /* SXQLoginViewController.m */; };
 		B03F97B71BA299F8009FD1B4 /* SXQLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B03F97B51BA299F8009FD1B4 /* SXQLoginViewController.xib */; };
 		B03F97BA1BA2A052009FD1B4 /* SXQLoginField.m in Sources */ = {isa = PBXBuildFile; fileRef = B03F97B91BA2A052009FD1B4 /* SXQLoginField.m */; };
@@ -90,6 +88,9 @@
 		B0F295D91BB517F600E20865 /* SXQRemarkController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F295D71BB517F600E20865 /* SXQRemarkController.m */; settings = {ASSET_TAGS = (); }; };
 		B0F295DA1BB517F600E20865 /* SXQRemarkController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0F295D81BB517F600E20865 /* SXQRemarkController.xib */; settings = {ASSET_TAGS = (); }; };
 		B0F295DD1BB5480C00E20865 /* SXQMyExperimentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F295DC1BB5480C00E20865 /* SXQMyExperimentManager.m */; settings = {ASSET_TAGS = (); }; };
+		B0F4C7051BBA5714009B7B05 /* SXQSaveReagentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F4C7031BBA5714009B7B05 /* SXQSaveReagentController.m */; settings = {ASSET_TAGS = (); }; };
+		B0F4C7061BBA5714009B7B05 /* SXQSaveReagentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0F4C7041BBA5714009B7B05 /* SXQSaveReagentController.xib */; settings = {ASSET_TAGS = (); }; };
+		B0F4C7091BBA76BE009B7B05 /* SXQMyGenericInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F4C7081BBA76BE009B7B05 /* SXQMyGenericInstruction.m */; settings = {ASSET_TAGS = (); }; };
 		B0F505401BABB0A900B88A3D /* SXQExperimentStep.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F5053F1BABB0A900B88A3D /* SXQExperimentStep.m */; };
 		B0F505471BABB76700B88A3D /* SXQStepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F505451BABB76700B88A3D /* SXQStepCell.m */; };
 		B0F505481BABB76700B88A3D /* SXQStepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0F505461BABB76700B88A3D /* SXQStepCell.xib */; };
@@ -178,9 +179,6 @@
 		4853626AABF57EFB86948D6D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0205C471BB9291800DE6E33 /* UIImage+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Size.h"; sourceTree = "<group>"; };
 		B0205C481BB9291800DE6E33 /* UIImage+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Size.m"; sourceTree = "<group>"; };
-		B0205C4A1BB92D9400DE6E33 /* DWTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTimer.h; sourceTree = "<group>"; };
-		B0205C4B1BB92D9400DE6E33 /* DWTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTimer.m; sourceTree = "<group>"; };
-		B0205C4D1BB92DA900DE6E33 /* DWTimer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DWTimer.xib; sourceTree = "<group>"; };
 		B03F97B31BA299F8009FD1B4 /* SXQLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQLoginViewController.h; sourceTree = "<group>"; };
 		B03F97B41BA299F8009FD1B4 /* SXQLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQLoginViewController.m; sourceTree = "<group>"; };
 		B03F97B51BA299F8009FD1B4 /* SXQLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SXQLoginViewController.xib; sourceTree = "<group>"; };
@@ -323,6 +321,11 @@
 		B0F295D81BB517F600E20865 /* SXQRemarkController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SXQRemarkController.xib; sourceTree = "<group>"; };
 		B0F295DB1BB5480C00E20865 /* SXQMyExperimentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQMyExperimentManager.h; sourceTree = "<group>"; };
 		B0F295DC1BB5480C00E20865 /* SXQMyExperimentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQMyExperimentManager.m; sourceTree = "<group>"; };
+		B0F4C7021BBA5714009B7B05 /* SXQSaveReagentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQSaveReagentController.h; sourceTree = "<group>"; };
+		B0F4C7031BBA5714009B7B05 /* SXQSaveReagentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQSaveReagentController.m; sourceTree = "<group>"; };
+		B0F4C7041BBA5714009B7B05 /* SXQSaveReagentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SXQSaveReagentController.xib; sourceTree = "<group>"; };
+		B0F4C7071BBA76BE009B7B05 /* SXQMyGenericInstruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQMyGenericInstruction.h; sourceTree = "<group>"; };
+		B0F4C7081BBA76BE009B7B05 /* SXQMyGenericInstruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQMyGenericInstruction.m; sourceTree = "<group>"; };
 		B0F5053E1BABB0A900B88A3D /* SXQExperimentStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQExperimentStep.h; sourceTree = "<group>"; };
 		B0F5053F1BABB0A900B88A3D /* SXQExperimentStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExperimentStep.m; sourceTree = "<group>"; };
 		B0F505441BABB76700B88A3D /* SXQStepCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQStepCell.h; sourceTree = "<group>"; };
@@ -742,6 +745,9 @@
 				B0F295D61BB517F600E20865 /* SXQRemarkController.h */,
 				B0F295D71BB517F600E20865 /* SXQRemarkController.m */,
 				B0F295D81BB517F600E20865 /* SXQRemarkController.xib */,
+				B0F4C7021BBA5714009B7B05 /* SXQSaveReagentController.h */,
+				B0F4C7031BBA5714009B7B05 /* SXQSaveReagentController.m */,
+				B0F4C7041BBA5714009B7B05 /* SXQSaveReagentController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -755,6 +761,8 @@
 				B0F5053F1BABB0A900B88A3D /* SXQExperimentStep.m */,
 				B0F64BDD1BAF99EB001CF997 /* SXQExperiment.h */,
 				B0F64BDE1BAF99EB001CF997 /* SXQExperiment.m */,
+				B0F4C7071BBA76BE009B7B05 /* SXQMyGenericInstruction.h */,
+				B0F4C7081BBA76BE009B7B05 /* SXQMyGenericInstruction.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1125,9 +1133,6 @@
 				B0F64C2F1BAFBD77001CF997 /* TimeRecorder.h */,
 				B0F64C301BAFBD77001CF997 /* TimeRecorder.m */,
 				B0F64C311BAFBD77001CF997 /* TimeRecorder.xib */,
-				B0205C4A1BB92D9400DE6E33 /* DWTimer.h */,
-				B0205C4B1BB92D9400DE6E33 /* DWTimer.m */,
-				B0205C4D1BB92DA900DE6E33 /* DWTimer.xib */,
 			);
 			path = Time;
 			sourceTree = "<group>";
@@ -1317,7 +1322,6 @@
 				B0C73CD51B93369A00F4B6D2 /* LaunchScreen.xib in Resources */,
 				B0F738C61BA92C6D00EA7E9E /* SXQInstructionCell.xib in Resources */,
 				B0C73CD61B93369A00F4B6D2 /* Main.storyboard in Resources */,
-				B0205C4E1BB92DA900DE6E33 /* DWTimer.xib in Resources */,
 				B0B1EC521BA27A920087A318 /* SXQVenderView.xib in Resources */,
 				B08E7C6E1BB26EB40023893B /* DWInstrucitonHeader.xib in Resources */,
 				B0F64C341BAFBD77001CF997 /* TimeRecorder.xib in Resources */,
@@ -1328,6 +1332,7 @@
 				B0DDFF191BA67FFE00E4AB3C /* SXQEquipMentCell.xib in Resources */,
 				B0F738BC1BA90F6500EA7E9E /* SXQMenuCell.xib in Resources */,
 				B05CB4CB1BB3C58A0041845B /* mysql.sql in Resources */,
+				B0F4C7061BBA5714009B7B05 /* SXQSaveReagentController.xib in Resources */,
 				B0C73CB31B92F39E00F4B6D2 /* Images.xcassets in Resources */,
 				B0F566361BA7FC4400BA1F7B /* SXQExperimentToolBar.xib in Resources */,
 				B0F5663B1BA807D900BA1F7B /* SXQCurrentExperimentController.xib in Resources */,
@@ -1417,12 +1422,14 @@
 				B08E7C681BB25C070023893B /* SXQSingleContentCell.m in Sources */,
 				B0205C491BB9291800DE6E33 /* UIImage+Size.m in Sources */,
 				B0C73CBD1B92F52C00F4B6D2 /* ArrayDataSource+TableView.m in Sources */,
+				B0F4C7091BBA76BE009B7B05 /* SXQMyGenericInstruction.m in Sources */,
 				B06CE16A1BAAB803008BB98E /* DWBBSViewController.m in Sources */,
 				B0B1EC501BA27A870087A318 /* SXQVenderView.m in Sources */,
 				B0C73CC71B930C6E00F4B6D2 /* SXQInstructionHeader.m in Sources */,
 				B0C73CD41B932C6000F4B6D2 /* SXQGroupCell.m in Sources */,
 				B0F8BF0C1BB0F7DE00F434FE /* LoginTool.m in Sources */,
 				B0F64C321BAFBD77001CF997 /* MZTimerLabel.m in Sources */,
+				B0F4C7051BBA5714009B7B05 /* SXQSaveReagentController.m in Sources */,
 				B0F295C51BB4F3A800E20865 /* SXQInstructionManager.m in Sources */,
 				B0F5663A1BA807D900BA1F7B /* SXQCurrentExperimentController.m in Sources */,
 				B0DDFF131BA67F6500E4AB3C /* SXQExperimentStepCell.m in Sources */,
@@ -1453,7 +1460,6 @@
 				B0F64C331BAFBD77001CF997 /* TimeRecorder.m in Sources */,
 				B08E7C631BB25BCA0023893B /* SXQInstrutionCell.m in Sources */,
 				B0F738B41BA9018400EA7E9E /* SXQMenuViewController.m in Sources */,
-				B0205C4C1BB92D9400DE6E33 /* DWTimer.m in Sources */,
 				B0F295BE1BB4E0EC00E20865 /* DWStepCell.m in Sources */,
 				B0F5054B1BABDEC700B88A3D /* SXQNowExperimentController.m in Sources */,
 				B0F738CC1BA935C200EA7E9E /* SXQExperimentModel.m in Sources */,
@@ -1544,7 +1550,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1612,7 +1618,8 @@
 			baseConfigurationReference = 0FDB7AA2AE99ED779EEAD281 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Feng Hou (W5X736XVC4)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/实验助手/Vender(第三方)",
@@ -1640,7 +1647,8 @@
 			baseConfigurationReference = C6F18907431E81E714D5DD65 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Feng Hou (W5X736XVC4)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/实验助手/Vender(第三方)",
@@ -1667,6 +1675,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wei Feng Hou (W5X736XVC4)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

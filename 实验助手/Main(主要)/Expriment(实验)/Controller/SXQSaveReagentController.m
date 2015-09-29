@@ -1,21 +1,29 @@
 //
-//  SXQRemarkController.m
+//  SXQSaveReagentController.m
 //  实验助手
 //
-//  Created by sxq on 15/9/25.
+//  Created by sxq on 15/9/29.
 //  Copyright © 2015年 SXQ. All rights reserved.
 //
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "SXQSaveReagentController.h"
 #import "SXQExperimentStep.h"
-#import "SXQRemarkController.h"
-
-@interface SXQRemarkController ()
-@property (weak, nonatomic) IBOutlet UITextView *remarkView;
+@interface SXQSaveReagentController ()
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (nonatomic,strong) SXQExperimentStep *experimentStep;
 @property (nonatomic,weak) UIButton *confirmBtn;
+@property (nonatomic,copy) void (^completion)();
 @end
 
-@implementation SXQRemarkController
+@implementation SXQSaveReagentController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    [self p_setupSelf];
+    [self p_setupNav];
+    [self binding];
+}
 - (instancetype)initWithExperimentStep:(SXQExperimentStep *)experimentStep
 {
     if (self = [super init]) {
@@ -23,22 +31,21 @@
     }
     return self;
 }
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self p_setupSelf];
-    [self p_setupNav];
-    [self binding];
+- (instancetype)initWithExperimentStep:(SXQExperimentStep *)experimentStep completion:(void (^)())completion
+{
+    SXQSaveReagentController *vc = [self initWithExperimentStep:experimentStep];
+    vc.completion = completion;
+    return vc;
 }
 - (void)p_setupSelf
 {
-    
-    _remarkView.text = _experimentStep.remark;
+    _textView.text = _experimentStep.depositReagent;
     UILabel *label = [[UILabel alloc] init];
     label.frame = CGRectMake(0, 0, 40, 30);
     label.textAlignment = NSTextAlignmentCenter;
-    label.text = @"写备注";
+    label.text = @"保存试剂";
     self.navigationItem.titleView = label;
-    [_remarkView becomeFirstResponder];
+    [_textView becomeFirstResponder];
 }
 - (void)p_setupNav
 {
@@ -49,7 +56,7 @@
     
     button.frame = CGRectMake(0, 0, 40, 30);
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController dismissViewControllerAnimated:YES completion:self.completion];
     }];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     
@@ -65,16 +72,12 @@
 }
 - (void)binding
 {
-
-    RAC(_confirmBtn,enabled) = [_remarkView.rac_textSignal map:^id(NSString *text) {
+    RAC(_confirmBtn,enabled) = [_textView.rac_textSignal map:^id(NSString *text) {
         return @(text.length > 0);
     }];
     [[_confirmBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        _experimentStep.remark = _remarkView.text;
-        NSString *remark = [NSString stringWithFormat:@"备注:%@",_remarkView.text];
-        _addRemarkBlk(_remarkView.text);
+        _experimentStep.depositReagent = _textView.text;
         [self.navigationController dismissViewControllerAnimated:YES completion:self.completion];
     }];
 }
-
 @end

@@ -8,10 +8,13 @@
 #import "MZTimerLabel.h"
 #import "TimeRecorder.h"
 @interface TimeRecorder ()<MZTimerLabelDelegate>
+@property (nonatomic,strong) MZTimerLabel *recordLabel;
 @property (weak, nonatomic) IBOutlet UIButton *pauseButton;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *continueBtn;
+@property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
 @property (nonatomic,assign) BOOL isCounting;
 @end
 @implementation TimeRecorder
@@ -37,69 +40,63 @@
     _recordLabel = [[MZTimerLabel alloc] initWithLabel:_timeLabel andTimerType:MZTimerLabelTypeTimer];
     _recordLabel.delegate = self;
     
-    _isCounting = NO;
+    self.isCounting = NO;
     _datePicker.hidden = NO;
     _timeLabel.hidden = YES;
-    _pauseButton.enabled = _isCounting;
+    _pauseButton.enabled = self.isCounting;
+    _continueBtn.enabled = NO;
     
     _timeRecorderView.frame = self.frame;
     _datePicker.datePickerMode = UIDatePickerModeCountDownTimer;
     [self addSubview:_timeRecorderView]; 
 }
 - (IBAction)starBtnClicked:(UIButton *)sender {
-    if (_isCounting) {//正在计时,即需要点击取消计时
-        
-        //隐藏计时器,显示时间选择
-//        _timeLabel.hidden = YES;
-//        _datePicker.hidden = NO;
-        //重置计时器
-//        [self resetTimer];
-        [_recordLabel pause];
-        if ([self.delegate respondsToSelector:@selector(timeRecorderdidCancel:)]) {
-            [self.delegate timeRecorderdidCancel:self];
-        }
-    }else//没有计时
-    {
         //显示计时器,隐藏时间选择
         _timeLabel.hidden = NO;
         _datePicker.hidden = YES;
         //开始计时
         [self startTimeRecordWithTime:_datePicker.countDownDuration];
-        
+    sender.hidden = YES;
+}
+- (IBAction)cancelTimer {
+    [self pauseTimer];
+    if ([self.delegate respondsToSelector:@selector(timeRecorderdidCancel:)]) {
+        [self.delegate timeRecorderdidCancel:self];
     }
-    NSString *buttonTitle = _isCounting ? @"开始计时" : @"取消";
-    [_startButton setTitle:buttonTitle forState:UIControlStateNormal];
-    _isCounting = !_isCounting;
-    _pauseButton.enabled = _isCounting;
+}
+- (IBAction)continueTimer {
+    [self startTimer];
+}
+- (void)setIsCounting:(BOOL)isCounting
+{
+    _isCounting = isCounting;
+    _pauseButton.enabled = isCounting;
+    _continueBtn.enabled = !_pauseButton.enabled;
+//    _startButton.enabled = (!isCounting && !_pauseButton.enabled &&!_continueBtn.enabled);
 }
 - (IBAction)pauseBtnClicked:(UIButton *)sender {
-    NSString *pauseTitle = nil;
-    if (_isCounting) {//正在计时
-        //暂停计时器
-        [_recordLabel pause];
-        pauseTitle = @"继续";
-        if ([self.delegate respondsToSelector:@selector(timeRecorderdidPaused:)]) {
-            [self.delegate timeRecorderdidPaused:self];
-        }
-    }else
-    {
-        [_recordLabel start];
-        pauseTitle = @"暂停";
+    [self pauseTimer];
+    if ([_delegate respondsToSelector:@selector(timeRecorderdidPaused:)]) {
+        [_delegate timeRecorderdidPaused:self];
     }
-    [_pauseButton setTitle:pauseTitle forState:UIControlStateNormal];
-    _isCounting = !_isCounting;
+
 }
 - (void)startTimeRecordWithTime:(NSTimeInterval)times
 {
     [_recordLabel setCountDownTime:times];
-    [_recordLabel start];
+    [self startTimer];
 }
 /**
  *  重置计时器
  */
 - (void)resetTimer
 {
+    //隐藏计时器,显示时间选择
+    _timeLabel.hidden = YES;
+    _datePicker.hidden = NO;
+    //重置计时器
     [_recordLabel reset];
+    self.isCounting = NO;
 }
 - (void)timerLabel:(MZTimerLabel *)timerLabel finshedCountDownTimerWithTime:(NSTimeInterval)countTime
 {
@@ -111,5 +108,31 @@
 {
     [super updateConstraints];
     self.timeRecorderView.frame = self.bounds;
+}
++ (instancetype)showTimer
+{
+    CGFloat timerHeight = 250;
+    CGRect screenRect = [UIScreen mainScreen].bounds;
+    TimeRecorder *timer = [[TimeRecorder alloc] initWithFrame:CGRectMake(0, screenRect.size.height - timerHeight, screenRect.size.width, timerHeight)];
+    [[UIApplication sharedApplication].keyWindow addSubview:timer];
+    return timer;
+}
+- (void)hideTimer
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+}
+- (void)startTimer
+{
+    [_recordLabel start];
+    self.isCounting = YES;
+}
+- (void)pauseTimer
+{
+    [_recordLabel pause];
+    self.isCounting = NO;
 }
 @end

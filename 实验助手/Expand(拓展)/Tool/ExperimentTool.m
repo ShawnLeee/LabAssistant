@@ -18,7 +18,7 @@
 
 + (void)fetchDoingExperimentWithParam:(id)param success:(void (^)(SXQExperimentResult *result))success failure:(void (^)(NSError *error))failure
 {
-    [SXQHttpTool getWithURL:@"http://172.18.0.55:8080/LabAssistant/lab/getDoing?userID=4028c681494b994701494b99aba50000" params:param success:^(id json) {
+    [SXQHttpTool getWithURL:DoingExpURL params:param success:^(id json) {
         if (success) {
             SXQExperimentResult *result = [SXQExperimentResult objectWithKeyValues:json];
             success(result);
@@ -32,7 +32,7 @@
 
 + (void)fetchDoneExperimentWithParam:(id)param completion:(CompletionBlock)completion
 {
-    [SXQHttpTool getWithURL:@"http://172.18.0.55:8080/LabAssistant/lab/getComplete?userID=4028c681494b994701494b99aba50000" params:param success:^(id json) {
+    [SXQHttpTool getWithURL:DoneExpURL params:param success:^(id json) {
         if (completion) {
             NSArray *resultArr = [SXQExperimentModel objectArrayWithKeyValuesArray:json[@"data"]];
             completion(resultArr);

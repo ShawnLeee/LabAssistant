@@ -15,8 +15,12 @@
 @end
 @interface TimeRecorder : UIView
 
-@property (nonatomic,strong) MZTimerLabel *recordLabel;
 
 @property (strong, nonatomic) IBOutlet UIView *timeRecorderView;
 @property (nonatomic,weak) id<TimeRecorderDelegate> delegate;
++ (instancetype)showTimer;
+- (void)hideTimer;
+- (void)startTimer;
+- (void)pauseTimer;
+- (void)resetTimer;
 @end

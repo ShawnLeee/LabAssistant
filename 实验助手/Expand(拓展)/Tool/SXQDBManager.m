@@ -5,7 +5,7 @@
 //  Created by sxq on 15/9/25.
 //  Copyright © 2015年 SXQ. All rights reserved.
 //
-
+@import UIKit;
 #import <FMDB/FMDB.h>
 //#import <FMDB/FMDatabaseQueue.h>
 #import "SXQDBManager.h"
@@ -65,7 +65,7 @@ static SXQDBManager *_dbManager = nil;
 - (NSArray *)setupMyInstruction
 {
     //实验说明书主表
-    NSString *instuctionMainSQL = @"create table if not exists t_expinstructionsMain(expinstructionid text primary key,experimentname text,experimentdesc text,experimenttheory text,provideuser text,supplierid text,suppliername text,productnum text,expcategoryid text,expsubcategoryid text,createdate numeric,expversion integer,allowdownload integer,filterstr text,reviewcount integer,downloadcount integer);";
+    NSString *instuctionMainSQL = @"create table if not exists t_expinstructionsMain(expinstructionid text primary key,experimentname text,experimentdesc text,experimenttheory text,provideuser text,supplierid text,suppliername text,productnum text,expcategoryid text,expsubcategoryid text,createdate numeric,expversion integer,allowdownload integer,filterstr text,reviewcount integer,downloadcount integer,uploadTime text,editTime text);";
     //实验试剂表
     NSString *expReagentSQL = @"create table if not exists t_expreaget (createMethod text,expInstructionID text,expReagentID text primary key,reagentCommonName text,reagentID text,reagentName text,reagentSpec text,useAmount integer);";
     //实验流程表
@@ -182,5 +182,25 @@ static SXQDBManager *_dbManager = nil;
         success = [db executeUpdate:@"insert into  t_expEquipment (equipmentID ,equipmentFactory ,equipmentName ,expEquipmentID ,expInstructionID ) values (?,?,?,?,?)",expEquipment[@"equipmentID"],expEquipment[@"equipmentFactory"],expEquipment[@"equipmentName"],expEquipment[@"expEquipmentID"],expEquipment[@"expInstructionID"]];
     return success;
 }
-
+- (NSArray *)chechAllInstuction
+{
+    __block NSArray *resultArr = nil;
+    [_queue inDatabase:^(FMDatabase *db) {
+        NSMutableArray *tmpArr = [NSMutableArray array];
+        FMResultSet *rs = [db executeQuery:@"select * from t_expinstructionsMain"];
+        while (rs.next) {
+            //"create table if not exists t_expinstructionsMain(expinstructionid text primary key,experimentname text,experimentdesc text,experimenttheory text,provideuser text,supplierid text,suppliername text,productnum text,expcategoryid text,expsubcategoryid text,createdate numeric,expversion integer,allowdownload integer,filterstr text,reviewcount integer,downloadcount integer);";
+            NSString *expinstructionid = [rs stringForColumn:@"expinstructionid"];
+            NSString *experimentname = [rs stringForColumn:@"experimentname"];
+            NSString *uploadTime = [rs stringForColumn:@"uploadTime"];
+            NSString *editTime = [rs stringForColumn:@"editTime"];
+            NSDictionary *instruction =  @{@"expInstructionID" : expinstructionid ,@"experimentName" : experimentname };
+            [tmpArr addObject:instruction];
+        }
+        resultArr = [tmpArr copy];
+    }];
+    [_queue close];
+    
+    return resultArr;
+}
 @end

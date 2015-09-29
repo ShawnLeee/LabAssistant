@@ -12,4 +12,5 @@ typedef void  (^CompletionHandler)(BOOL success,NSDictionary *info);
 + (instancetype)sharedManager;
 - (void)insertInstruciton:(id)instruction completion:(CompletionHandler)completion;
 - (BOOL)expInstrucitonExist:(NSString *)expInstructionID;
+- (NSArray *)chechAllInstuction;
 @end

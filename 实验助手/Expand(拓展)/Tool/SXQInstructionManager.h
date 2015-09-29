@@ -17,4 +17,10 @@ typedef void (^CompletionHandler)(BOOL success,NSDictionary *info);
  *  查询说明书是否下载
  */
 + (BOOL)instructionIsdownload:(NSString *)instrucitonID;
+/**
+ *  获取所有已下载的说明书
+ *
+ *  @return 已下载说明书字典数组
+ */
++ (NSArray *)fetchAllInstruction;
 @end

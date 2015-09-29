@@ -10,28 +10,32 @@
 #define _____SXQURL_h
 ////////////////////////////////////////////实验部分////////////////////////////////////
 //获取实验或说明书下所有的实验步骤
-#define ExperimentStepURL @"http://172.18.0.55:8080/LabAssistant/lab/getAllProcessExceptComplete?userID=4028c681494b994701494b99aba50000"
+#define ExperimentStepURL @"http://hualang.wicp.net:8090/LabAssistant/lab/getAllProcessExceptComplete?userID=4028c681494b994701494b99aba50000"
 //附近的试剂交换
-#define AdjacentReagentURL @"http://172.18.3.117:8080/LabAssistant/map/around"
+#define AdjacentReagentURL @"http://hualang.wicp.net:8090/LabAssistant/map/around"
+//正在进行的实验
+#define DoingExpURL @"http://hualang.wicp.net:8090/LabAssistant/lab/getDoing?userID=4028c681494b994701494b99aba50000"
+//已完成的实验
+#define DoneExpURL @"http://hualang.wicp.net:8090/LabAssistant/lab/getComplete?userID=4028c681494b994701494b99aba50000"
 ////////////////////////////////////////////实验部分////////////////////////////////////
 
 //////////////////////////////说明书//////////////////////////////////////////////////////
 
 //所有说明书
-#define AllExpURL @"http://172.18.0.55:8080/LabAssistant/expCategory/allExpCategory"
+#define AllExpURL @"http://hualang.wicp.net:8090/LabAssistant/expCategory/allExpCategory"
 //二级分类
-#define SubExpURL @"http://172.18.0.55:8080/LabAssistant/expCategory/getSubCategoryByPID"
+#define SubExpURL @"http://hualang.wicp.net:8090/LabAssistant/expCategory/getSubCategoryByPID"
 //说明书列表
-#define InstructionListURL @"http://172.18.0.55:8080/LabAssistant/lab/getInstructionsBySubCategoryID"
+#define InstructionListURL @"http://hualang.wicp.net:8090/LabAssistant/lab/getInstructionsBySubCategoryID"
 //说明书下载
-#define DownloadInstructionURL @"http://172.18.0.55:8080/LabAssistant/lab/downloadInstruction"
+#define DownloadInstructionURL @"http://hualang.wicp.net:8090/LabAssistant/lab/downloadInstruction"
 //说明书详情
-#define InstructionDetailURL @"http://172.18.0.55:8080/LabAssistant/lab/getInstructionDetail"
+#define InstructionDetailURL @"http://hualang.wicp.net:8090/LabAssistant/lab/getInstructionDetail"
 //////////////////////////////说明书//////////////////////////////////////////////////////
 
 
 //////////////////////////////登录/注册//////////////////////////////////////////////////////
-#define LoginURL @"http://172.18.0.55:8080/LabAssistant/login"
-#define SignUpURL @"http://172.18.0.55:8080/LabAssistant/register"
+#define LoginURL @"http://hualang.wicp.net:8090/LabAssistant/login"
+#define SignUpURL @"http://hualang.wicp.net:8090/LabAssistant/register"
 //////////////////////////////登录/注册//////////////////////////////////////////////////////
 #endif

@@ -11,4 +11,5 @@
 @interface SXQRemarkController : UIViewController
 - (instancetype)initWithExperimentStep:(SXQExperimentStep *)experimentStep;
 @property (nonatomic,copy) void (^addRemarkBlk)(NSString *remark);
+@property (nonatomic,copy) void (^completion)();
 @end

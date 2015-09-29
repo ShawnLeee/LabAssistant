@@ -20,5 +20,8 @@
  */
 @property (nonatomic,strong) UIImage *image;
 @property (nonatomic,assign) CGFloat imageHeight;
-
+/**
+ *  试剂保存位置
+ */
+@property (nonatomic,copy) NSString *depositReagent;
 @end
