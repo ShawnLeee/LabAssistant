@@ -5,12 +5,12 @@
 //  Created by SXQ on 15/8/30.
 //  Copyright (c) 2015年 SXQ. All rights reserved.
 //
+#import "DWLoginViewController.h"
 #import <ShareSDK/ShareSDK.h>
 #import <Parse/Parse.h>
 #import "WeiboSDK.h"
 #import "WXApi.h"
 #import "AppDelegate.h"
-
 @interface AppDelegate ()
 
 @end
@@ -19,7 +19,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    self.window.tintColor = [UIColor orangeColor];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [self.window makeKeyAndVisible];
+    DWLoginViewController *loginvc = [DWLoginViewController new];
+    self.window.rootViewController = loginvc;
     [self initializeSDK:launchOptions];
     return YES;
 }

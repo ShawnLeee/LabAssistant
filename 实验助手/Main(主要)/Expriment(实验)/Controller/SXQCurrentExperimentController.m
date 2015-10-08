@@ -316,7 +316,9 @@
         [MBProgressHUD showError:@"请选择实验步骤"];
         return;
     }
-    step.image = image;
+    [step addImage:image];
+    //写入一条实验步骤到数据库
+    
     [self.tableView beginUpdates];
     [cell addImage:image];
     [self.tableView endUpdates];

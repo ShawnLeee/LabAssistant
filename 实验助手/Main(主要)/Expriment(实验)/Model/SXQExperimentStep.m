@@ -11,16 +11,18 @@
 #import <UIKit/UIKit.h>
 @interface SXQExperimentStep ()
 @property (nonatomic,strong) NSMutableArray *theMutableArray;
+@property (nonatomic,strong,readwrite) NSMutableArray *images;
 @end
 @implementation SXQExperimentStep
-- (CGFloat)imageHeight
+- (NSMutableArray *)images
 {
-    if (_image) {
-        CGRect boundingRect = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width - 16, MAXFLOAT);
-        CGRect frame = AVMakeRectWithAspectRatioInsideRect(_image.size, boundingRect);
-        return frame.size.height;
+    if (_images == nil) {
+        _images = [NSMutableArray array];
     }
-    return 0;
-    
+    return _images;
+}
+- (void)addImage:(UIImage *)image
+{
+    [self.images addObject:image];
 }
 @end

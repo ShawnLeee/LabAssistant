@@ -13,4 +13,8 @@
  *  写一条备注到对应步骤
  */
 - (void)writeRemak:(NSString *)remark toExperiment:(NSString *)myExpID expStepID:(NSString *)expStepID;
+/**
+ *  根据实验说明书ID添加一个实验
+ */
++ (void)addExperimentWithInstructionId:(NSString *)instructionId;
 @end

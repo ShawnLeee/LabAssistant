@@ -18,10 +18,12 @@
 /**
  *  实验图片
  */
-@property (nonatomic,strong) UIImage *image;
+//@property (nonatomic,strong) UIImage *image;
+@property (nonatomic,strong,readonly) NSMutableArray *images;
 @property (nonatomic,assign) CGFloat imageHeight;
 /**
  *  试剂保存位置
  */
 @property (nonatomic,copy) NSString *depositReagent;
+- (void)addImage:(UIImage *)image;
 @end

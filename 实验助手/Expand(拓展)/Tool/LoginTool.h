@@ -17,7 +17,11 @@ typedef void (^CompletionBlock)(BOOL success);
 + (instancetype)paramWithNickName:(NSString *)nickName passwd:(NSString *)pwd;
 @end
 ////////////////////////////////////////LoginParam/////////////////////////////////////////////////////////////////
-
+@interface LoginResult : NSObject
+@property (nonatomic,copy) NSString *userID;
+@property (nonatomic,assign) int code;
+@property (nonatomic,copy) NSString *msg;
+@end
 
 ////////////////////////////////////////SignUpParam/////////////////////////////////////////////////////////////////
 @interface SignUpParam : LoginParam
@@ -53,6 +57,10 @@ typedef void (^CompletionBlock)(BOOL success);
 @interface LoginTool : NSObject
 + (void)signUpWithParam:(SignUpParam *)param completion:(CompletionBlock)completion;
 + (void)loginWithParam:(LoginParam *)param completion:(CompletionBlock)completion;
++ (void)loginWithUserName:(NSString *)userName
+                 password:(NSString *)password
+               completion:(void (^)(BOOL success))completion;
+
 @end
 ////////////////////////////////////////LoginTool/////////////////////////////////////////////////////////////////
 

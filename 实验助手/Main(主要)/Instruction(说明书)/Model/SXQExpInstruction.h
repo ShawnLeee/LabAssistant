@@ -24,6 +24,7 @@
 @property (nonatomic,copy) NSString * reviewCount;
 @property (nonatomic,copy) NSString * supplierID;
 @property (nonatomic,copy) NSString * supplierName;
+@property (nonatomic,assign) int  expVersion;
 
 @property (nonatomic,assign,getter=isDownloaded) BOOL downloaded;
 @end

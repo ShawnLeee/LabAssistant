@@ -11,8 +11,14 @@
 #import "SXQMyInstructionCell.h"
 #import "SXQInstructionManager.h"
 #import "SXQMyGenericInstruction.h"
-#define MyInstructionIdentifier @"SXQMyInstructionCell"
-
+#import "DWMyInstructionData.h"
+#import "SXQReagentListController.h"
+#import "SXQHotInstruction.h"
+#import "SXQMyExperimentManager.h"
+typedef NS_ENUM(NSUInteger,SectionType){
+    SectionTypeMyInstructionType = 0,
+    SectionTypeHotInstructionType = 1,
+};
 @interface SXQMyInstructionsController ()
 @property (nonatomic,strong) NSArray *groups;
 @property (nonatomic,strong) ArrayDataSource *instructionsDataSource;
@@ -22,12 +28,11 @@
 - (NSArray *)groups
 {
     if (_groups == nil) {
-        NSArray *arr = [SXQInstructionManager fetchAllInstruction];
-        DWGroup *group0 = [DWGroup groupWithItems:arr identifier:MyInstructionIdentifier header:@"我的常用说明书"];
-        group0.configureBlk = ^(SXQMyInstructionCell *cell,SXQMyGenericInstruction *item){
-            [cell configureCellForItem:item];
+        DWMyInstructionData *instructionData = [[DWMyInstructionData alloc] init];
+        instructionData.dataLoadCompletedBlk = ^{
+            [self.tableView reloadData];
         };
-        _groups = @[group0];
+        _groups = instructionData.groups;
     }
     return _groups;
 }
@@ -44,7 +49,39 @@
 - (void)p_setupTableView
 {
     [self.tableView registerNib:[UINib nibWithNibName:@"SXQMyInstructionCell" bundle:nil] forCellReuseIdentifier:MyInstructionIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"SXQHotInstructionCell" bundle:nil] forCellReuseIdentifier:HotInstructionIdentifier];
     _instructionsDataSource = [[ArrayDataSource alloc] initWithGroups:self.groups];
     self.tableView.dataSource = _instructionsDataSource;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+}
+#pragma mark tableview delegate method
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == SectionTypeHotInstructionType) {
+        DWGroup *group = self.groups[indexPath.section];
+        SXQHotInstruction *instruction = group.items[indexPath.row];
+        SXQReagentListController *listVC = [[SXQReagentListController alloc] initWithExpInstructionID:instruction.expInstructionID];
+        [self.navigationController pushViewController:listVC animated:YES];
+    }else
+    {
+        DWGroup *group = self.groups[indexPath.section];
+        SXQMyGenericInstruction *genericInstruciton = group.items[indexPath.row];
+        [SXQMyExperimentManager addExperimentWithInstructionId:genericInstruciton.expInstructionID];
+    }
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+

@@ -10,8 +10,10 @@
 #import <MJExtension/MJExtension.h>
 #import "InstructionTool.h"
 #import "SXQExpCategory.h"
+#import "SXQHotInstruction.h"
 #import "SXQExpSubCategory.h"
 #import "SXQExpInstruction.h"
+#import "SXQExpReagent.h"
 @implementation InstructionTool
 + (void)fetchAllExpSuccess:(void (^)(ExpCategoryResult *))success failure:(void (^)(NSError *))failure
 {
@@ -74,6 +76,34 @@
         }
     }];
 }
++ (void)fetchHotInstructionsSuccess:(void (^)(HotInstructionResult *))success failure:(void (^)(NSError *))failure
+{
+    NSDictionary *param = @{@"returnLimit" :@10};
+    [SXQHttpTool getWithURL:HotInstructionsURL params:param.keyValues success:^(id json) {
+        if (success) {
+            HotInstructionResult *result = [HotInstructionResult objectWithKeyValues:json];
+            success(result);
+        }
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
++ (void)fetchExpReagentWithExpInstructionID:(NSString *)expInstructionID success:(void (^)(ReagentListResult *))success failure:(void (^)(NSError *))failure
+{
+    NSDictionary *param = @{@"expInstructionID" : expInstructionID};
+    [SXQHttpTool getWithURL:ReagentListURL params:param success:^(id json) {
+        if (success) {
+            ReagentListResult *result = [ReagentListResult objectWithKeyValues:json];
+            success(result);
+        }
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
 @end
 
 @implementation ExpCategoryResult
@@ -103,5 +133,16 @@
 @implementation InstructionDetailResult
 @end
 
+@implementation HotInstructionResult
++ (NSDictionary *)objectClassInArray
+{
+    return @{@"data" : [SXQHotInstruction class]};
+}
+@end
 
-
+@implementation ReagentListResult
++ (NSDictionary *)objectClassInArray
+{
+    return @{@"data" : [SXQExpReagent class]};
+}
+@end

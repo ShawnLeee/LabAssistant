@@ -9,11 +9,11 @@
 #import "DWStepCell.h"
 #import "SXQExperimentStep.h"
 #import "UIImage+Size.h"
+#import "PhotoContainer.h"
 @interface DWStepCell ()
 @property (weak, nonatomic) IBOutlet UILabel *stepLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stepContentLabel;
-@property (weak, nonatomic) IBOutlet UIStackView *imageContainer;
-@property (weak, nonatomic) IBOutlet UIImageView *iconView;
+@property (weak, nonatomic) IBOutlet PhotoContainer *photoContainer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *iconHeightConst;
 @property (weak, nonatomic) IBOutlet UILabel *remarkLabel;
 @end
@@ -26,7 +26,6 @@
     _stepLabel.text= expStep.stepNum;
     _stepContentLabel.text = expStep.stepDesc;
     _remarkLabel.text = expStep.remark;
-    _iconView.image = expStep.image;
     _iconHeightConst.constant = expStep.imageHeight;
     
 }
@@ -38,6 +37,14 @@
 {
     CGFloat padding = 8;
     _iconHeightConst.constant = [image imageHeightConstraintToWidth:([UIScreen mainScreen].bounds.size.width - 2 * padding)];
-    _iconView.image = image;
+    [_photoContainer addPhoto:image updatesConstraintBlk:^(BOOL success, CGFloat photoHeight) {
+        if (success) {
+            _iconHeightConst.constant = photoHeight;
+            _expStep.imageHeight = photoHeight;
+        }else
+        {
+            
+        }
+    }];
 }
 @end

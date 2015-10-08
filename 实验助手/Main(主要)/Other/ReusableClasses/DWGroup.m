@@ -8,7 +8,6 @@
 
 #import "DWGroup.h"
 @interface DWGroup ()
-@property (nonatomic,strong,readwrite) NSArray *items;
 @end
 @implementation DWGroup
 -  (instancetype)initWithWithHeader:(NSString *)headerTitle footer:(NSString *)footerTitle items:(NSArray *)items

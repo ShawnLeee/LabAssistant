@@ -25,7 +25,7 @@ typedef void (^CellConfigureBlock)(id cell,id item);
 /**
  *  data Array
  */
-@property (nonatomic,strong,readonly) NSArray *items;
+@property (nonatomic,strong) NSArray *items;
 /**
  *  Cell Identifier for the given group
  */

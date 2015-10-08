@@ -14,6 +14,10 @@
 @end
 @interface ExpInstructionsResult : SXQBaseResult
 @end
+@interface HotInstructionResult : SXQBaseResult
+@end
+@interface ReagentListResult : SXQBaseResult
+@end
 
 @interface InstructionDetailResult : NSObject
 @property (nonatomic,copy) NSString *code;
@@ -35,5 +39,14 @@
 + (void)downloadInstructionWithID:(NSString *)instructionID success:(void (^)(id result))success failure:(void (^)(NSError *error))failure;
 
 + (void)fetchInstructionDetailWithParam:(InstructionDetailParam *)param success:(void (^)(InstructionDetailResult *result))success failure:(void (^)(NSError *error))failure;
+/**
+ *  获取热门说明书
+ *
+ */
++ (void)fetchHotInstructionsSuccess:(void (^)(HotInstructionResult *result))success failure:(void (^)(NSError *error))failure;
+/**
+ *  获取实验所需试剂
+ */
++ (void)fetchExpReagentWithExpInstructionID:(NSString *)expInstructionID success:(void (^)(ReagentListResult *result))success failure:(void (^)(NSError *errror))failure;
 @end
 

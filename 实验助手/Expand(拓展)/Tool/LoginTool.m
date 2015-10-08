@@ -6,6 +6,8 @@
 //  Copyright (c) 2015年 SXQ. All rights reserved.
 //
 #import "SXQURL.h"
+#import "Account.h"
+#import "AccountTool.h"
 #import "SXQHttpTool.h"
 #import <MJExtension/MJExtension.h>
 #import "LoginTool.h"
@@ -63,10 +65,26 @@
 + (void)loginWithParam:(LoginParam *)param completion:(CompletionBlock)completion
 {
     [SXQHttpTool postWithURL:LoginURL params:param.keyValues success:^(id json) {
-        
+        LoginResult *result = [LoginResult objectWithKeyValues:json];
+        if (result.code == 1) {
+            //保存账号
+            Account *acc = [Account objectWithKeyValues:json];
+            [AccountTool saveAccount:acc];
+            completion(YES);
+        }
     } failure:^(NSError *error) {
         
     }];
 }
++ (void)loginWithUserName:(NSString *)userName password:(NSString *)password completion:(void (^)(BOOL))completion
+{
+    LoginParam *param = [LoginParam paramWithNickName:userName passwd:password];
+    [self loginWithParam:param completion:^(BOOL success) {
+        completion(success);
+    }];
+}
 @end
 ////////////////////////////////////////LoginTool/////////////////////////////////////////////////////////////////
+@implementation LoginResult
+
+@end
