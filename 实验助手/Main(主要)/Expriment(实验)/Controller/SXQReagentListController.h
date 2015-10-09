@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface SXQReagentListController : UITableViewController
-- (instancetype)initWithExpInstructionID:(NSString *)expId;
+- (instancetype)initWithExpInstruction:(id)instruction;
 @end

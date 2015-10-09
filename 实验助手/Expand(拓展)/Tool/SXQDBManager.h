@@ -21,4 +21,10 @@ typedef void  (^CompletionHandler)(BOOL success,NSDictionary *info);
  *
  */
 - (BOOL)addReagentWithInstructionId:(NSString *)instructionid;
+/**
+ *   根据试剂ID查询供应商
+ *
+ *  @return [SXQSupplier] 数组
+ */
+- (NSArray *)querySupplierWithReagetID:(NSString *)reagentID;
 @end

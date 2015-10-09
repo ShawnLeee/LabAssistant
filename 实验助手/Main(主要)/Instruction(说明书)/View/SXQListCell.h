@@ -16,5 +16,6 @@
 
 @interface SXQListCell : UITableViewCell
 - (void)configureCellWithItem:(id)item;
+@property (nonatomic,assign,getter=idDownloaded) BOOL downloaded;
 @property (nonatomic,weak) id<SXQListCellDelegate> delegate;
 @end

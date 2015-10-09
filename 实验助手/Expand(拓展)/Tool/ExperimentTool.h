@@ -36,4 +36,11 @@ typedef void (^CompletionBlock)(NSArray *resultArray);
  *  获取实验或说明书下所有的实验步骤
  */
 + (void)fetchExperimentStepWithParam:(ExperimentParam *)param success:(void (^)(SXQExperimentStepResult *result ))success failure:(void (^)(NSError *error))failure;
+/**
+ *  根据试剂ID取出供应商列表
+ *
+ *  @param reagentID  试剂ID
+ *  @param success  [SXQSupplier]
+ */
++ (void)fetchSupplierWithReagentID:(NSString *)reagentID success:(void (^)(NSArray *supplierList))success failure:(void (^)(NSError *error))failure;
 @end

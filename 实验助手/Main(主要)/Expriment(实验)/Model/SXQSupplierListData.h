@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface SXQSupplierListData : NSObject
-
+@property (nonatomic,strong) NSArray *suppliers;
+- (instancetype)initWithReagentID:(NSString *)reagentID dataLoadedComplete:(void (^)(BOOL success))completion;
 @end

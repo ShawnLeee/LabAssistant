@@ -63,7 +63,8 @@ typedef NS_ENUM(NSUInteger,SectionType){
     if (indexPath.section == SectionTypeHotInstructionType) {
         DWGroup *group = self.groups[indexPath.section];
         SXQHotInstruction *instruction = group.items[indexPath.row];
-        SXQReagentListController *listVC = [[SXQReagentListController alloc] initWithExpInstructionID:instruction.expInstructionID];
+        //检查/下载说明书
+        SXQReagentListController *listVC = [[SXQReagentListController alloc] initWithExpInstruction:instruction];
         [self.navigationController pushViewController:listVC animated:YES];
     }else
     {

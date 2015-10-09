@@ -12,7 +12,7 @@ typedef void (^CompletionHandler)(BOOL success,NSDictionary *info);
 /**
  *  下载实验说明书
  */
-- (void)downloadInstruction:(id)instruction completion:(CompletionHandler)completion;
++ (void)downloadInstruction:(id)instruction completion:(CompletionHandler)completion;
 /**
  *  查询说明书是否下载
  */

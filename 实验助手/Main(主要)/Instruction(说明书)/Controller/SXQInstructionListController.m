@@ -62,12 +62,12 @@
 }
 - (void)listCell:(SXQListCell *)cell clickedDownloadBtn:(UIButton *)button
 {
+    button.enabled = NO;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     __block SXQExpInstruction *instruction = self.instructions[indexPath.row];
     [InstructionTool downloadInstructionWithID:instruction.expInstructionID success:^(id result) {
 #warning 缓存说明书
-        SXQInstructionManager *manager = [[SXQInstructionManager alloc] init];
-        [manager downloadInstruction:result[@"data"] completion:^(BOOL success, NSDictionary *info) {
+        [SXQInstructionManager downloadInstruction:result[@"data"] completion:^(BOOL success, NSDictionary *info) {
             
         }];
     } failure:^(NSError *error) {

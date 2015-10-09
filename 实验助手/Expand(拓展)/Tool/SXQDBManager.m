@@ -11,6 +11,7 @@
 #import "NSString+Date.h"
 #import "SXQExpInstruction.h"
 #import "SXQInstructionStep.h"
+#import "SXQSupplier.h"
 #define InstructionDBName @"instruction.sqlite"
 
 static SXQDBManager *_dbManager = nil;
@@ -38,7 +39,9 @@ static SXQDBManager *_dbManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _dbManager = [super init];
-        [_dbManager setupDataBase];
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [_dbManager setupDataBase];
+        });
     });
     return _dbManager;
 }
@@ -75,7 +78,21 @@ static SXQDBManager *_dbManager = nil;
     NSString *expEquipmetnSQL = @"create table if not exists t_expEquipment (equipmentID text ,equipmentFactory text,equipmentName text,expEquipmentID text primary key,expInstructionID text);";
     //实验耗材表
     NSString *expConsumableSQL = @"create table if not exists t_expConsumable (consumableCount integer,consumableFactory text,consumableID text,consumableType text,expConsumableID text primary key,expInstructionID text);";
-    return @[instuctionMainSQL,expReagentSQL,expProcessSQL,expEquipmetnSQL,expConsumableSQL];
+    //试剂表
+    NSString *reagentSQL = @"create table if not exists t_reagent(reagentID text primary key,reagentName text,reagentCommonName text,levelOneSortID text,levelTwoSortID text,originalPlace text,productNo text,agents text,specification text,price integer,chemicalName text,CASNo text,arriveDate numeric,memo text)";
+    //试剂厂商关联表;                 
+    NSString *reagentMapSQL = @"create table if not exists t_reagentMap(reagentMapID text primary key,reagentID text,supplierID text,isSuggestion integer)";
+    //耗材表;                     
+    NSString *consumableSQL = @"create table if not exists t_consumable(consumableID text primary key,consumableName text,consumableType text)";
+    //耗材厂商关联表;                 
+    NSString *consumableMapSQL = @"create table if not exists t_consumableMap(consumableMapID text primary key,consumableID text,supplierID text,isSuggestion integer)";
+    //设备表;                     
+    NSString *equipmentSQL = @"create table if not exists t_equipment (equipmentID text primary key,equipmentName text)";
+    //设备厂商关联表;                 
+    NSString *equipmentMapSQL = @"create table if not exists t_quipmentMap (quipmentMapID text primary key,equipmentID text,supplierID text ,isSuggestion integer)";
+    //供应商
+    NSString *supplierSQL = @"create table if not exists t_supplier (supplierID text primary key,supplierName text,supplierType integer,contacts text,telNo text,mobilePhone text,email text,address text)";
+    return @[instuctionMainSQL,expReagentSQL,expProcessSQL,expEquipmetnSQL,expConsumableSQL,reagentSQL,reagentMapSQL,consumableSQL,consumableMapSQL,equipmentSQL,equipmentMapSQL,supplierSQL];
 }
 - (NSArray *)setupMyExp
 {
@@ -310,6 +327,43 @@ static SXQDBManager *_dbManager = nil;
     }];
     return success;
 }
+- (NSArray *)querySupplierWithReagetID:(NSString *)reagentID
+{
+    __block NSMutableArray *tempArr = [NSMutableArray array];
+    [_queue inDatabase:^(FMDatabase *db) {
+        NSString *supplierID = nil;
+        FMResultSet *rs = [db executeQuery:@"select * from t_reagentMap  where reagentID == ?", reagentID];
+        while (rs.next) {
+            supplierID = [rs stringForColumn:@"supplierID"];
+            SXQSupplier *supplier = [self fetchSupplierWithSupplierID:supplierID db:db];
+            if (supplier) {
+                [tempArr addObject:supplier];
+            }
+        }
+    }];
+    [_queue close];
+    return [tempArr copy];
+//    NSString *supplierSQL = @"create table if not exists t_supplier (supplierID text primary key,supplierName text,supplierType integer,contacts text,telNo text,mobilePhone text,email text,address text)";
+    
+//    NSString *reagentMapSQL = @"create table if not exists t_reagentMap(reagentMapID text primary key,reagentID text,supplierID text,isSuggestion integer)";
+}
+- (SXQSupplier *)fetchSupplierWithSupplierID:(NSString *)supplierID db:(FMDatabase *)db
+{
+   SXQSupplier *supplier = [[SXQSupplier alloc] init];
+   FMResultSet *rs = [db executeQuery:@"select * from t_supplier where supplierID == ?",supplierID];
+    while (rs.next) {
+        supplier.supplierID = [rs stringForColumn:@"supplierID"];
+        supplier.supplierName = [rs stringForColumn:@"supplierName"];
+        supplier.supplierType = [rs intForColumn:@"supplierType"];
+        supplier.contacts = [rs stringForColumn:@"contacts"];
+        supplier.telNo = [rs stringForColumn:@"telNo"];
+        supplier.mobilePhone = [rs stringForColumn:@"mobilePhone"];
+        supplier.email = [rs stringForColumn:@"email"];
+        supplier.address = [rs stringForColumn:@"address"];
+    }
+    return supplier;
+}
+
 @end
 
 

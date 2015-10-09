@@ -5,7 +5,7 @@
 //  Created by sxq on 15/9/15.
 //  Copyright (c) 2015年 SXQ. All rights reserved.
 //
-
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "UIBarButtonItem+SXQ.h"
 
 @implementation UIBarButtonItem (SXQ)
@@ -22,6 +22,17 @@
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:title forState:UIControlStateNormal];
+    return [[UIBarButtonItem alloc] initWithCustomView:button];
+}
++ (UIBarButtonItem *)itemWithTitle:(NSString *)title action:(void (^)())action
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitle:title forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 0, 60, 30);
+    [[button rac_signalForControlEvents:UIControlEventTouchDown]
+        subscribeNext:^(id x) {
+            action();
+    }];
     return [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 @end

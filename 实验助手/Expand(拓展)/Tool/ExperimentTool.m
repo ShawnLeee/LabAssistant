@@ -55,6 +55,10 @@
         }
     }];
 }
++ (void)fetchSupplierWithReagentID:(NSString *)reagentID success:(void (^)(NSArray *))success failure:(void (^)(NSError *))failure
+{
+    
+}
 @end
 @implementation ExperimentParam
 + (instancetype)paramWithExperimentModel:(SXQExperimentModel *)experimentModel
