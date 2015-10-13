@@ -15,4 +15,7 @@
 @property (nonatomic,copy) NSString *consumableType;
 @property (nonatomic,copy) NSString *expConsumableID;
 @property (nonatomic,copy) NSString *expInstructionID;
+
+@property (nonatomic,copy) NSString *supplierID;
+
 @end

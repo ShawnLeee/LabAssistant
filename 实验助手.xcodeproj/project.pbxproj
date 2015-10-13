@@ -25,6 +25,10 @@
 		B0711B6C1BAFD76B00EA7E14 /* SXQExpCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B0711B6B1BAFD76B00EA7E14 /* SXQExpCategory.m */; };
 		B0711B6F1BAFDF4100EA7E14 /* SXQExpSubCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B0711B6E1BAFDF4100EA7E14 /* SXQExpSubCategory.m */; };
 		B0711B721BAFEF9700EA7E14 /* SXQExpInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = B0711B711BAFEF9700EA7E14 /* SXQExpInstruction.m */; };
+		B084045C1BCB46E300019039 /* SXQInstructionDownloadResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B084045B1BCB46E300019039 /* SXQInstructionDownloadResult.m */; settings = {ASSET_TAGS = (); }; };
+		B084045F1BCB478300019039 /* SXQInstructionData.m in Sources */ = {isa = PBXBuildFile; fileRef = B084045E1BCB478300019039 /* SXQInstructionData.m */; settings = {ASSET_TAGS = (); }; };
+		B08404621BCBA8CB00019039 /* SXQMyExperiment.m in Sources */ = {isa = PBXBuildFile; fileRef = B08404611BCBA8CB00019039 /* SXQMyExperiment.m */; settings = {ASSET_TAGS = (); }; };
+		B08404651BCBA91B00019039 /* SXQCurrentExperimentData.m in Sources */ = {isa = PBXBuildFile; fileRef = B08404641BCBA91B00019039 /* SXQCurrentExperimentData.m */; settings = {ASSET_TAGS = (); }; };
 		B08E7C531BB23F320023893B /* SXQInstructionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = B08E7C521BB23F320023893B /* SXQInstructionDetailController.m */; settings = {ASSET_TAGS = (); }; };
 		B08E7C571BB248680023893B /* SXQInstructionDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B08E7C561BB248680023893B /* SXQInstructionDetail.m */; settings = {ASSET_TAGS = (); }; };
 		B08E7C5A1BB2491C0023893B /* SXQInstructionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = B08E7C591BB2491C0023893B /* SXQInstructionStep.m */; settings = {ASSET_TAGS = (); }; };
@@ -247,6 +251,14 @@
 		B0711B6E1BAFDF4100EA7E14 /* SXQExpSubCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExpSubCategory.m; sourceTree = "<group>"; };
 		B0711B701BAFEF9700EA7E14 /* SXQExpInstruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQExpInstruction.h; sourceTree = "<group>"; };
 		B0711B711BAFEF9700EA7E14 /* SXQExpInstruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQExpInstruction.m; sourceTree = "<group>"; };
+		B084045A1BCB46E300019039 /* SXQInstructionDownloadResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQInstructionDownloadResult.h; sourceTree = "<group>"; };
+		B084045B1BCB46E300019039 /* SXQInstructionDownloadResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQInstructionDownloadResult.m; sourceTree = "<group>"; };
+		B084045D1BCB478300019039 /* SXQInstructionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQInstructionData.h; sourceTree = "<group>"; };
+		B084045E1BCB478300019039 /* SXQInstructionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQInstructionData.m; sourceTree = "<group>"; };
+		B08404601BCBA8CB00019039 /* SXQMyExperiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQMyExperiment.h; sourceTree = "<group>"; };
+		B08404611BCBA8CB00019039 /* SXQMyExperiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQMyExperiment.m; sourceTree = "<group>"; };
+		B08404631BCBA91B00019039 /* SXQCurrentExperimentData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQCurrentExperimentData.h; sourceTree = "<group>"; };
+		B08404641BCBA91B00019039 /* SXQCurrentExperimentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQCurrentExperimentData.m; sourceTree = "<group>"; };
 		B08E7C511BB23F320023893B /* SXQInstructionDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQInstructionDetailController.h; sourceTree = "<group>"; };
 		B08E7C521BB23F320023893B /* SXQInstructionDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXQInstructionDetailController.m; sourceTree = "<group>"; };
 		B08E7C551BB248680023893B /* SXQInstructionDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXQInstructionDetail.h; sourceTree = "<group>"; };
@@ -742,6 +754,8 @@
 				B0F295DC1BB5480C00E20865 /* SXQMyExperimentManager.m */,
 				B0F308CA1BC6658800AD9EAF /* AccountTool.h */,
 				B0F308CB1BC6658800AD9EAF /* AccountTool.m */,
+				B084045A1BCB46E300019039 /* SXQInstructionDownloadResult.h */,
+				B084045B1BCB46E300019039 /* SXQInstructionDownloadResult.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -867,6 +881,8 @@
 		B0C73C8B1B92F39E00F4B6D2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B08404631BCBA91B00019039 /* SXQCurrentExperimentData.h */,
+				B08404641BCBA91B00019039 /* SXQCurrentExperimentData.m */,
 				B0F738CA1BA935C200EA7E9E /* SXQExperimentModel.h */,
 				B0F738CB1BA935C200EA7E9E /* SXQExperimentModel.m */,
 				B0F5053E1BABB0A900B88A3D /* SXQExperimentStep.h */,
@@ -967,6 +983,8 @@
 				B08E7C561BB248680023893B /* SXQInstructionDetail.m */,
 				B08E7C581BB2491C0023893B /* SXQInstructionStep.h */,
 				B08E7C591BB2491C0023893B /* SXQInstructionStep.m */,
+				B084045D1BCB478300019039 /* SXQInstructionData.h */,
+				B084045E1BCB478300019039 /* SXQInstructionData.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1336,6 +1354,8 @@
 		B0F6B18E1BC7BEFE0090E398 /* 实验 */ = {
 			isa = PBXGroup;
 			children = (
+				B08404601BCBA8CB00019039 /* SXQMyExperiment.h */,
+				B08404611BCBA8CB00019039 /* SXQMyExperiment.m */,
 				B0F6B1851BC7BBA50090E398 /* SXQExpConsumable.h */,
 				B0F6B1861BC7BBA50090E398 /* SXQExpConsumable.m */,
 				B0F6B1881BC7BCB70090E398 /* SXQExpEquipment.h */,
@@ -1640,6 +1660,7 @@
 				B0F73B961BBB894500B3D0A0 /* SXQExpReagent.m in Sources */,
 				B0DDFF2D1BA6A07000E4AB3C /* SXQReagentContoller.m in Sources */,
 				B0F566211BA7D51100BA1F7B /* SXQMyInstructionsController.m in Sources */,
+				B08404621BCBA8CB00019039 /* SXQMyExperiment.m in Sources */,
 				B0C73CBE1B92F52C00F4B6D2 /* ArrayDataSource.m in Sources */,
 				B06239491B9587C100F0CAFB /* SXQInstructionListController.m in Sources */,
 				B0F308941BC6016E00AD9EAF /* MJPhotoToolbar.m in Sources */,
@@ -1664,6 +1685,7 @@
 				B0F4C7091BBA76BE009B7B05 /* SXQMyGenericInstruction.m in Sources */,
 				B06CE16A1BAAB803008BB98E /* DWBBSViewController.m in Sources */,
 				B0B1EC501BA27A870087A318 /* SXQVenderView.m in Sources */,
+				B084045F1BCB478300019039 /* SXQInstructionData.m in Sources */,
 				B0C73CC71B930C6E00F4B6D2 /* SXQInstructionHeader.m in Sources */,
 				B0C73CD41B932C6000F4B6D2 /* SXQGroupCell.m in Sources */,
 				B0F73BB71BBBB3E600B3D0A0 /* FPTouchView.m in Sources */,
@@ -1682,11 +1704,13 @@
 				B0F738C01BA9293200EA7E9E /* DWInstructionChildController.m in Sources */,
 				B08E7C6C1BB26EA70023893B /* DWInstrucitonHeader.m in Sources */,
 				B0F64C251BAFB407001CF997 /* SXQExperimentResult.m in Sources */,
+				B08404651BCBA91B00019039 /* SXQCurrentExperimentData.m in Sources */,
 				B0F308A41BC6016E00AD9EAF /* SDWebImageManager+MJ.m in Sources */,
 				B0EBC4971BA1731D000ECCA0 /* SXQVenderLogin.m in Sources */,
 				B0C73CB01B92F39E00F4B6D2 /* main.m in Sources */,
 				B0DDFEFE1BA6622C00E4AB3C /* SXQDoneExperimentController.m in Sources */,
 				B0F5662E1BA7EDA400BA1F7B /* AcademicTool.m in Sources */,
+				B084045C1BCB46E300019039 /* SXQInstructionDownloadResult.m in Sources */,
 				B0DDFF021BA6624A00E4AB3C /* SXQExpeirmentController.m in Sources */,
 				B0C73CBC1B92F52C00F4B6D2 /* ArrayDataSource+CollectionView.m in Sources */,
 				B0F295D91BB517F600E20865 /* SXQRemarkController.m in Sources */,

@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *supplierLabel;
 @property (weak, nonatomic) IBOutlet UILabel *supplierIDLabel;
 @property (weak, nonatomic) IBOutlet UIButton *downloadBtn;
+@property (nonatomic,strong) SXQExpInstruction *instruction;
 @end
 @implementation SXQListCell
 - (instancetype)init
@@ -26,20 +27,22 @@
 }
 - (void)configureCellWithItem:(SXQExpInstruction *)item
 {
+    _instruction = item;
     _nameLabel.text = item.experimentName;
     _supplierLabel.text = [NSString stringWithFormat:@"厂商:%@",item.supplierName];
     _supplierIDLabel.text  = [NSString stringWithFormat:@"货号:%@",item.supplierID];
     [_downloadBtn setTitle:@"下载" forState:UIControlStateNormal];
-//    _downloadBtn.enabled = NO;
-    //检索说明书是否已经下载
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        self.downloaded = [SXQInstructionManager instructionIsdownload:item.expInstructionID];
-    });
+    [_downloadBtn setTitle:@"已下载" forState:UIControlStateDisabled];
+    _downloadBtn.enabled = !_instruction.isDownloaded;
+    [item addObserver:self forKeyPath:@"downloaded" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
 }
-- (void)setDownloaded:(BOOL)downloaded
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
-    _downloaded = downloaded;
-//    _downloadBtn.enabled = !_downloadBtn;
+    _downloadBtn.enabled = !_instruction.isDownloaded;
+}
+- (void)dealloc
+{
+    [_instruction removeObserver:self forKeyPath:@"downloaded"];
 }
 - (IBAction)download:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(listCell:clickedDownloadBtn:)]) {

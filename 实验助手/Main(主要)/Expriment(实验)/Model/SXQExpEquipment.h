@@ -14,4 +14,6 @@
 @property (nonatomic,copy)  NSString *equipmentName;
 @property (nonatomic,copy)  NSString *expEquipmentID;
 @property (nonatomic,copy)  NSString *expInstructionID;
+
+@property (nonatomic,copy) NSString *supplierId;
 @end

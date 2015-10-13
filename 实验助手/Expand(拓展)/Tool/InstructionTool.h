@@ -5,7 +5,7 @@
 //  Created by sxq on 15/9/21.
 //  Copyright (c) 2015年 SXQ. All rights reserved.
 //
-@class SXQInstructionDetail;
+@class SXQInstructionDetail,SXQInstructionDownloadResult;
 #import <Foundation/Foundation.h>
 #import "SXQBaseResult.h"
 @interface ExpCategoryResult : SXQBaseResult
@@ -36,7 +36,7 @@
 
 + (void)fetchInstructionLishWithExpSubCategoryID:(NSString *)subID success:(void (^)(ExpInstructionsResult *result))success failure:(void (^)(NSError *error))failure;
 
-+ (void)downloadInstructionWithID:(NSString *)instructionID success:(void (^)(id result))success failure:(void (^)(NSError *error))failure;
++ (void)downloadInstructionWithID:(NSString *)instructionID success:(void (^)(SXQInstructionDownloadResult *result))success failure:(void (^)(NSError *error))failure;
 
 + (void)fetchInstructionDetailWithParam:(InstructionDetailParam *)param success:(void (^)(InstructionDetailResult *result))success failure:(void (^)(NSError *error))failure;
 /**

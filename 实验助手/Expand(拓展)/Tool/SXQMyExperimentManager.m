@@ -20,5 +20,11 @@
     [manager insertIntoMyExp:instructionId];
     //添加
 }
++ (void)addExperimentWithInstructionData:(SXQInstructionData *)instructionData completion:(void (^)(BOOL, NSString *))completioin
+{
+    [[SXQDBManager sharedManager] addExpWithInstructionData:instructionData completion:^(BOOL success, NSString *myExpId) {
+        completioin(success,myExpId);
+    }];
+}
 @end
 

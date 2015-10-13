@@ -6,6 +6,15 @@
 //  Copyright © 2015年 SXQ. All rights reserved.
 //
 @import UIKit;
+
+#import "SXQExpInstruction.h"
+#import "SXQExpConsumable.h"
+#import "SXQExpEquipment.h"
+#import "SXQExpReagent.h"
+#import "SXQExpStep.h"
+#import "SXQMyExperiment.h"
+
+#import "SXQInstructionData.h"
 #import <FMDB/FMDB.h>
 #import "SXQDBManager.h"
 #import "NSString+Date.h"
@@ -116,35 +125,42 @@ static SXQDBManager *_dbManager = nil;
     return sqlArr;
 }
 
-- (void)insertInstruciton:(id)instruction completion:(CompletionHandler)completion
+- (void)insertInstruciton:(SXQInstructionData *)instructionData completion:(CompletionHandler)completion
 {
-     NSDictionary *expMain = instruction[@"expInstructionMain"];
-    if ([self expInstrucitonExist:expMain[@"expInstructionID"]]) {
+//     NSDictionary *expMain = instruction[@"expInstructionMain"];
+    SXQExpInstruction *instructionMain = instructionData.expInstructionMain;
+    if ([self expInstrucitonExist:instructionMain.expInstructionID]) {
         completion(NO,@{@"msg" :@"说明书已下载"});
         return;
     }
     [_queue inDatabase:^(FMDatabase *db) {
 #warning changed
-//        [self insertIntoInstructionMain:expMain db:db];
-        NSArray *consumableArr = instruction[@"expConsumable"];
-        [consumableArr enumerateObjectsUsingBlock:^(NSDictionary *expConsumable, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self insertIntoInstructionMain:instructionData.expInstructionMain db:db];
+        
+        NSArray *consumableArr = instructionData.expConsumable;
+        [consumableArr enumerateObjectsUsingBlock:^(SXQExpConsumable *expConsumable, NSUInteger idx, BOOL * _Nonnull stop) {
             [self insertIntoConsumable:expConsumable database:db];
         }];
-        NSArray *equipmentArr = instruction[@"expEquipment"];
-        [equipmentArr enumerateObjectsUsingBlock:^(NSDictionary *expEquipment, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        NSArray *equipmentArr = instructionData.expEquipment;
+        [equipmentArr enumerateObjectsUsingBlock:^(SXQExpEquipment *expEquipment, NSUInteger idx, BOOL * _Nonnull stop) {
             [self insertIntoExpEquipment:expEquipment database:db];
         }];
-        NSArray *expProcessArr = instruction[@"expProcess"];
-        [expProcessArr enumerateObjectsUsingBlock:^(NSDictionary *expProcess, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        NSArray *expProcessArr = instructionData.expProcess;
+        [expProcessArr enumerateObjectsUsingBlock:^(SXQExpStep *expProcess, NSUInteger idx, BOOL * _Nonnull stop) {
             [self insertIntoProcess:expProcess database:db];
         }];
-        NSArray *expReagentArr = instruction[@"expReagent"];
-        [expReagentArr enumerateObjectsUsingBlock:^(NSDictionary *expReagent, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        NSArray *expReagentArr = instructionData.expReagent;
+        [expReagentArr enumerateObjectsUsingBlock:^(SXQExpReagent *expReagent, NSUInteger idx, BOOL * _Nonnull stop) {
             [self insertIntoExpReagent:expReagent dataBase:db];
         }];
     }];
     [_queue close];
+    completion(YES,@{@"msg" : @"下载成功"});
 }
+
 -(NSString*) uuid {
     CFUUIDRef puuid = CFUUIDCreate( nil );
     CFStringRef uuidString = CFUUIDCreateString( nil, puuid );
@@ -154,24 +170,7 @@ static SXQDBManager *_dbManager = nil;
     CFRelease(uuidString);
     return resultStr;
 }
-/**
- *  写一条纪录到我的实验主表
- *
- */
-- (BOOL)insertIntoMyExp:(NSString *)instrucitonID;
-{
-    __block BOOL success = NO;
-#warning userid
-    [_queue inDatabase:^(FMDatabase *db) {
-        NSString *myExpId = [self uuid];
-        SXQExpInstruction *instruction = [self fetchInstructionWithInstructionID:instrucitonID db:db];
-        NSString *addMyExpSql = [NSString stringWithFormat:@"insert into t_myExp ( MyExpID , ExpInstructionID , UserID , CreateTime , CreateYear,CreateMonth , FinishTime , ExpVersion , IsReviewed ,IsCreateReport  , IsUpload , ReportName , ReportLocation ,ReportServerPath ,  ExpState ,ExpMemo ) values('%@','%@','%@','%@','%@','%@','%@','%d','%d','%d','%d','%@','%@','%@','%d','%@')",myExpId,instruction.expInstructionID,@"4028c681494b994701494b99aba50000",[NSString dw_currentDate],[NSString dw_year],[NSString dw_month],@"",instruction.expVersion,0,0,0,@"",@"",@"",0,@""];
-        success = [db executeUpdate:addMyExpSql];
-        [self addMyExpProcessInstructionID:instrucitonID myExpId:myExpId db:db];
-    }];
-    [_queue close];
-    return success;
-}
+
 
 /**
  * 根据说明书ID取一条说明书纪录
@@ -206,92 +205,10 @@ static SXQDBManager *_dbManager = nil;
     return [stepArr copy];
     
 }
-/**
- * 写一条纪录到我的实验步骤
- */
-- (BOOL)addMyExpProcessInstructionID:(NSString *)instructionID myExpId:(NSString *)expID db:(FMDatabase *)db
-{
-    NSArray *stepArr = [self fetchExpProcessWithInstructionID:instructionID db:db];
-    [stepArr enumerateObjectsUsingBlock:^(SXQInstructionStep *step, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *addExpProcessSql = [NSString stringWithFormat:@"insert into t_myExpProcess (MyExpProcessID ,MyExpID ,ExpInstructionID ,ExpStepID ,StepNum ,ExpStepDesc ,ExpStepTime ,IsUseTimer ,ProcessMemo ,IsActiveStep) values ('%@','%@','%@','%@','%@','%@','%@','%d','%@','%d')",[self uuid],expID,step.expInstructionID,step.expStepID,step.stepNum,step.expStepDesc,@"",0,@"",0];
-        [db executeUpdate:addExpProcessSql];
-    }];
-    return NO;
-}
 
-/**
- *  写入一条数据到说明书主表
- */
-- (BOOL)insertIntoInstructionMain:(SXQExpInstruction *)expInstruction db:(FMDatabase *)db
-{
-    __block BOOL success = NO;
-     success = [db executeUpdate:@"insert into t_expinstructionsMain (expinstructionid ,experimentname ,experimentdesc ,experimenttheory ,provideuser ,supplierid ,suppliername ,productnum ,expcategoryid ,expsubcategoryid ,createdate ,expversion ,allowdownload ,filterstr ,reviewcount ,downloadcount) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",expInstruction.expInstructionID, expInstruction.experimentName,expInstruction.experimentDesc,expInstruction.experimentTheory,expInstruction.provideUser,expInstruction.supplierID,expInstruction.supplierName,expInstruction.productNum ,expInstruction.expCategoryID,expInstruction.expSubCategoryID ,expInstruction.createDate,expInstruction.expVersion,expInstruction.allowDownload,expInstruction.filterStr,expInstruction.reviewCount,expInstruction.downloadCount];
-    return success;
-}
-/**
- *  说明书是否已存在
- *
- */
-- (BOOL)expInstrucitonExist:(NSString *)expInstructionID
-{
-    __block BOOL exist = NO;
-    [_queue  inDatabase:^(FMDatabase *db) {
-        FMResultSet *rs = [db executeQuery:@"SELECT t_expinstructionsMain.expinstructionid FROM t_expinstructionsMain WHERE expinstructionid == ?",expInstructionID];
-        exist = rs.next;
-    }];
-    [_queue close];
-    return exist;
-}
-/**
- *  我的实验是否已存在
- *
- */
-- (BOOL)myExpExist:(NSString *)expId
-{
-    __block BOOL exist = NO;
-    [_queue inDatabase:^(FMDatabase *db) {
-         FMResultSet *rs = [db executeQuery:@"SELECT t_myExp.MyExpID FROM t_myExp WHERE MyExpID == ?",expId];
-        exist = rs.next; 
-    }];
-    [_queue close];
-    return exist;
-}
-/**
- *  写入一条数据到说明书试剂表
- */
-- (BOOL)insertIntoExpReagent:(NSDictionary *)expReagent dataBase:(FMDatabase *)db
-{
-    __block BOOL success = NO;
-            success = [db executeUpdate:@"insert into t_expreaget (createMethod,expInstructionID ,expReagentID ,reagentCommonName,reagentID ,reagentName ,reagentSpec ,useAmount) values (?,?,?,?,?,?,?,?)",expReagent[@"createMethod"],expReagent[@"expInstructionID"],expReagent[@"expReagentID"],expReagent[@"reagentCommonName"],expReagent[@"reagentID"],expReagent[@"reagentName"],expReagent[@"reagentSpec"],expReagent[@"useAmount"]];
-    return success;
-}
-/**
- *  写入一条数据到耗材表
- */
-- (BOOL)insertIntoConsumable:(NSDictionary *)consumable database:(FMDatabase *)db
-{
-    __block BOOL success = NO;
-        success = [db executeUpdate:@"insert into t_expConsumable (consumableCount ,consumableFactory ,consumableID,consumableType,expConsumableID,expInstructionID) values (?,?,?,?,?,?)",consumable[@"consumableCount"],consumable[@"consumableFactory"],consumable[@"consumableID"],consumable[@"consumableType"],consumable[@"expConsumableID"],consumable[@"expInstructionID"]];
-    return success;
-}
-/**
- *  写入一条数据到流程
- */
-- (BOOL)insertIntoProcess:(NSDictionary *)expProcess database:(FMDatabase *)db
-{
-    __block BOOL success = NO;
-        success = [db executeUpdate:@"insert into t_expProcess (expInstructionID ,expStepDesc ,expStepID ,expStepTime ,stepNum ) values (?,?,?,?,?)",expProcess[@"expInstructionID"],expProcess[@"expStepDesc"],expProcess[@"expStepID"],expProcess[@"expStepTime"],expProcess[@"stepNum"]];
-    return success;
-}
-/**
- *  写入一条数据到设备表
- */
-- (BOOL)insertIntoExpEquipment:(NSDictionary *)expEquipment database:(FMDatabase *)db
-{
-    __block BOOL success = NO;
-        success = [db executeUpdate:@"insert into  t_expEquipment (equipmentID ,equipmentFactory ,equipmentName ,expEquipmentID ,expInstructionID ) values (?,?,?,?,?)",expEquipment[@"equipmentID"],expEquipment[@"equipmentFactory"],expEquipment[@"equipmentName"],expEquipment[@"expEquipmentID"],expEquipment[@"expInstructionID"]];
-    return success;
-}
+
+
+
 - (NSArray *)chechAllInstuction
 {
     __block NSArray *resultArr = nil;
@@ -299,7 +216,6 @@ static SXQDBManager *_dbManager = nil;
         NSMutableArray *tmpArr = [NSMutableArray array];
         FMResultSet *rs = [db executeQuery:@"select * from t_expinstructionsMain"];
         while (rs.next) {
-            //"create table if not exists t_expinstructionsMain(expinstructionid text primary key,experimentname text,experimentdesc text,experimenttheory text,provideuser text,supplierid text,suppliername text,productnum text,expcategoryid text,expsubcategoryid text,createdate numeric,expversion integer,allowdownload integer,filterstr text,reviewcount integer,downloadcount integer);";
             NSString *expinstructionid = [rs stringForColumn:@"expinstructionid"];
             NSString *experimentname = [rs stringForColumn:@"experimentname"];
             NSString *uploadTime = [rs stringForColumn:@"uploadTime"];
@@ -313,20 +229,7 @@ static SXQDBManager *_dbManager = nil;
     
     return resultArr;
 }
-/**
- *  根据实验id,实验步骤ID，写入一条备注
- */
-- (BOOL)writeRemark:(NSString *)remark withExpId:(NSString *)expId expProcessID:(NSString *)expProcessId
-{
-    __block BOOL success = NO;
-    [_queue inDatabase:^(FMDatabase *db) {
-        FMResultSet *rs = [db executeQuery:@"select * from t_myExpProcess where MyExpID == ?and MyExpProcessID == ?",expId,expProcessId];
-        while (rs.next) {
-            success = [db executeUpdate:@"update t_myExpProcess set ProcessMemo=? where MyExpID == ?and MyExpProcessID == ?",remark,expId,expProcessId];
-        }
-    }];
-    return success;
-}
+
 - (NSArray *)querySupplierWithReagetID:(NSString *)reagentID
 {
     __block NSMutableArray *tempArr = [NSMutableArray array];
@@ -363,7 +266,225 @@ static SXQDBManager *_dbManager = nil;
     }
     return supplier;
 }
-
+- (void)fetchInstructionDataWithInstructionID:(NSString *)instructionId success:(void (^)(SXQInstructionData *))success
+{
+    
+}
+- (void)addExpWithInstructionData:(SXQInstructionData *)instructionData completion:(void (^)(BOOL, NSString *))completion
+{
+    NSString *myExpId = [self uuid];
+    [_queue inDatabase:^(FMDatabase *db) {
+        //1.write data to t_myExp
+        [self insertIntoMyExp:instructionData.expInstructionMain myExpId:myExpId db:db];
+        
+        //2.write expconsumable to t_myexpconsumable
+        [instructionData.expConsumable enumerateObjectsUsingBlock:^(SXQExpConsumable *consumable, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *myExpConsumableID = [self uuid];
+            [self insertIntoMyExpConsumable:consumable myExpConsumabelId:myExpConsumableID myExpId:myExpId db:db];
+        }];
+        
+        //3.write expequipment to t_myexpequipment
+        [instructionData.expEquipment enumerateObjectsUsingBlock:^(SXQExpEquipment *expEquipment, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *myEquipmentId = [self uuid];
+            [self insertIntoMyExpEquipment:expEquipment myExpId:myExpId myEquipmentID:myEquipmentId db:db];
+        }];
+        
+        //4.write expprocess to t_myexpprocess
+        [instructionData.expProcess enumerateObjectsUsingBlock:^(SXQExpStep *expProcess, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *myExpProcessID = [self uuid];
+            [self insertIntoMyExpProcess:expProcess myExpProcessId:myExpProcessID myExpId:myExpId db:db];
+        }];
+        
+        //5.write expreagent to t_myexpreagent
+        [instructionData.expReagent enumerateObjectsUsingBlock:^(SXQExpReagent *reagent, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *myExpReagentId = [self uuid];
+            [self insertIntoMyExpReagent:reagent myExpReagentId:myExpReagentId myExpId:myExpId db:db];
+        }];
+    }];
+    [_queue close];
+    completion(YES,myExpId);
+}
+#pragma mark 说明书操作
+/**
+ *  写入一条数据到流程
+ */
+- (BOOL)insertIntoProcess:(SXQExpStep *)expProcess database:(FMDatabase *)db
+{
+    BOOL success = NO;
+    NSString *insertSql = [NSString stringWithFormat:@"insert into t_expProcess (expInstructionID ,expStepDesc ,expStepID ,expStepTime ,stepNum ) values ('%@','%@','%@','%@','%d')",expProcess.expInstructionID,expProcess.expStepDesc,expProcess.expStepID,expProcess.expStepTime,expProcess.stepNum];
+        success = [db executeUpdate:insertSql];
+    return success;
+}
+/**
+ *  写入一条数据到设备表
+ */
+- (BOOL)insertIntoExpEquipment:(SXQExpEquipment *)equipment database:(FMDatabase *)db
+{
+    BOOL success = NO;
+    NSString *insertSql = [NSString stringWithFormat:@"insert into  t_expEquipment (equipmentID ,equipmentFactory ,equipmentName ,expEquipmentID ,expInstructionID ) values ('%@','%@','%@','%@','%@')",equipment.equipmentID,equipment.equipmentFactory,equipment.equipmentName,equipment.equipmentID,equipment.expInstructionID];
+        success = [db executeUpdate:insertSql];
+    return success;
+}
+/**
+ *  写入一条数据到说明书试剂表
+ */
+- (BOOL)insertIntoExpReagent:(SXQExpReagent *)expReagent dataBase:(FMDatabase *)db
+{
+    BOOL success = NO;
+    NSString *insertSql = [NSString stringWithFormat:@"insert into t_expreaget (createMethod,expInstructionID ,expReagentID ,reagentCommonName,reagentID ,reagentName ,reagentSpec ,useAmount) values ('%@','%@','%@','%@','%@','%@','%@','%@')",expReagent.createMethod,expReagent.expInstructionID,expReagent.expReagentID,expReagent.reagentCommonName,expReagent.reagentID,expReagent.reagentName,expReagent.reagentSpec,expReagent.useAmount   ];
+            success = [db executeUpdate:insertSql];
+    return success;
+}
+/**
+ *  写入一条数据到耗材表
+ */
+- (BOOL)insertIntoConsumable:(SXQExpConsumable *)consumable database:(FMDatabase *)db
+{
+    BOOL success = NO;
+    NSString *insertSql = [NSString stringWithFormat:@"insert into t_expConsumable (consumableCount ,consumableFactory ,consumableID,consumableType,expConsumableID,expInstructionID) values ('%d','%@','%@','%@','%@','%@')",consumable.consumableCount,consumable.consumableFactory,consumable.consumableID,consumable.consumableType,consumable.expConsumableID,consumable.expInstructionID];
+    
+    success = [db executeUpdate:insertSql];
+    return success;
+}
+/**
+ *  写入一条数据到说明书主表
+ */
+- (BOOL)insertIntoInstructionMain:(SXQExpInstruction *)expInstruction db:(FMDatabase *)db
+{
+    BOOL success = NO;
+    NSString *insertSql = [NSString stringWithFormat:@"insert into t_expinstructionsMain (expinstructionid ,experimentname ,experimentdesc ,experimenttheory ,provideuser ,supplierid ,suppliername ,productnum ,expcategoryid ,expsubcategoryid ,createdate ,expversion ,allowdownload ,filterstr ,reviewcount ,downloadcount) values('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%d','%@','%@','%@','%@')",expInstruction.expInstructionID,expInstruction.experimentName,expInstruction.experimentDesc,expInstruction.experimentTheory,expInstruction.provideUser,expInstruction.supplierID,expInstruction.supplierName,expInstruction.productNum,expInstruction.expCategoryID,expInstruction.expSubCategoryID,expInstruction.createDate,expInstruction.expVersion,expInstruction.allowDownload,expInstruction.filterStr,expInstruction.reviewCount,expInstruction.downloadCount];
+    success = [db executeUpdate:insertSql];
+    return success;
+}
+/**
+ *  说明书是否已存在
+ *
+ */
+- (BOOL)expInstrucitonExist:(NSString *)expInstructionID
+{
+    __block BOOL exist = NO;
+    NSString *query = [NSString stringWithFormat:@"SELECT t_expinstructionsMain.expinstructionid FROM t_expinstructionsMain WHERE expinstructionid == '%@'",expInstructionID];
+    [_queue  inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery:query];
+        exist = rs.next;
+    }];
+    [_queue close];
+    return exist;
+}
+#pragma mark 我的实验操作
+/**
+ * 写一条纪录到我的实验步骤
+ */
+- (BOOL)addMyExpProcessInstructionID:(NSString *)instructionID myExpId:(NSString *)expID db:(FMDatabase *)db
+{
+    NSArray *stepArr = [self fetchExpProcessWithInstructionID:instructionID db:db];
+    [stepArr enumerateObjectsUsingBlock:^(SXQInstructionStep *step, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *addExpProcessSql = [NSString stringWithFormat:@"insert into t_myExpProcess (MyExpProcessID ,MyExpID ,ExpInstructionID ,ExpStepID ,StepNum ,ExpStepDesc ,ExpStepTime ,IsUseTimer ,ProcessMemo ,IsActiveStep) values ('%@','%@','%@','%@','%@','%@','%@','%d','%@','%d')",[self uuid],expID,step.expInstructionID,step.expStepID,step.stepNum,step.expStepDesc,@"",0,@"",0];
+        [db executeUpdate:addExpProcessSql];
+    }];
+    return NO;
+}
+/**
+ *  写一条纪录到我的实验主表
+ *
+ */
+- (BOOL)insertIntoMyExp:(SXQExpInstruction *)instruciton myExpId:(NSString *)myExpId db:(FMDatabase *)db;
+{
+    BOOL success = NO;
+#warning userid
+     NSString *addMyExpSql = [NSString stringWithFormat:@"insert into t_myExp ( MyExpID , ExpInstructionID , UserID , CreateTime , CreateYear,CreateMonth , FinishTime , ExpVersion , IsReviewed ,IsCreateReport  , IsUpload , ReportName , ReportLocation ,ReportServerPath ,  ExpState ,ExpMemo ) values('%@','%@','%@','%@','%@','%@','%@','%d','%d','%d','%d','%@','%@','%@','%d','%@')",myExpId,instruciton.expInstructionID,@"4028c681494b994701494b99aba50000",[NSString dw_currentDate],[NSString dw_year],[NSString dw_month],@"",instruciton.expVersion,0,0,0,@"",@"",@"",0,@""];
+    success = [db executeUpdate:addMyExpSql];
+    return success;
+}
+/**
+ *  添加我的实验耗材
+ *
+ */
+- (BOOL)insertIntoMyExpConsumable:(SXQExpConsumable *)consumable myExpConsumabelId:(NSString *)myExpConsumaleId myExpId:(NSString *)myExpId db:(FMDatabase *)db
+{
+    BOOL success = NO;
+#warning supplierID
+    NSString *addConsumableSql = [NSString stringWithFormat:@"insert into t_myExpConsumable(MyExpConsumableID ,MyExpID,ExpInstructionID,ConsumableID,SupplierID) values ('%@','%@','%@','%@','%@')",myExpConsumaleId,myExpId,consumable.expInstructionID,consumable.consumableID,consumable.supplierID];
+    success = [db executeUpdate:addConsumableSql];
+    return success;
+}
+/**
+ *  添加我的实验试剂
+ */
+- (BOOL)insertIntoMyExpReagent:(SXQExpReagent *)expReagent myExpReagentId:(NSString *)myExpReagentId myExpId:(NSString *)myExpId db:(FMDatabase *)db
+{
+    
+    NSString *insertSql = [NSString stringWithFormat:@"insert into t_myExpReagent( MyExpReagentID, MyExpID, ExpInstructionID,ReagentID, SupplierID) values ('%@','%@','%@','%@','%@')",myExpReagentId,myExpId,expReagent.expInstructionID,expReagent.reagentID,expReagent.supplierId];
+    return [db executeUpdate:insertSql];
+}
+/**
+ *  添加我的实验设备
+ *
+ */
+- (BOOL)insertIntoMyExpEquipment:(SXQExpEquipment *)equipment myExpId:(NSString *)myExpId  myEquipmentID:(NSString *)myEquipmentId db:(FMDatabase *)db
+{
+    BOOL success = NO;
+    NSString *addMyExpEquipmentSql = [NSString stringWithFormat:@"insert into t_myExpEquipment(MyExpEquipmentID ,MyExpID,ExpInstructionID,EquipmentID,SupplierID) values ('%@','%@','%@','%@','%@')",myEquipmentId,myExpId,equipment.expInstructionID,equipment.equipmentID,equipment.supplierId];
+    [db executeUpdate:addMyExpEquipmentSql];
+    return success;
+}
+/**
+ *  添加我的实验步骤
+ */
+- (BOOL)insertIntoMyExpProcess:(SXQExpStep *)expProcess myExpProcessId:(NSString *)myExpProcesId myExpId:(NSString *)myExpId db:(FMDatabase *)db
+{
+    BOOL success = NO;
+    NSString *insertSql = [NSString stringWithFormat:@"insert into  t_myExpProcess(MyExpProcessID,MyExpID,ExpInstructionID,ExpStepID,StepNum,ExpStepDesc,ExpStepTime,IsUseTimer,ProcessMemo,IsActiveStep) values ('%@','%@','%@','%@','%d','%@','%@','%d','%@','%d')",myExpProcesId,myExpId,expProcess.expInstructionID,expProcess.expStepID,expProcess.stepNum,expProcess.expStepDesc,expProcess.expStepTime,expProcess.isUserTimer,expProcess.processMemo,expProcess.isActiveStep];
+    success = [db executeUpdate:insertSql];
+    return success;
+}
+/**
+ *  根据实验id,实验步骤ID，写入一条备注
+ */
+- (BOOL)writeRemark:(NSString *)remark withExpId:(NSString *)expId expProcessID:(NSString *)expProcessId
+{
+    __block BOOL success = NO;
+    [_queue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery:@"select * from t_myExpProcess where MyExpID == ?and MyExpProcessID == ?",expId,expProcessId];
+        while (rs.next) {
+            success = [db executeUpdate:@"update t_myExpProcess set ProcessMemo=? where MyExpID == ?and MyExpProcessID == ?",remark,expId,expProcessId];
+        }
+    }];
+    return success;
+}
+/**
+ *  我的实验是否已存在
+ *
+ */
+- (BOOL)myExpExist:(NSString *)expId
+{
+    __block BOOL exist = NO;
+    [_queue inDatabase:^(FMDatabase *db) {
+         FMResultSet *rs = [db executeQuery:@"SELECT t_myExp.MyExpID FROM t_myExp WHERE MyExpID == ?",expId];
+        exist = rs.next; 
+    }];
+    [_queue close];
+    return exist;
+}
+- (void)loadCurrentDataWithMyExpId:(NSString *)myExpId completion:(void (^)(SXQCurrentExperimentData *))completioin
+{
+    // 去我的实验表找到实验，创建SXQMyexpEriment
+    
+    //我的实验步骤表找到实验步骤数组
+    
+}
+- (SXQMyExperiment *)fetchMyExpWithMyExpId:(NSString *)myExpId db:(FMDatabase *)db
+{
+    
+    NSString *myExpSQL = @"create table if not exists t_myExp( MyExpID text primary key, ExpInstructionID text, UserID text, CreateTime numeric, CreateYear integer,CreateMonth  integer, FinishTime numeric, ExpVersion integer, IsReviewed integer,IsCreateReport  integer, IsUpload integer, ReportName text, ReportLocation text,ReportServerPath  text,  ExpState integer,ExpMemo  text);";
+    SXQMyExperiment *myExperiment = [[SXQMyExperiment alloc] init];
+    FMResultSet *rs = [db executeQuery:@"select * from t_myExp where MyExpID = ?",myExpId];
+    while (rs.next) {
+        
+    }
+    return myExperiment;
+}
+#pragma mark Private Method
 @end
 
 

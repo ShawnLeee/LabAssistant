@@ -17,4 +17,6 @@
 @property (nonatomic,copy) NSString *reagentSpec;
 @property (nonatomic,copy) NSString *useAmount;
 @property (nonatomic,copy) NSString *createMethod;
+
+@property (nonatomic,copy) NSString *supplierId;
 @end

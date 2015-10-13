@@ -15,47 +15,51 @@
 #import "SXQExperimentToolBar.h"
 #import "ArrayDataSource+TableView.h"
 #import "SXQExperimentModel.h"
-#import "SXQExperimentStep.h"
 #import "DWStepCell.h"
 #import "ExperimentTool.h"
 #import "SXQExperimentStepResult.h"
 #import "SXQExperiment.h"
 #import "TimeRecorder.h"
+#import "SXQExpStep.h"
+#import "SXQCurrentExperimentData.h"
 
 @interface SXQCurrentExperimentController ()<UITableViewDelegate,SXQExperimentToolBarDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,TimeRecorderDelegate>
+@property (nonatomic,copy) NSString *myExpId;
+@property (nonatomic,strong) SXQCurrentExperimentData *currentExperimentData;
 @property (weak, nonatomic) IBOutlet SXQExperimentToolBar *toolBar;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic,strong) ArrayDataSource *experimentDatasource;
 @property (weak, nonatomic) IBOutlet UILabel *experimentName;
 
-@property (nonatomic,strong) NSArray *steps;
 @property (nonatomic,strong) ArrayDataSource *stepsDataSource;
 /**
  *  正在进行的实验步骤
  */
-@property (nonatomic,strong) SXQExperimentStep *currentStep;
+@property (nonatomic,strong) SXQExpStep *currentStep;
 @property (nonatomic,weak) TimeRecorder *timer;
 @end
 
 @implementation SXQCurrentExperimentController
-- (SXQExperimentStep *)currentStep
+- (instancetype)initWithMyExpId:(NSString *)myExpId
+{
+    if (self = [super init]) {
+        _myExpId = [myExpId copy];
+        _currentExperimentData = [[SXQCurrentExperimentData alloc] initWithMyExpId:myExpId completion:^(BOOL success) {
+            
+        }];
+    }
+    return self;
+}
+- (SXQExpStep *)currentStep
 {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     if (indexPath) {
-        _currentStep = _steps[indexPath.row];
+        _currentStep = _currentExperimentData.expProcesses[indexPath.row];
         return _currentStep;
     }else
     {
         return nil;
     }
-}
-
-- (NSArray *)steps
-{
-    if (!_steps) {
-        _steps = @[];
-    }
-    return _steps;
 }
 - (void)viewDidLayoutSubviews
 {
@@ -73,8 +77,8 @@
     self.tableView.estimatedRowHeight = 100;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"DWStepCell" bundle:nil] forCellReuseIdentifier:@"DWStepCell"];
-    _stepsDataSource = [[ArrayDataSource alloc] initWithItems:self.steps cellIdentifier:@"DWStepCell" cellConfigureBlock:^(DWStepCell *cell, SXQExperimentStep *stepModel) {
-        cell.expStep = stepModel;
+    _stepsDataSource = [[ArrayDataSource alloc] initWithItems:_currentExperimentData.expProcesses cellIdentifier:@"DWStepCell" cellConfigureBlock:^(DWStepCell *cell, SXQExpStep *stepModel) {
+        cell.expProcess = stepModel;
     }];
     self.tableView.dataSource = _stepsDataSource;
     [self p_setupTableFooter];
@@ -123,22 +127,6 @@
         
     }];
     return [[UIBarButtonItem alloc] initWithCustomView:button];
-}
-- (void)setExperimentModel:(SXQExperimentModel *)experimentModel
-{
-    _experimentModel = experimentModel;
-    ExperimentParam *param = [ExperimentParam paramWithExperimentModel:experimentModel];
-    param.userID = @"";
-    [ExperimentTool fetchExperimentStepWithParam:param success:^(SXQExperimentStepResult *result) {
-        _stepsDataSource.items = result.data.steps;
-        _steps = result.data.steps;
-        _experimentName.text = result.data.experimentName;
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
-        
-    }];
-    
-    
 }
 - (void)experimentToolBar:(SXQExperimentToolBar *)toolBar clickButtonWithType:(ExperimentTooBarButtonType)buttonType
 {
@@ -208,7 +196,7 @@
 - (void)timeRecorderdidPaused:(TimeRecorder *)timeRecorder
 {
     if (self.currentStep) {
-        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"暂停在此步骤" message:self.currentStep.stepDesc preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"暂停在此步骤" message:self.currentStep.expStepDesc preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self addRemarkWithConfirm];
         }];
@@ -310,13 +298,13 @@
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     DWStepCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     if (indexPath) {
-        step = self.steps[indexPath.row];
+        step = _currentExperimentData.expProcesses[indexPath.row];
     }else
     {
         [MBProgressHUD showError:@"请选择实验步骤"];
         return;
     }
-    [step addImage:image];
+//    [step addImage:image];
     //写入一条实验步骤到数据库
     
     [self.tableView beginUpdates];
@@ -330,7 +318,7 @@
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     DWStepCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     if (indexPath) {
-        step = self.steps[indexPath.row];
+        step = _currentExperimentData.expProcesses[indexPath.row];
     }else
     {
         [MBProgressHUD showError:@"请选择实验步骤"];
@@ -352,6 +340,6 @@
 - (void)p_saveRemark:(NSString *)remark atStep:(SXQExperimentStep *)step
 {
     SXQMyExperimentManager *manager = [SXQMyExperimentManager new];
-    [manager writeRemak:remark toExperiment:_experimentModel.myExpID expStepID:step.stepNum];
+//    [manager writeRemak:remark toExperiment:_experimentModel.myExpID expStepID:step.stepNum];
 }
 @end

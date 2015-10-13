@@ -10,6 +10,7 @@
 #import "SXQExperimentStep.h"
 #import "UIImage+Size.h"
 #import "PhotoContainer.h"
+#import "SXQExpStep.h"
 @interface DWStepCell ()
 @property (weak, nonatomic) IBOutlet UILabel *stepLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stepContentLabel;
@@ -18,7 +19,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *remarkLabel;
 @end
 @implementation DWStepCell
-
+- (void)setExpProcess:(SXQExpStep *)expProcess
+{
+    
+}
 - (void)setExpStep:(SXQExperimentStep *)expStep
 {
     _expStep = expStep;

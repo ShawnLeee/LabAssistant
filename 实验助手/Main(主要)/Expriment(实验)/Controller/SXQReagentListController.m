@@ -17,6 +17,7 @@
 #import "SXQSupplier.h"
 #import "SXQHotInstruction.h"
 #import "SXQMyGenericInstruction.h"
+#import "SXQInstructionData.h"
 #define ReagentCellIdentifier @"Reagent Cell"
 
 @interface SXQReagentListController ()<SXQReagentCellDelegate>
@@ -24,26 +25,14 @@
 @property (nonatomic,strong) ArrayDataSource *reagentDataSource;
 @property (nonatomic,strong) SXQReagentListData *reagentData;
 @property (nonatomic,weak) FPPopoverController *popOver;
+@property (nonatomic,strong) SXQInstructionData *instructionData;
 @end
 
 @implementation SXQReagentListController
-- (instancetype)initWithExpInstruction:(id)instruction
+- (instancetype)initWithExpInstructionData:(SXQInstructionData *)instructionData
 {
     if (self = [super init]) {
-        _instruction = instruction;
-        NSString *instructionID = nil;
-        if ([_instruction isKindOfClass:[SXQHotInstruction class]]) {
-            SXQHotInstruction *hotInstruction = (SXQHotInstruction *)_instruction;
-            instructionID = hotInstruction.expInstructionID;
-        }else
-        {
-            SXQMyGenericInstruction *genericInstruction = (SXQMyGenericInstruction *)_instruction;
-            instructionID = genericInstruction.expInstructionID;
-        }
-        _reagentData = [[SXQReagentListData alloc] initWithExpInstructionID:instructionID DataLoadComletedBlock:^{
-            _reagentDataSource.items = _reagentData.reagents;
-            [self.tableView reloadData];
-        }];
+        _instructionData = instructionData;
     }
     return self;
 }
@@ -56,7 +45,7 @@
 {
     [self.tableView registerNib:[UINib nibWithNibName:@"SXQReagentCell" bundle:nil] forCellReuseIdentifier:ReagentCellIdentifier];
     
-    _reagentDataSource= [[ArrayDataSource alloc] initWithItems:_reagentData.reagents cellIdentifier:ReagentCellIdentifier cellConfigureBlock:^(SXQReagentCell *cell, SXQExpReagent *reagent) {
+    _reagentDataSource= [[ArrayDataSource alloc] initWithItems:_instructionData.expReagent cellIdentifier:ReagentCellIdentifier cellConfigureBlock:^(SXQReagentCell *cell, SXQExpReagent *reagent) {
         cell.delegate = self;
         [cell configureCellWithItem:reagent];
     }];
@@ -88,7 +77,7 @@
 - (void)setupNav
 {
     UIBarButtonItem *rightBarButton = [UIBarButtonItem itemWithTitle:@"下一步" action:^{
-        SXQAddExpController *addExpController = [[SXQAddExpController alloc] init];
+        SXQAddExpController *addExpController = [[SXQAddExpController alloc] initWithInstructionData:_instructionData];
         [self.navigationController pushViewController:addExpController animated:YES];
     }];
     self.navigationItem.rightBarButtonItem = rightBarButton;

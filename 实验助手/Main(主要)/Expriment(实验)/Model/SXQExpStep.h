@@ -14,4 +14,9 @@
 @property (nonatomic,copy) NSString  *expStepID;
 @property (nonatomic,copy) NSString  *expStepTime;
 @property (nonatomic,assign) int  stepNum;
+
+
+@property (nonatomic,assign) BOOL isUserTimer;
+@property (nonatomic,assign) BOOL isActiveStep;
+@property (nonatomic,copy) NSString *processMemo;
 @end

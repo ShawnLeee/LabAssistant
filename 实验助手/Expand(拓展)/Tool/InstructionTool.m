@@ -5,6 +5,7 @@
 //  Created by sxq on 15/9/21.
 //  Copyright (c) 2015年 SXQ. All rights reserved.
 //
+#import "SXQInstructionDownloadResult.h"
 #import "SXQHttpTool.h"
 #import "SXQURL.h"
 #import <MJExtension/MJExtension.h>
@@ -14,6 +15,7 @@
 #import "SXQExpSubCategory.h"
 #import "SXQExpInstruction.h"
 #import "SXQExpReagent.h"
+#import "SXQDBManager.h"
 @implementation InstructionTool
 + (void)fetchAllExpSuccess:(void (^)(ExpCategoryResult *))success failure:(void (^)(NSError *))failure
 {
@@ -46,6 +48,9 @@
     [SXQHttpTool getWithURL:InstructionListURL params:param success:^(id json) {
         if (success) {
             ExpInstructionsResult *result = [ExpInstructionsResult objectWithKeyValues:json];
+            [result.data enumerateObjectsUsingBlock:^(SXQExpInstruction *instrution, NSUInteger idx, BOOL * _Nonnull stop) {
+                instrution.downloaded = [[SXQDBManager sharedManager] expInstrucitonExist:instrution.expInstructionID];
+            }];
             success(result);
         }
     } failure:^(NSError *error) {
@@ -54,11 +59,15 @@
         }
     }];
 }
-+ (void)downloadInstructionWithID:(NSString *)instructionID success:(void (^)(id))success failure:(void (^)(NSError *))failure
++ (void)downloadInstructionWithID:(NSString *)instructionID success:(void (^)(SXQInstructionDownloadResult *))success failure:(void (^)(NSError *))failure
 {
     NSDictionary *params = @{@"expInstructionID" : instructionID};
     [SXQHttpTool getWithURL:DownloadInstructionURL params:params success:^(id json) {
-        if(success) success(json);
+        if(success)
+        {
+            SXQInstructionDownloadResult *result = [SXQInstructionDownloadResult objectWithKeyValues:json];
+            success(result);
+        }
     } failure:^(NSError *error) {
         
     }];

@@ -10,9 +10,9 @@
 #import "SXQInstructionManager.h"
 #import <MJExtension/MJExtension.h>
 @implementation SXQInstructionManager
-+ (void)downloadInstruction:(id)instruction completion:(CompletionHandler)completion
++ (void)downloadInstruction:(SXQInstructionData *)instructionData completion:(CompletionHandler)completion
 {
-    [[SXQDBManager sharedManager] insertInstruciton:instruction completion:^(BOOL success, NSDictionary *info) {
+    [[SXQDBManager sharedManager] insertInstruciton:instructionData completion:^(BOOL success, NSDictionary *info) {
         completion(success,info);
     }];
 }

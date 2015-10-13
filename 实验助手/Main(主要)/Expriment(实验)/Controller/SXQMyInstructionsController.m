@@ -5,6 +5,8 @@
 //  Created by sxq on 15/9/15.
 //  Copyright (c) 2015年 SXQ. All rights reserved.
 //
+#import "SXQDBManager.h"
+#import "SXQInstructionDownloadResult.h"
 #import "ArrayDataSource+TableView.h"
 #import "SXQMyInstructionsController.h"
 #import "DWGroup.h"
@@ -15,6 +17,7 @@
 #import "SXQReagentListController.h"
 #import "SXQHotInstruction.h"
 #import "SXQMyExperimentManager.h"
+#import "InstructionTool.h"
 typedef NS_ENUM(NSUInteger,SectionType){
     SectionTypeMyInstructionType = 0,
     SectionTypeHotInstructionType = 1,
@@ -60,18 +63,48 @@ typedef NS_ENUM(NSUInteger,SectionType){
 #pragma mark tableview delegate method
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == SectionTypeHotInstructionType) {
-        DWGroup *group = self.groups[indexPath.section];
-        SXQHotInstruction *instruction = group.items[indexPath.row];
-        //检查/下载说明书
-        SXQReagentListController *listVC = [[SXQReagentListController alloc] initWithExpInstruction:instruction];
-        [self.navigationController pushViewController:listVC animated:YES];
-    }else
-    {
-        DWGroup *group = self.groups[indexPath.section];
-        SXQMyGenericInstruction *genericInstruciton = group.items[indexPath.row];
-        [SXQMyExperimentManager addExperimentWithInstructionId:genericInstruciton.expInstructionID];
+    switch (indexPath.section) {
+        case SectionTypeHotInstructionType:
+        {
+            DWGroup *group = self.groups[indexPath.section];
+            SXQHotInstruction *instruction = group.items[indexPath.row];
+            //检查/下载说明书
+            if (![SXQInstructionManager instructionIsdownload:instruction.expInstructionID]) {//还没有下载
+                //下载说明书
+                [InstructionTool downloadInstructionWithID:instruction.expInstructionID success:^(SXQInstructionDownloadResult *result) {
+                    [SXQInstructionManager downloadInstruction:result.data completion:^(BOOL success, NSDictionary *info) {
+                        [self changeViewControllerWithInstructionData:result.data];
+                    }];
+                } failure:^(NSError *error) {
+                    
+                }];
+            }
+            else{//已经下载，取出实验说明书的数据
+                [[SXQDBManager sharedManager] fetchInstructionDataWithInstructionID:instruction.expInstructionID success:^(SXQInstructionData *instructionData) {
+                    [self changeViewControllerWithInstructionData:instructionData];
+                }];
+            }
+            break;
+        }
+        case SectionTypeMyInstructionType:
+        {
+            DWGroup *group = self.groups[indexPath.section];
+            SXQMyGenericInstruction *genericInstruciton = group.items[indexPath.row];
+            [[SXQDBManager sharedManager] fetchInstructionDataWithInstructionID:genericInstruciton.expInstructionID success:^(SXQInstructionData *instructionData) {
+                [self changeViewControllerWithInstructionData:instructionData];
+            }];
+            [SXQMyExperimentManager addExperimentWithInstructionId:genericInstruciton.expInstructionID];
+            break;
+        }           
+        default:
+            break;
     }
+
+}
+- (void)changeViewControllerWithInstructionData:(SXQInstructionData *)instructionData
+{
+    SXQReagentListController *listVC = [[SXQReagentListController alloc] initWithExpInstructionData:instructionData];
+    [self.navigationController pushViewController:listVC animated:YES];
 }
 @end
 

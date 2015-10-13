@@ -33,5 +33,8 @@
 //    viewController.view.window.backgroundColor = [UIColor whiteColor];
     [super pushViewController:viewController animated:YES];
 }
-
+- (void)setViewControllers:(NSArray<UIViewController *> *)viewControllers animated:(BOOL)animated
+{
+    [super setViewControllers:viewControllers animated:animated];
+}
 @end

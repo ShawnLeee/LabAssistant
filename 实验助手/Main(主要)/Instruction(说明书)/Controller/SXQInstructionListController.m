@@ -5,6 +5,7 @@
 //  Created by sxq on 15/9/1.
 //  Copyright (c) 2015年 SXQ. All rights reserved.
 //
+#import "SXQInstructionDownloadResult.h"
 #import "SXQInstructionManager.h"
 #import "SXQListCell.h"
 #import "InstructionTool.h"
@@ -49,6 +50,7 @@
 - (void)p_loadDataWithCategoryItem:(SXQExpSubCategory *)item
 {
     [InstructionTool fetchInstructionLishWithExpSubCategoryID:item.expSubCategoryID success:^(ExpInstructionsResult *result) {
+        
         _instructionDataSource.items = result.data;
         _instructions = result.data;
         [self.tableView reloadData];
@@ -62,13 +64,12 @@
 }
 - (void)listCell:(SXQListCell *)cell clickedDownloadBtn:(UIButton *)button
 {
-    button.enabled = NO;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     __block SXQExpInstruction *instruction = self.instructions[indexPath.row];
-    [InstructionTool downloadInstructionWithID:instruction.expInstructionID success:^(id result) {
+    [InstructionTool downloadInstructionWithID:instruction.expInstructionID success:^(SXQInstructionDownloadResult *result) {
 #warning 缓存说明书
-        [SXQInstructionManager downloadInstruction:result[@"data"] completion:^(BOOL success, NSDictionary *info) {
-            
+        [SXQInstructionManager downloadInstruction:result.data completion:^(BOOL success, NSDictionary *info) {
+            instruction.downloaded = success;
         }];
     } failure:^(NSError *error) {
         

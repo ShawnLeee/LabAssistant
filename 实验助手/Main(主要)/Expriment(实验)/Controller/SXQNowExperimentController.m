@@ -60,7 +60,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SXQCurrentExperimentController *stepVC = [SXQCurrentExperimentController new];
-    stepVC.experimentModel = self.experiments[indexPath.row];
+//    stepVC.experimentModel = self.experiments[indexPath.row];
     [self.navigationController pushViewController:stepVC animated:YES];
 }
 

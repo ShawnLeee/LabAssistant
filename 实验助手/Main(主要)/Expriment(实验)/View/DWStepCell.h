@@ -5,10 +5,11 @@
 //  Created by sxq on 15/9/25.
 //  Copyright © 2015年 SXQ. All rights reserved.
 //
-@class SXQExperimentStep;
+@class SXQExperimentStep,SXQExpStep;
 #import <UIKit/UIKit.h>
 
 @interface DWStepCell : UITableViewCell
+@property (nonatomic,strong) SXQExpStep *expProcess;
 @property (nonatomic,strong) SXQExperimentStep *expStep;
 /**
  *  添加评论
